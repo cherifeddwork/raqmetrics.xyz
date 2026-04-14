@@ -548,7 +548,7 @@ a{text-decoration:none;}
 <!-- ██ PAGE LOADER ██ -->
 <div id="loader">
   <div class="loader-logo">
-<img src="logo.svg" alt="Raqmetrics" class="logo-loader">
+<img src="http://raqmetrics.xyz/logo.svg" alt="Raqmetrics" class="logo-loader" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:var(--f-d);font-size:2.2rem;font-weight:900;letter-spacing:-.04em;\'>Raq<span style=\'color:var(--amber)\'>metrics</span></span>';">
 </div>
   <div class="loader-bar-track"><div class="loader-bar-fill" id="lbar"></div></div>
   <div class="loader-pct" id="lpct">0%</div>
@@ -578,7 +578,7 @@ a{text-decoration:none;}
 <nav class="nav" id="nav">
   <div class="wrap nav-inner">
    <a href="#" class="nav-logo">
-  <img src="logo.svg" alt="Raqmetrics">
+  <img src="http://raqmetrics.xyz/logo.svg" alt="Raqmetrics" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=\'font-family:var(--f-d);font-size:1.3rem;font-weight:900;letter-spacing:-.04em;\'>Raq<span style=\'color:var(--amber)\'>metrics</span></span>');">
 </a>
     <ul class="nav-links">
       <li><a href="#about" data-s="about">About</a></li>
@@ -1003,8 +1003,8 @@ a{text-decoration:none;}
 <footer class="footer">
   <div class="wrap footer-inner">
     <div class="footer-logo">
-<img src="logo.svg" alt="Raqmetrics" class="logo-footer">
-</div>
+      <img src="http://raqmetrics.xyz/logo.svg" alt="Raqmetrics" class="logo-footer" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=\'font-family:var(--f-d);font-size:1.1rem;font-weight:900;letter-spacing:-.04em;\'>Raq<span style=\'color:var(--amber)\'>metrics</span></span>');">
+    </div>
     <p class="footer-copy">© 2026 Cherif Eddine Haddad. All rights reserved.</p>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener">LinkedIn</a>
@@ -1031,7 +1031,7 @@ a{text-decoration:none;}
     pct.textContent=Math.floor(p)+'%';
     if(p>=100){
       clearInterval(iv);
-      setTimeout(()=>{loader.classList.add('gone');initParticles();},250);
+      setTimeout(()=>{loader.classList.add('gone');try{initParticles();}catch(e){}},250);
     }
   },80);
 })();
