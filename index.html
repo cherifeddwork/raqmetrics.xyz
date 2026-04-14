@@ -153,17 +153,31 @@ a{text-decoration:none;}
 }
 
 /* LOGO SIZE FIX */
+.nav-logo {
+  line-height: 1;
+}
 .nav-logo img {
-  height: 52px;
+  height: 44px;
   width: auto;
+  max-width: 180px;
+  object-fit: contain;
+}
+.nav.solid .nav-logo img {
+  height: 38px;
 }
 
 .logo-loader {
-  height: 60px;
+  height: 80px;
+  width: auto;
+  max-width: 240px;
+  object-fit: contain;
 }
 
 .logo-footer {
-  height: 32px;
+  height: 40px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
 }
 
 /* ══════════════════════════════════════════
@@ -968,13 +982,13 @@ a{text-decoration:none;}
           Connect on LinkedIn
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </a>
-        <a href="mailto:cherifedd@gmail.com" class="btn btn-ghost mag">Send Email</a>
+        <a href="/cdn-cgi/l/email-protection#f0939895829996959494b0979d91999cde939f9d" class="btn btn-ghost mag">Send Email</a>
       </div>
       <div class="cta-social">
         <a class="social-link" href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener" aria-label="LinkedIn">
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
         </a>
-        <a class="social-link" href="mailto:cherifedd@gmail.com" aria-label="Email">
+        <a class="social-link" href="/cdn-cgi/l/email-protection#74171c11061d12111010341319151d185a171b19" aria-label="Email">
           <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         </a>
         <a class="social-link" href="https://drive.google.com/drive/folders/1AkLIlbMkhXKsuN0knigx7flwsErfp9p6?usp=drive_link" target="_blank" rel="noopener" aria-label="Portfolio">
@@ -994,7 +1008,7 @@ a{text-decoration:none;}
     <p class="footer-copy">© 2026 Cherif Eddine Haddad. All rights reserved.</p>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:cherifedd@gmail.com">Email</a>
+      <a href="/cdn-cgi/l/email-protection#a8cbc0cddac1cecdcccce8cfc5c9c1c486cbc7c5">Email</a>
       <a href="https://drive.google.com/drive/folders/1AkLIlbMkhXKsuN0knigx7flwsErfp9p6?usp=drive_link" target="_blank" rel="noopener">Portfolio</a>
     </div>
   </div>
@@ -1003,7 +1017,7 @@ a{text-decoration:none;}
 <!-- ══════════════════════════════════════════
    JAVASCRIPT
 ══════════════════════════════════════════ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ── PAGE LOADER ── */
 (function(){
   const bar=document.getElementById('lbar');
@@ -1256,15 +1270,3 @@ function initParticles(){
         }
       }
     }
-    /* draw dots */
-    particles.forEach(p=>{
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=amber+p.op+')';ctx.fill();
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
-}
-</script>
-</body>
-</html>
