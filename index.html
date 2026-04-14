@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Cherif Eddine — Growth & Marketing Data Specialist</title>
+<title>Raqmetrics — Growth & Marketing Data Specialist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Merriweather:ital,wght@0,300;0,400;0,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -146,6 +146,11 @@ a{text-decoration:none;}
 .mob a{font-family:var(--f-d);font-size:2.5rem;font-weight:700;color:var(--ink);transition:color var(--t);}
 .mob a:hover{color:var(--amber);}
 @media(max-width:900px){.nav-links,.nav-cta-btn,.avail-badge{display:none;}.ham{display:flex;}}
+.nav-logo img,
+.footer-logo img,
+.loader-logo img {
+  display: block;
+}
 
 /* ══════════════════════════════════════════
    HERO
@@ -514,7 +519,9 @@ a{text-decoration:none;}
 
 <!-- ██ PAGE LOADER ██ -->
 <div id="loader">
-  <div class="loader-logo">Cherif<span>.</span></div>
+  <div class="loader-logo">
+  <img src="logo.svg" alt="Raqmetrics" style="height:40px;">
+</div>
   <div class="loader-bar-track"><div class="loader-bar-fill" id="lbar"></div></div>
   <div class="loader-pct" id="lpct">0%</div>
 </div>
@@ -550,7 +557,9 @@ a{text-decoration:none;}
 <!-- ══════════════════ NAV ══════════════════ -->
 <nav class="nav" id="nav">
   <div class="wrap nav-inner">
-    <a href="#" class="nav-logo">Cherif<span class="nav-logo-dot">.</span></a>
+    <a href="#" class="nav-logo">
+  <img src="logo.svg" alt="Raqmetrics" style="height:28px;">
+</a>
     <ul class="nav-links">
       <li><a href="#about" data-s="about">About</a></li>
       <li><a href="#portfolio" data-s="portfolio">Portfolio</a></li>
@@ -973,7 +982,9 @@ a{text-decoration:none;}
 <!-- ══════════════════ FOOTER ══════════════════ -->
 <footer class="footer">
   <div class="wrap footer-inner">
-    <div class="footer-logo">Cherif<span>.</span></div>
+    <div class="footer-logo">
+  <img src="logo.svg" alt="Raqmetrics" style="height:24px;">
+</div>
     <p class="footer-copy">© 2026 Cherif Eddine Haddad. All rights reserved.</p>
     <div class="footer-links">
       <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener">LinkedIn</a>
