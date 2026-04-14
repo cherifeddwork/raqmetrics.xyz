@@ -151,9 +151,21 @@ a{text-decoration:none;}
 .loader-logo img {
   display: block;
 }
+
+/* LOGO SIZE FIX */
 .nav-logo img {
-  height: 44px;
+  height: 52px;
+  width: auto;
 }
+
+.logo-loader {
+  height: 60px;
+}
+
+.logo-footer {
+  height: 32px;
+}
+
 /* ══════════════════════════════════════════
    HERO
 ══════════════════════════════════════════ */
@@ -522,7 +534,7 @@ a{text-decoration:none;}
 <!-- ██ PAGE LOADER ██ -->
 <div id="loader">
   <div class="loader-logo">
-  <img src="logo.svg" alt="Raqmetrics" style="height:40px;">
+<img src="logo.svg" alt="Raqmetrics" class="logo-loader">
 </div>
   <div class="loader-bar-track"><div class="loader-bar-fill" id="lbar"></div></div>
   <div class="loader-pct" id="lpct">0%</div>
@@ -548,7 +560,9 @@ a{text-decoration:none;}
   </div>
 </button>
 
-<!-- ██ MOBILE MENU ██ -->
+<!-- ██ MOBILE MENU ██ --><a href="#" class="nav-logo">
+  <img src="logo.svg" alt="Raqmetrics">
+</a>
 <div class="mob" id="mobMenu">
   <a href="#about" onclick="closeMob()">About</a>
   <a href="#portfolio" onclick="closeMob()">Portfolio</a>
