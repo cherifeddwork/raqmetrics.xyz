@@ -356,6 +356,7 @@ a{text-decoration:none;}
   transition:transform .45s var(--spring),box-shadow .4s,opacity .35s;
   cursor:none;
 }
+@media(max-width:768px){.port-item{cursor:auto;}}
 .port-item.hidden{opacity:0;pointer-events:none;transform:scale(.95);}
 .port-item:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,.13);}
 .port-img-wrap{position:relative;aspect-ratio:16/10;overflow:hidden;}
@@ -380,7 +381,6 @@ a{text-decoration:none;}
    ABOUT SPLIT
 ══════════════════════════════════════════ */
 .about-grid{display:grid;grid-template-columns:1fr;max-width:900px;margin:0 auto;}
-@media(max-width:900px){.about-grid{grid-template-columns:1fr;}}
 .about-text h2{font-family:var(--f-d);font-size:clamp(1.8rem,3.2vw,2.6rem);font-weight:900;letter-spacing:-.04em;color:var(--ink);margin-bottom:1.5rem;line-height:1.1;}
 .about-text p{font-size:.875rem;color:var(--ink70);margin-bottom:1rem;line-height:1.85;}
 .about-features{display:grid;gap:.85rem;}
@@ -750,20 +750,18 @@ a{text-decoration:none;}
 
       </div>
     </div>
-      </div>
 
-      <!-- CTA (FIXED POSITION) -->
+      <!-- CTA -->
       <div style="text-align:center;margin-top:2.5rem;">
         <p style="margin-bottom:1rem;font-size:.9rem;color:var(--ink70);">
           Looking to reduce CAC and scale acquisition across markets?
         </p>
         <a href="https://www.linkedin.com/in/cherifeddinehaddad/"
            class="btn btn-fill"
-           target="_blank">
+           target="_blank" rel="noopener">
            Let’s Connect
         </a>
       </div>
-    </div>
   </div>
 </section>
 
@@ -1099,10 +1097,18 @@ window.addEventListener('scroll',()=>{
 btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
 /* ── DARK MODE ── */
+(function(){
+  const saved=localStorage.getItem('raqmetrics-theme');
+  const prefersDark=window.matchMedia('(prefers-color-scheme:dark)').matches;
+  const initial=saved||(prefersDark?'dark':'light');
+  document.documentElement.setAttribute('data-theme',initial);
+})();
 const themeBtn=document.getElementById('themeBtn');
 themeBtn.addEventListener('click',()=>{
   const dark=document.documentElement.getAttribute('data-theme')==='dark';
-  document.documentElement.setAttribute('data-theme',dark?'light':'dark');
+  const next=dark?'light':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  localStorage.setItem('raqmetrics-theme',next);
 });
 
 /* ── MOBILE MENU ── */
@@ -1203,10 +1209,11 @@ function showCase(i){
   cTabs[curCase].classList.add('on');
   cDots[curCase].classList.add('on');
 }
-cTabs.forEach((t,i)=>t.addEventListener('click',()=>showCase(i)));
-cDots.forEach((d,i)=>d.addEventListener('click',()=>showCase(i)));
-document.getElementById('cPrev').addEventListener('click',()=>showCase(curCase-1));
-document.getElementById('cNext').addEventListener('click',()=>showCase(curCase+1));
+function showCaseManual(i){clearInterval(cTimer);showCase(i);cTimer=setInterval(()=>showCase(curCase+1),6000);}
+cTabs.forEach((t,i)=>t.addEventListener('click',()=>showCaseManual(i)));
+cDots.forEach((d,i)=>d.addEventListener('click',()=>showCaseManual(i)));
+document.getElementById('cPrev').addEventListener('click',()=>showCaseManual(curCase-1));
+document.getElementById('cNext').addEventListener('click',()=>showCaseManual(curCase+1));
 let cTimer=setInterval(()=>showCase(curCase+1),6000);
 
 /* ── ACTIVE NAV ── */
