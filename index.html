@@ -1031,7 +1031,7 @@ a{text-decoration:none;}
     pct.textContent=Math.floor(p)+'%';
     if(p>=100){
       clearInterval(iv);
-      setTimeout(()=>{loader.classList.add('gone');try{initParticles();}catch(e){}},250);
+      setTimeout(()=>{loader.classList.add('gone');},250);
     }
   },80);
 })();
