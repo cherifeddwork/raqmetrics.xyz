@@ -1023,6 +1023,7 @@ a{text-decoration:none;}
   const bar=document.getElementById('lbar');
   const pct=document.getElementById('lpct');
   const loader=document.getElementById('loader');
+  if(!bar||!pct||!loader)return;
   let p=0;
   const iv=setInterval(()=>{
     p+=Math.random()*18;
@@ -1031,7 +1032,10 @@ a{text-decoration:none;}
     pct.textContent=Math.floor(p)+'%';
     if(p>=100){
       clearInterval(iv);
-      setTimeout(()=>{loader.classList.add('gone');},250);
+      setTimeout(()=>{
+        loader.classList.add('gone');
+        try{initParticles();}catch(e){}
+      },250);
     }
   },80);
 })();
@@ -1270,3 +1274,17 @@ function initParticles(){
         }
       }
     }
+    /* draw dots */
+    particles.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=amber+p.op+')';
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+</script>
+</body>
+</html>
