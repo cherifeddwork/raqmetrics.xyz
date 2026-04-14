@@ -400,13 +400,16 @@ a{text-decoration:none;}
 /* ══════════════════════════════════════════
    FOCUS QUOTE (dark)
 ══════════════════════════════════════════ */
-.focus-sec{background:var(--ink);padding-block:clamp(4rem,8vw,7rem);position:relative;overflow:hidden;}
+.focus-sec{background:#111110;padding-block:clamp(4rem,8vw,7rem);position:relative;overflow:hidden;}
 .focus-sec .noise::after{opacity:.04;}
 .focus-deco{position:absolute;top:-5rem;left:-2rem;font-family:var(--f-d);font-size:18rem;color:rgba(255,255,255,.03);line-height:1;pointer-events:none;user-select:none;}
 .focus-inner{max-width:900px;margin-inline:auto;text-align:center;position:relative;z-index:1;}
 .focus-tag{font-family:var(--f-m);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:1.5rem;}
 .focus-quote{font-family:var(--f-d);font-size:clamp(1.4rem,3vw,2.4rem);font-weight:700;line-height:1.42;color:#f0ede8;letter-spacing:-.025em;}
 .focus-quote em{color:var(--amber);font-style:normal;}
+.focus-list{list-style:none;display:flex;flex-direction:column;gap:.85rem;margin-top:1.75rem;}
+.focus-list li{font-family:var(--f-m);font-size:.82rem;letter-spacing:.06em;color:rgba(240,237,232,.75);display:flex;align-items:center;justify-content:center;gap:.65rem;}
+.focus-list li::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--amber);flex-shrink:0;}
 
 /* ══════════════════════════════════════════
    CASE STUDIES (tabbed)
@@ -702,31 +705,31 @@ a{text-decoration:none;}
       <div class="rvl">
         <div class="sec-label">About</div>
         <div class="about-text">
-          <h2>Data-Driven<br/>Growth Specialist</h2>
-          <p>Performance Marketing &amp; Growth Specialist with 5+ years of experience managing multi-channel acquisition across Meta, Google, TikTok, and LinkedIn.</p>
-          <p>Proven track record in scaling user acquisition, reducing CAC, and improving ROI through data-driven experimentation and advanced tracking systems.</p>
-          <p>Experience across MENA, EU, and US markets, working with startups and established companies to build scalable growth systems.</p>
+          <h2>Performance Marketing<br/>&amp; Growth Specialist</h2>
+          <p>5+ years managing multi-channel acquisition systems across Meta, Google, TikTok, and LinkedIn — with serious budgets and measurable outcomes.</p>
+          <p>Currently leading growth and performance initiatives across MENA, EU, and US markets — managing high-budget campaigns and scaling acquisition with a focus on CAC, attribution, and revenue efficiency.</p>
+          <p>Built and optimized acquisition systems that reduced CAC by 50%+ through structured experimentation and advanced tracking (GA4, GTM, CAPI).</p>
         </div>
 
         <!-- Timeline -->
         <div class="timeline rv" style="margin-top:2.5rem;" data-d="2">
           <div class="tl-item">
             <div class="tl-year">2022 – Present</div>
-            <div class="tl-role">Senior Growth & Performance Marketing</div>
+            <div class="tl-role">Senior Growth & Performance Marketing — Multi-Market (MENA / EU / US)</div>
             <div class="tl-co">Multi-Market · MENA / EU / US</div>
-            <div class="tl-desc">Led acquisition systems across Meta, Google, TikTok reducing CAC by 50%+ in key markets.</div>
+            <div class="tl-desc">Owned multi-channel acquisition strategy across Meta, Google, and TikTok, reducing CAC by 50%+ and scaling campaigns across key markets.</div>
           </div>
           <div class="tl-item">
             <div class="tl-year">2020 – 2022</div>
             <div class="tl-role">Performance Marketing Manager</div>
             <div class="tl-co">Yassir · Algeria / Multi-GEO</div>
-            <div class="tl-desc">Scaled user acquisition campaigns, deep linking strategy, and multi-channel creative testing.</div>
+            <div class="tl-desc">Scaled user acquisition campaigns across multiple GEOs, built deep linking strategy, and optimized multi-channel creative performance.</div>
           </div>
           <div class="tl-item">
             <div class="tl-year">2019 – 2020</div>
             <div class="tl-role">Digital Marketing Specialist</div>
             <div class="tl-co">HIS University · Algeria</div>
-            <div class="tl-desc">Full-funnel acquisition for student leads, 30%+ lead growth, landing page optimization.</div>
+            <div class="tl-desc">Built full-funnel acquisition for student leads — grew qualified leads by 30%+ and optimized landing pages for conversion.</div>
           </div>
         </div>
       </div>
@@ -747,7 +750,13 @@ a{text-decoration:none;}
   <div class="wrap">
     <div class="focus-inner rv">
       <div class="focus-tag">What I Focus On</div>
-      <p class="focus-quote">I focus on <em>improving acquisition efficiency</em>, aligning marketing with business outcomes, and building <em>scalable systems</em> that support long-term growth — not just short-term performance.</p>
+      <p class="focus-quote">I approach growth as a <em>system</em> — not isolated campaigns.</p>
+      <ul class="focus-list">
+        <li>Scaling acquisition systems across channels and markets</li>
+        <li>Reducing CAC through data &amp; structured experimentation</li>
+        <li>Building reliable tracking &amp; attribution (GA4, GTM, CAPI)</li>
+        <li>Aligning performance with business outcomes — CAC, LTV, revenue</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -955,15 +964,18 @@ a{text-decoration:none;}
   </div>
 </section>
 
-<!-- ══════════════════ ABOUT (2nd) ══════════════════ -->
-<section class="sec">
-  <div class="wrap" style="max-width:700px;text-align:center;margin-inline:auto;">
+<!-- ══════════════════ SELECTED RESULTS ══════════════════ -->
+<section class="sec sec-off">
+  <div class="wrap" style="max-width:800px;text-align:center;margin-inline:auto;">
     <div class="rv">
-      <div class="sec-label" style="justify-content:center;"><span>About</span></div>
-      <h2 class="sec-title" style="margin-bottom:1.5rem;">About</h2>
-      <p style="color:var(--ink70);margin-bottom:1rem;font-size:.875rem;">I focus on building and scaling acquisition systems that drive sustainable growth — not just short-term performance.</p>
-      <p style="color:var(--ink70);margin-bottom:1rem;font-size:.875rem;">My approach combines data, experimentation, and structured execution across the full funnel, from user acquisition to retention and conversion optimization.</p>
-      <p style="color:var(--ink70);font-size:.875rem;">I work with startups and established companies to improve marketing efficiency, align acquisition with business goals, and create scalable growth frameworks across multiple markets.</p>
+      <div class="sec-label" style="justify-content:center;"><span>Selected Results</span></div>
+      <h2 class="sec-title" style="margin-bottom:2rem;">Numbers That Matter</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1rem;text-align:left;">
+        <div class="af rv" data-d="1"><div class="af-dot"></div><div><h4>50%+ CAC Reduction</h4><p>Optimized multi-GEO acquisition campaigns across Meta, Google, and TikTok through structured testing and budget reallocation.</p></div></div>
+        <div class="af rv" data-d="2"><div class="af-dot"></div><div><h4>Scaled Acquisition — MENA, EU, US</h4><p>Built and scaled campaigns across Algeria, Tunisia, Senegal, and UAE, adapting creative and bidding strategies per market.</p></div></div>
+        <div class="af rv" data-d="3"><div class="af-dot"></div><div><h4>Full-Funnel Tracking Built from Scratch</h4><p>Implemented GA4, GTM, and Meta CAPI event architecture for accurate attribution and reliable performance data.</p></div></div>
+        <div class="af rv" data-d="4"><div class="af-dot"></div><div><h4>30%+ Lead Growth — HIS University</h4><p>Improved conversion through landing page optimization, multi-channel funnel strategy, and email marketing flows.</p></div></div>
+      </div>
     </div>
   </div>
 </section>
