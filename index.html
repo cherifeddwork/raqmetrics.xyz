@@ -231,18 +231,37 @@ a{text-decoration:none;}
 .hero-amber{color:var(--amber);font-style:italic;}
 /* typewriter subtitle line */
 .hero-tw-line{
-  font-family:var(--f-m);font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;
-  margin-bottom:1.85rem;margin-top:.9rem;
-  opacity:0;animation:fadeUp .45s var(--ease) .22s forwards;
+  font-family:var(--f-m);
+  font-size:clamp(.75rem, 3.5vw, .95rem); /* 🔥 responsive */
+  letter-spacing:.12em;
+  text-transform:uppercase;
+
+  margin-bottom:1.85rem;
+  margin-top:.9rem;
+
+  opacity:0;
+  animation:fadeUp .45s var(--ease) .22s forwards;
+
   display:flex;
   align-items:center;
   gap:.4rem;
-  flex-wrap:nowrap; /* 🔥 important */
-  overflow:hidden;  /* 🔥 prevents jumping */
+
+  flex-wrap:nowrap;
+  overflow:hidden;
 }
+
+.hero-tw-line span:first-child{
+  white-space:nowrap;
+  opacity:.6;
+  flex-shrink:0; /* 🔥 prevents breaking */
+}
+
 .typewriter-wrap{
-  white-space:nowrap; /* 🔥 keeps typing on one line */
-}
+  display:inline-flex;
+  white-space:nowrap;
+
+  min-width:0;       /* 🔥 CRITICAL FIX */
+  overflow:hidden;   /* 🔥 prevents layout shift */
 }
 /* typewriter line — premium */
 .typewriter-wrap{display:inline-flex;align-items:center;gap:4px;font-style:italic;}
