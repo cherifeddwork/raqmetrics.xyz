@@ -669,14 +669,18 @@ a{text-decoration:none;}
 /* ══════════════════════════════════════════
    LOGO DARK MODE FILTER
 ══════════════════════════════════════════ */
-.nav-logo img,.logo-loader,.logo-footer{
-  filter:brightness(0);
-  transition:filter var(--t);
+.nav-logo img,
+.logo-loader,
+.logo-footer{
+  filter: none;
+  transition: filter var(--t);
 }
+
+/* Only adapt in dark mode IF needed */
 [data-theme="dark"] .nav-logo img,
 [data-theme="dark"] .logo-loader,
 [data-theme="dark"] .logo-footer{
-  filter:brightness(0) invert(1);
+  filter: brightness(0) invert(1);
 }
 </style>
 </head>
