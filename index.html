@@ -669,18 +669,14 @@ a{text-decoration:none;}
 /* ══════════════════════════════════════════
    LOGO DARK MODE FILTER
 ══════════════════════════════════════════ */
-.nav-logo img,
-.logo-loader,
-.logo-footer{
-  filter: none;
-  transition: filter var(--t);
+.nav-logo img,.logo-loader,.logo-footer{
+  filter:brightness(0);
+  transition:filter var(--t);
 }
-
-/* Only adapt in dark mode IF needed */
 [data-theme="dark"] .nav-logo img,
 [data-theme="dark"] .logo-loader,
 [data-theme="dark"] .logo-footer{
-  filter: brightness(0) invert(1);
+  filter:brightness(0) invert(1);
 }
 </style>
 </head>
@@ -1002,14 +998,14 @@ a{text-decoration:none;}
         </div>
         <div class="port-item rv" data-f="Strategy & Analytics" data-d="2">
           <div class="port-img-wrap">
-            <img class="port-img" src="https://d2xsxph8kpxj0f.cloudfront.net/310419663030567616/2YhBxqd8JaL2MQs9Zmtjnk/HubSpot_Report_Updated_d2b4254b.png" alt="HubSpot" loading="lazy"/>
+            <img class="port-img" src="https://d2xsxph8kpxj0f.cloudfront.net/310419663030567616/2YhBxqd8JaL2MQs9Zmtjnk/HubSpot_Report_Updated_d2b4254b.png" alt="CRM & Marketing Automation" loading="lazy"/>
             <div class="port-overlay"><span class="port-metric">97.5% Delivery Rate</span><span class="port-metric">0.67% Hard Bounce</span></div>
           </div>
           <div class="port-body">
-            <div class="port-cat">Strategy &amp; Analytics</div>
-            <div class="port-title">HubSpot Marketing Automation Setup</div>
-            <p class="port-desc">Implemented HubSpot marketing automation including segmentation, workflows, and custom reporting.</p>
-            <div class="port-tags"><span class="pt">HubSpot</span></div>
+            <div class="port-cat">CRM &amp; Automation</div>
+            <div class="port-title">CRM, Emailing &amp; Marketing Automation</div>
+            <p class="port-desc">Set up and managed end-to-end CRM systems, email marketing flows, and automation workflows — improving lead nurturing, segmentation, and operational efficiency across multiple tools and stacks.</p>
+            <div class="port-tags"><span class="pt">HubSpot</span><span class="pt">GoHighLevel</span><span class="pt">Brevo</span><span class="pt">Mailchimp</span><span class="pt">Zapier</span><span class="pt">ClickUp</span></div>
           </div>
         </div>
         <div class="port-item rv" data-f="Creative Strategy" data-d="1">
@@ -1099,7 +1095,7 @@ a{text-decoration:none;}
       <div class="exp-cards rvr">
         <div class="exp-card"><div class="exp-card-hd">Acquisition</div><div class="tags"><span class="tag">Meta Ads</span><span class="tag">Google Ads</span><span class="tag">TikTok Ads</span><span class="tag">LinkedIn Ads</span><span class="tag">Snapchat Ads</span><span class="tag">DV360</span></div></div>
         <div class="exp-card"><div class="exp-card-hd">Analytics</div><div class="tags"><span class="tag">GA4</span><span class="tag">Google Tag Manager</span><span class="tag">Meta CAPI</span><span class="tag">Attribution Modeling</span><span class="tag">Looker Studio</span></div></div>
-        <div class="exp-card"><div class="exp-card-hd">Growth Systems</div><div class="tags"><span class="tag">A/B Testing</span><span class="tag">Funnel Optimization</span><span class="tag">CAC Reduction</span><span class="tag">ROAS Optimization</span><span class="tag">HubSpot</span></div></div>
+        <div class="exp-card"><div class="exp-card-hd">Growth Systems</div><div class="tags"><span class="tag">A/B Testing</span><span class="tag">Funnel Optimization</span><span class="tag">CAC Reduction</span><span class="tag">ROAS Optimization</span><span class="tag">GoHighLevel</span><span class="tag">Brevo</span><span class="tag">Mailchimp</span><span class="tag">Zapier</span><span class="tag">ClickUp</span></div></div>
       </div>
     </div>
   </div>
@@ -1262,7 +1258,7 @@ ham.addEventListener('click',()=>{
 });
 
 /* ── MARQUEE BUILD ── */
-const mqItems=['Meta Ads','Google Ads','TikTok Ads','GA4','GTM','Meta CAPI','HubSpot','Looker Studio','A/B Testing','LinkedIn Ads','Funnel Optimization','Attribution Modeling','Snapchat Ads','DV360','GoHighLevel','User Acquisition','Creative Strategy','ROAS Optimization'];
+const mqItems=['Meta Ads','Google Ads','TikTok Ads','GA4','GTM','Meta CAPI','GoHighLevel','Brevo','Mailchimp','Looker Studio','A/B Testing','LinkedIn Ads','Funnel Optimization','Attribution Modeling','Snapchat Ads','Zapier','ClickUp','ROAS Optimization'];
 const mqEl=document.getElementById('mq');
 const mqHtml=mqItems.map(s=>`<span class="m-item">${s}</span>`).join('');
 mqEl.innerHTML=mqHtml+mqHtml;
