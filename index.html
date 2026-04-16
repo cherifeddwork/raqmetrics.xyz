@@ -234,7 +234,15 @@ a{text-decoration:none;}
   font-family:var(--f-m);font-size:.95rem;letter-spacing:.12em;text-transform:uppercase;
   margin-bottom:1.85rem;margin-top:.9rem;
   opacity:0;animation:fadeUp .45s var(--ease) .22s forwards;
-  display:flex;align-items:center;gap:.55rem;color:var(--ink70);flex-wrap:wrap;
+  display:flex;
+  align-items:center;
+  gap:.4rem;
+  flex-wrap:nowrap; /* 🔥 important */
+  overflow:hidden;  /* 🔥 prevents jumping */
+}
+.typewriter-wrap{
+  white-space:nowrap; /* 🔥 keeps typing on one line */
+}
 }
 /* typewriter line — premium */
 .typewriter-wrap{display:inline-flex;align-items:center;gap:4px;font-style:italic;}
