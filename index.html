@@ -231,37 +231,58 @@ a{text-decoration:none;}
 .hero-amber{color:var(--amber);font-style:italic;}
 /* typewriter subtitle line */
 .hero-tw-line{
-  font-family:var(--f-m);
-  font-size:clamp(.75rem, 3.5vw, .95rem); /* 🔥 responsive */
-  letter-spacing:.12em;
-  text-transform:uppercase;
+font-family:var(--f-m);
+font-size:clamp(.75rem, 3.5vw, .95rem);
+letter-spacing:.1em;
+text-transform:uppercase;
 
-  margin-bottom:1.85rem;
-  margin-top:.9rem;
+margin-bottom:1.85rem;
+margin-top:.6rem;
 
-  opacity:0;
-  animation:fadeUp .45s var(--ease) .22s forwards;
+color:var(--ink50); /* restore base color */
 
-  display:flex;
-  align-items:center;
-  gap:.4rem;
+opacity:0;
+animation:fadeUp .45s var(--ease) .22s forwards;
 
-  flex-wrap:nowrap;
-  overflow:hidden;
+display:flex;
+align-items:center;
+gap:.4rem;
+
+flex-wrap:nowrap;
+overflow:hidden;
 }
 
 .hero-tw-line span:first-child{
-  white-space:nowrap;
-  opacity:.6;
-  flex-shrink:0; /* 🔥 prevents breaking */
+white-space:nowrap;
+opacity:.6;
+flex-shrink:0;
 }
 
 .typewriter-wrap{
-  display:inline-flex;
-  white-space:nowrap;
+display:inline-flex;
+white-space:nowrap;
 
-  min-width:0;       /* 🔥 CRITICAL FIX */
-  overflow:hidden;   /* 🔥 prevents layout shift */
+min-width:0;
+overflow:hidden;
+}
+
+/* Dynamic word */
+.typewriter-text{
+color:var(--amber);
+font-weight:600;
+}
+
+/* Cursor (subtle) */
+.typewriter-cursor{
+display:inline-block;
+margin-left:3px;
+opacity:.6;
+}
+
+/* Mobile refinement */
+@media(max-width:640px){
+.hero-tw-line{
+letter-spacing:.08em;
 }
 /* typewriter line — premium */
 .typewriter-wrap{display:inline-flex;align-items:center;gap:4px;font-style:italic;}
@@ -1337,7 +1358,7 @@ if(skillEl)sbio.observe(skillEl);
     'Acquisition Expert',
     'Growth Strategist',
     'Performance Marketer',
-    'Analytics-Driven Marketing'
+    'Marketing Analytics'
   ];
   const el = document.getElementById('typeText');
   if (!el) return;
