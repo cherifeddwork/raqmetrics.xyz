@@ -2,7 +2,8 @@
 <html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,interactive-widget=resizes-content"/>
+<link rel="canonical" href="https://raqmetrics.xyz"/>
 <title>Raqmetrics — Scaling Acquisition & Revenue Through Data-Driven Systems</title>
 <meta name="description" content="Performance Marketing &amp; Growth Specialist — Scaling acquisition and revenue through data-driven systems. Trusted across MENA, Europe &amp; North America."/>
 <meta property="og:title" content="Raqmetrics — Scaling Acquisition &amp; Revenue"/>
@@ -737,6 +738,71 @@ flex-shrink:0;
 [data-theme="dark"] .logo-footer{
   filter: brightness(0) invert(1);
 }
+
+/* ══════════════════════════════════════════
+   ACCESSIBILITY
+══════════════════════════════════════════ */
+/* Skip to main */
+.skip-main{
+  position:fixed;top:-100%;left:1rem;z-index:10000;
+  background:var(--amber);color:#fff;
+  font-family:var(--f-m);font-size:.75rem;letter-spacing:.1em;
+  padding:.75rem 1.5rem;border-radius:999px;
+  transition:top .2s;
+}
+.skip-main:focus{top:1rem;}
+
+/* Focus visible ring */
+:focus-visible{
+  outline:2px solid var(--amber);
+  outline-offset:3px;
+  border-radius:4px;
+}
+button:focus-visible,a:focus-visible{
+  outline:2px solid var(--amber);
+  outline-offset:3px;
+}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+  #hero-canvas{display:none;}
+  .hero-blob{display:none;}
+  .marquee-track{animation:none;}
+  .chip:nth-child(odd),.chip:nth-child(even){animation:none;}
+}
+
+/* ══════════════════════════════════════════
+   MOBILE MENU Z-INDEX FIX
+   .mob must be above .nav so overlay covers nav links
+   but ham button (inside nav z:700) stays tappable
+══════════════════════════════════════════ */
+.mob{z-index:690;}
+.mob.open{z-index:690;}
+
+/* ══════════════════════════════════════════
+   CHIP HOVER — pause animation during hover
+══════════════════════════════════════════ */
+.chip:hover{
+  animation-play-state:paused !important;
+}
+
+/* ══════════════════════════════════════════
+   PORTFOLIO FILTER — smooth show/hide
+══════════════════════════════════════════ */
+.port-item{
+  transition:opacity .32s var(--ease), transform .32s var(--ease);
+}
+.port-item.hiding{
+  opacity:0;
+  transform:scale(.96);
+  pointer-events:none;
+}
 </style>
 <script>
 (function(){try{var s=localStorage.getItem('raqmetrics-theme');var p=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(p?'dark':'light'));}catch(e){}})();
@@ -744,6 +810,7 @@ flex-shrink:0;
 </head>
 <body>
 
+<a href="#about" class="skip-main">Skip to main content</a>
 <!-- ██ PAGE LOADER ██ -->
 <div id="loader">
   <div class="loader-logo">
@@ -784,7 +851,7 @@ flex-shrink:0;
 <!-- ══════════════════ NAV ══════════════════ -->
 <nav class="nav" id="nav">
   <div class="wrap nav-inner">
-   <a href="#" class="nav-logo">
+   <a href="/" class="nav-logo">
   <img src="/logo.svg" alt="Raqmetrics" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=\'font-family:var(--f-d);font-size:1.3rem;font-weight:900;letter-spacing:-.04em;\'>Raq<span style=\'color:var(--amber)\'>metrics</span></span>');">
 </a>
     <ul class="nav-links">
@@ -816,7 +883,7 @@ flex-shrink:0;
       <span class="hero-rule"></span>
       <div class="eyebrow"><span class="eyebrow-dot"></span>Performance Marketing &amp; Growth</div>
 
-      <h1 class="hero-h1" id="heroH1">
+      <h1 class="hero-h1">
         Scaling Acquisition<br/><span class="hero-amber">&amp; Revenue</span>
       </h1>
       <p class="hero-tw-line">
@@ -1254,44 +1321,36 @@ flex-shrink:0;
 const curDot=document.getElementById('cur-dot');
 const curRing=document.getElementById('cur-ring');
 const curLabel=document.getElementById('cur-label');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX;my=e.clientY;
-  curDot.style.left=mx+'px';curDot.style.top=my+'px';
-  curLabel.style.left=(mx+24)+'px';curLabel.style.top=(my-10)+'px';
-});
-(function animR(){
-  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
-  curRing.style.left=rx+'px';curRing.style.top=ry+'px';
-  requestAnimationFrame(animR);
-})();
-/* cursor states */
-document.querySelectorAll('.port-item').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{document.body.classList.add('cursor-view');curLabel.textContent='View';});
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-view'));
-});
-document.querySelectorAll('.g-card').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{document.body.classList.add('cursor-view');curLabel.textContent='Read';});
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-view'));
-});
+if(curDot&&curRing&&curLabel){
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    curDot.style.left=mx+'px';curDot.style.top=my+'px';
+    curLabel.style.left=(mx+24)+'px';curLabel.style.top=(my-10)+'px';
+  });
+  (function animR(){
+    rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+    curRing.style.left=rx+'px';curRing.style.top=ry+'px';
+    requestAnimationFrame(animR);
+  })();
+  document.querySelectorAll('.port-item').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{document.body.classList.add('cursor-view');curLabel.textContent='View';});
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-view'));
+  });
+  document.querySelectorAll('.g-card').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{document.body.classList.add('cursor-view');curLabel.textContent='Read';});
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-view'));
+  });
+}
 
 /* ── PROGRESS + SCROLL ── */
 const prog=document.getElementById('prog');
 const navEl=document.getElementById('nav');
 const btt=document.getElementById('btt');
 const bttCircle=document.getElementById('bttCircle');
-const circ=2*Math.PI*21; // r=21
-bttCircle.style.strokeDasharray=circ;
-window.addEventListener('scroll',()=>{
-  const s=window.scrollY;
-  const total=document.documentElement.scrollHeight-innerHeight;
-  const ratio=s/total;
-  prog.style.width=(ratio*100)+'%';
-  bttCircle.style.strokeDashoffset=circ-(ratio*circ);
-  navEl.classList.toggle('solid',s>60);
-  btt.classList.toggle('show',s>400);
-},{passive:true});
-btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+const circ=2*Math.PI*21;
+if(bttCircle)bttCircle.style.strokeDasharray=circ;
+if(btt)btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
 /* ── DARK MODE (init in <head>) ── */
 const themeBtn=document.getElementById('themeBtn');
@@ -1320,41 +1379,49 @@ const mqHtml=mqItems.map(s=>`<span class="m-item">${s}</span>`).join('');
 mqEl.innerHTML=mqHtml+mqHtml;
 
 /* ── INTERSECTION OBSERVER ── */
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});
-},{threshold:.1});
-document.querySelectorAll('.rv,.rvl,.rvr,.rvs').forEach(el=>io.observe(el));
-
-/* ── COUNTERS ── */
-const cio=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting)return;
-    const el=e.target;
-    const tgt=+el.dataset.target;
-    const pre=el.dataset.prefix||'';
-    const suf=el.dataset.suffix||'';
-    const dur=2000;const t0=performance.now();
-    const tick=t=>{
-      const p=Math.min((t-t0)/dur,1);
-      el.textContent=pre+Math.floor((1-Math.pow(1-p,3))*tgt)+suf;
-      if(p<1)requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
-    cio.unobserve(el);
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});
+  },{threshold:.1});
+  document.querySelectorAll('.rv,.rvl,.rvr,.rvs').forEach(el=>io.observe(el));
+  const cio=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const el=e.target;
+      const tgt=+el.dataset.target;
+      const pre=el.dataset.prefix||'';
+      const suf=el.dataset.suffix||'';
+      const dur=2000;const t0=performance.now();
+      const tick=t=>{
+        const p=Math.min((t-t0)/dur,1);
+        el.textContent=pre+Math.floor((1-Math.pow(1-p,3))*tgt)+suf;
+        if(p<1)requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+      cio.unobserve(el);
+    });
+  },{threshold:.5});
+  document.querySelectorAll('[data-target]').forEach(el=>cio.observe(el));
+  const sbio=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      e.target.querySelectorAll('.skill-fill').forEach(f=>{f.style.width=f.dataset.w+'%';});
+      sbio.unobserve(e.target);
+    });
+  },{threshold:.25});
+  const skillEl=document.getElementById('skillBars');
+  if(skillEl)sbio.observe(skillEl);
+} else {
+  /* Fallback: show all animated elements immediately */
+  document.querySelectorAll('.rv,.rvl,.rvr,.rvs').forEach(el=>el.classList.add('on'));
+  document.querySelectorAll('[data-target]').forEach(el=>{
+    const pre=el.dataset.prefix||'';const suf=el.dataset.suffix||'';
+    el.textContent=pre+el.dataset.target+suf;
   });
-},{threshold:.5});
-document.querySelectorAll('[data-target]').forEach(el=>cio.observe(el));
+  document.querySelectorAll('.skill-fill').forEach(f=>{f.style.width=f.dataset.w+'%';});
+}
 
-/* ── SKILL BARS ── */
-const sbio=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting)return;
-    e.target.querySelectorAll('.skill-fill').forEach(f=>{f.style.width=f.dataset.w+'%';});
-    sbio.unobserve(e.target);
-  });
-},{threshold:.25});
-const skillEl=document.getElementById('skillBars');
-if(skillEl)sbio.observe(skillEl);
+
 
 /* ── TYPEWRITER — organic human pacing ── */
 (function(){
@@ -1411,43 +1478,7 @@ if(skillEl)sbio.observe(skillEl);
   setTimeout(tick, 900 + Math.random() * 300);
 })();
 
-/* ── SCROLL-REACTIVE HERO — subtle parallax + fade ── */
-if (window.innerWidth > 768) {
-  const heroInner = document.querySelector('.hero-inner');
-  const heroChips = document.querySelector('.hero-chips');
-  const heroSection = document.getElementById('home');
 
-  if (heroInner && heroSection) {
-    let ticking = false;
-
-    window.addEventListener('scroll', () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          const scrollY = window.scrollY;
-          const heroH = heroSection.offsetHeight;
-          /* only apply while hero is visible */
-          if (scrollY < heroH) {
-            const progress = scrollY / heroH;           // 0 → 1
-            const translateY = scrollY * 0.22;          // subtle upward drift
-            const opacity = 1 - progress * 1.15;        // fade out as user scrolls
-            const scale = 1 - progress * 0.04;          // very gentle scale-down
-
-            heroInner.style.transform = `translateY(${translateY}px) scale(${scale})`;
-            heroInner.style.opacity = Math.max(0, opacity);
-
-            /* chips drift at a slightly different rate for depth */
-            if (heroChips) {
-              heroChips.style.transform = `translateY(calc(-50% + ${scrollY * 0.12}px))`;
-              heroChips.style.opacity = Math.max(0, 1 - progress * 1.8);
-            }
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }, { passive: true });
-  }
-}
 
 /* ── PORTFOLIO FILTER ── */
 document.querySelectorAll('.pf').forEach(btn=>{
@@ -1457,7 +1488,18 @@ document.querySelectorAll('.pf').forEach(btn=>{
     const f=btn.dataset.f;
     document.querySelectorAll('.port-item').forEach(item=>{
       const match=f==='all'||item.dataset.f===f;
-      item.classList.toggle('hidden',!match);
+      if(match){
+        item.classList.remove('hidden');
+        item.style.display='';
+      } else {
+        item.classList.add('hiding');
+        setTimeout(()=>{
+          if(item.classList.contains('hiding')){
+            item.classList.add('hidden');
+            item.classList.remove('hiding');
+          }
+        },340);
+      }
     });
   });
 });
@@ -1476,23 +1518,51 @@ function showCase(i){
   cTabs[curCase].classList.add('on');
   cDots[curCase].classList.add('on');
 }
+let cTimer=setInterval(()=>showCase(curCase+1),6000);
 function showCaseManual(i){clearInterval(cTimer);showCase(i);cTimer=setInterval(()=>showCase(curCase+1),6000);}
 cTabs.forEach((t,i)=>t.addEventListener('click',()=>showCaseManual(i)));
 cDots.forEach((d,i)=>d.addEventListener('click',()=>showCaseManual(i)));
-document.getElementById('cPrev').addEventListener('click',()=>showCaseManual(curCase-1));
-document.getElementById('cNext').addEventListener('click',()=>showCaseManual(curCase+1));
-let cTimer=setInterval(()=>showCase(curCase+1),6000);
+const cPrevBtn=document.getElementById('cPrev');
+const cNextBtn=document.getElementById('cNext');
+if(cPrevBtn)cPrevBtn.addEventListener('click',()=>showCaseManual(curCase-1));
+if(cNextBtn)cNextBtn.addEventListener('click',()=>showCaseManual(curCase+1));
 
-/* ── ACTIVE NAV ── */
+/* ── UNIFIED SCROLL HANDLER ── */
+
+/* Parallax elements */
+const heroInner=document.querySelector('.hero-inner');
+const heroChips=document.querySelector('.hero-chips');
+const heroSection=document.getElementById('home');
+const useParallax=window.innerWidth>768&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 const navLinks=document.querySelectorAll('.nav-links a[data-s]');
-window.addEventListener('scroll',()=>{
+let scrollTicking=false;
+function onScroll(){
+  const s=window.scrollY;
+  const total=document.documentElement.scrollHeight-innerHeight;
+  const ratio=total>0?s/total:0;
+  if(prog)prog.style.width=(ratio*100)+'%';
+  if(bttCircle)bttCircle.style.strokeDashoffset=circ-(ratio*circ);
+  if(navEl)navEl.classList.toggle('solid',s>60);
+  if(btt)btt.classList.toggle('show',s>400);
+  /* active nav */
   let cur='';
   ['about','portfolio','expertise','contact'].forEach(id=>{
     const el=document.getElementById(id);
-    if(el&&window.scrollY>=el.offsetTop-140)cur=id;
+    if(el&&s>=el.offsetTop-140)cur=id;
   });
   navLinks.forEach(a=>a.classList.toggle('act',a.dataset.s===cur));
+  /* parallax hero */
+  if(useParallax&&heroInner&&heroSection&&s<heroSection.offsetHeight){
+    const p=s/heroSection.offsetHeight;
+    heroInner.style.transform=`translateY(${s*.22}px) scale(${1-p*.04})`;
+    heroInner.style.opacity=Math.max(0,1-p*1.15);
+    if(heroChips){heroChips.style.transform=`translateY(calc(-50% + ${s*.12}px))`;heroChips.style.opacity=Math.max(0,1-p*1.8);}
+  }
+}
+window.addEventListener('scroll',()=>{
+  if(!scrollTicking){requestAnimationFrame(()=>{onScroll();scrollTicking=false;});scrollTicking=true;}
 },{passive:true});
+onScroll();
 
 
 
@@ -1562,8 +1632,9 @@ function initParticles(){
       ctx.fillStyle=amber+p.op+')';
       ctx.fill();
     });
-    requestAnimationFrame(draw);
+    if(!document.hidden)requestAnimationFrame(draw);
   }
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)draw();});
   draw();
 }
 </script>
