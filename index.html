@@ -103,7 +103,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 .cursor-view #cur-dot{width:0;height:0;}
 .cursor-view #cur-ring{width:64px;height:64px;opacity:.8;}
 .cursor-view #cur-label{opacity:1;}
-@media(max-width:768px){#cur-dot,#cur-ring,#cur-label{display:none;}}
+@media(max-width:768px){#cur-dot,#cur-ring,#cur-label{display:none!important;opacity:0!important;visibility:hidden!important;}}
+@media(max-width:768px){.cursor-view #cur-dot,.cursor-view #cur-ring,.cursor-view #cur-label{display:none!important;opacity:0!important;}}
 
 /* ══════════════════════════════════════════
    PROGRESS BAR
@@ -661,20 +662,18 @@ flex-shrink:0;
    RESPONSIVE
 ══════════════════════════════════════════ */
 @media(max-width:640px){
-  /* hero CTAs — stay inline and compact, no full-width stretch */
-  .hero-cta{flex-direction:row;align-items:center;flex-wrap:wrap;gap:.75rem;}
-  .hero-cta .btn{width:auto;min-width:0;flex:0 1 auto;}
-  /* contact CTA still stacks — that's appropriate for a form page */
+  /* hero CTAs: stay inline — no full-width stretch */
+  .hero-cta{flex-direction:row;align-items:center;flex-wrap:wrap;gap:.65rem;}
+  .hero-cta .btn{width:auto;flex:0 1 auto;}
+  /* contact CTA can still stack */
   .cta-btns{flex-direction:column;align-items:center;}
-  .cta-btns .btn{width:auto;justify-content:center;}
-  /* global btn — smaller on mobile */
-  .btn{padding:.65rem 1.35rem;font-size:.68rem;min-height:40px;letter-spacing:.08em;}
-  /* section spacing */
+  .cta-btns .btn{width:auto;}
+  /* buttons: smaller on mobile */
+  .btn{padding:.6rem 1.25rem;font-size:.67rem;min-height:40px;letter-spacing:.08em;}
   .sec{padding-block:clamp(3rem,7vw,5rem);}
   .hero{padding-top:5.5rem;padding-bottom:3rem;}
   .hero-h1{font-size:clamp(2.2rem,10vw,3.5rem);letter-spacing:-.03em;}
   .hero-sub{font-size:.875rem;}
-  /* layout */
   .growth-grid{grid-template-columns:1fr;gap:1rem;}
   .impact-grid{grid-template-columns:1fr;}
   .exp-split{gap:2rem;}
@@ -1916,30 +1915,32 @@ body::before{
   },80);
 })();
 
-/* ── CUSTOM CURSOR ── */
-const curDot=document.getElementById('cur-dot');
-const curRing=document.getElementById('cur-ring');
-const curLabel=document.getElementById('cur-label');
-if(curDot&&curRing&&curLabel){
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX;my=e.clientY;
-    curDot.style.left=mx+'px';curDot.style.top=my+'px';
-    curLabel.style.left=(mx+24)+'px';curLabel.style.top=(my-10)+'px';
-  });
-  (function animR(){
-    rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
-    curRing.style.left=rx+'px';curRing.style.top=ry+'px';
-    requestAnimationFrame(animR);
-  })();
-  document.querySelectorAll('.port-item').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{document.body.classList.add('cursor-view');curLabel.textContent='View';});
-    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-view'));
-  });
-  document.querySelectorAll('.g-card').forEach(el=>{
-    el.addEventListener('mouseenter',()=>{document.body.classList.add('cursor-view');curLabel.textContent='Read';});
-    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-view'));
-  });
+/* ── CUSTOM CURSOR — desktop/pointer only ── */
+if(window.matchMedia('(pointer:fine) and (hover:hover)').matches){
+  const curDot=document.getElementById('cur-dot');
+  const curRing=document.getElementById('cur-ring');
+  const curLabel=document.getElementById('cur-label');
+  if(curDot&&curRing&&curLabel){
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{
+      mx=e.clientX;my=e.clientY;
+      curDot.style.left=mx+'px';curDot.style.top=my+'px';
+      curLabel.style.left=(mx+24)+'px';curLabel.style.top=(my-10)+'px';
+    });
+    (function animR(){
+      rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+      curRing.style.left=rx+'px';curRing.style.top=ry+'px';
+      requestAnimationFrame(animR);
+    })();
+    document.querySelectorAll('.port-item').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{document.body.classList.add('cursor-view');curLabel.textContent='View';});
+      el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-view'));
+    });
+    document.querySelectorAll('.g-card').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{document.body.classList.add('cursor-view');curLabel.textContent='Read';});
+      el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-view'));
+    });
+  }
 }
 
 /* ── PROGRESS + SCROLL ── */
@@ -2298,12 +2299,14 @@ document.querySelectorAll('.tilt-card').forEach(card=>{
 
 /* — Extended cursor labels — */
 document.querySelectorAll('.c-tab').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{
-    document.body.classList.add('cursor-view');
-    const lbl=document.getElementById('cur-label');
-    if(lbl)lbl.textContent='Read';
-  });
-  el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-view'));
+  if(window.matchMedia('(pointer:fine)').matches){
+    el.addEventListener('mouseenter',()=>{
+      document.body.classList.add('cursor-view');
+      const lbl=document.getElementById('cur-label');
+      if(lbl)lbl.textContent='Read';
+    });
+    el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-view'));
+  }
 });
 
 
