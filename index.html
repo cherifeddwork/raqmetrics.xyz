@@ -3,17 +3,25 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0,interactive-widget=resizes-content"/>
-<link rel="canonical" href="https://raqmetrics.xyz"/>
-<title>Raqmetrics — Scaling Acquisition & Revenue Through Data-Driven Systems</title>
-<meta name="description" content="Performance Marketing &amp; Growth Specialist — Scaling acquisition and revenue through data-driven systems. Trusted across MENA, Europe &amp; North America."/>
-<meta property="og:title" content="Raqmetrics — Scaling Acquisition &amp; Revenue"/>
-<meta property="og:description" content="Reducing CAC and improving revenue efficiency across multi-channel acquisition systems."/>
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme:light)"/>
+<meta name="theme-color" content="#0e0d0c" media="(prefers-color-scheme:dark)"/>
+<title>Raqmetrics — Performance Marketing & Growth Specialist | CAC Reduction, Paid Ads & Analytics</title>
+<meta name="description" content="Cherif Eddine Haddad — Performance Marketing &amp; Growth Specialist. 20%+ CAC reduction, 100+ campaigns managed, $80K+/mo ad spend. Available for projects across MENA, Europe &amp; North America."/>
+<meta property="og:title" content="Raqmetrics — Paid Acquisition &amp; Growth Systems | Cherif Eddine Haddad"/>
+<meta property="og:description" content="Performance Marketing &amp; Growth Specialist — 20%+ CAC reduction, $80K+/mo managed, trusted across MENA, Europe &amp; North America. Available for projects."/>
 <meta property="og:type" content="website"/>
 <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Raqmetrics — Performance Marketing &amp; Growth Specialist"/>
+<meta name="twitter:description" content="20%+ CAC reduction, $80K+/mo managed. Available for projects across MENA, Europe &amp; North America."/>
+<meta property="og:image" content="/og-image.png"/>
+<meta property="og:url" content="https://raqmetrics.com/"/>
+<meta name="twitter:image" content="/og-image.png"/>
+<link rel="canonical" href="https://raqmetrics.com/"/>
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="icon" href="/favicon.png" sizes="32x32">
 <link rel="apple-touch-icon" href="/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="dns-prefetch" href="https://fonts.gstatic.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Merriweather:ital,wght@0,300;0,400;0,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
@@ -23,7 +31,7 @@
 :root{
   --bg:#ffffff; --bg2:#f7f6f3; --bg3:#f0ede8;
   --ink:#111110; --ink70:rgba(17,17,16,.7); --ink50:rgba(17,17,16,.5); --ink20:rgba(17,17,16,.2); --ink08:rgba(17,17,16,.08);
-  --amber:#F25C05; --amber-h:#D94E00; --amber-l:#FFE3D1; --amber-gl:rgba(242,92,5,.12);
+  --amber:#F25C05; --amber-h:#D94E00; --amber-l:#FFE3D1;
   --a30:rgba(242,92,5,.3); --a20:rgba(242,92,5,.2); --a10:rgba(242,92,5,.1);
   --border:#e3e1dc;
   --card:#ffffff; --card-shadow:0 2px 20px rgba(0,0,0,.06);
@@ -34,7 +42,6 @@
   --ease:cubic-bezier(.4,0,.2,1);
   --spring:cubic-bezier(.34,1.56,.64,1);
   --t:.26s;
-  --r:16px;
 }
 [data-theme="dark"]{
   --bg:#0e0d0c; --bg2:#161512; --bg3:#1e1c18;
@@ -53,12 +60,19 @@ body{
   background:var(--bg);color:var(--ink);
   font-family:var(--f-b);line-height:1.75;
   -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;cursor:none;
+  overflow-x:hidden;
   transition:background .4s,color .4s;
 }
-@media(max-width:768px){body{cursor:auto;}}
+@media(min-width:769px){body{cursor:none;}}
 img{display:block;max-width:100%;}
 a{text-decoration:none;}
+:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px;}
+button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offset:3px;}
+
+/* skip link */
+.skip-link{position:absolute;top:-99px;left:1rem;background:var(--amber);color:#fff;font-family:var(--f-m);font-size:.72rem;letter-spacing:.1em;padding:.5rem 1rem;border-radius:999px;z-index:9999;transition:top .2s;}
+.skip-link:focus{top:1rem;}
+
 
 /* ══════════════════════════════════════════
    PAGE LOADER
@@ -104,11 +118,7 @@ a{text-decoration:none;}
 /* ══════════════════════════════════════════
    NOISE TEXTURE
 ══════════════════════════════════════════ */
-.noise::after{
-  content:'';position:absolute;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity:.025;pointer-events:none;z-index:0;
-}
+
 
 /* ══════════════════════════════════════════
    NAV
@@ -126,7 +136,7 @@ a{text-decoration:none;}
 }
 .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;}
 .nav-logo{font-family:var(--f-d);font-size:1.3rem;font-weight:900;letter-spacing:-.04em;color:var(--ink);display:flex;align-items:center;gap:.15rem;}
-.nav-logo-dot{color:var(--amber);font-size:1.6rem;line-height:1;}
+
 .nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center;}
 .nav-links a{font-family:var(--f-m);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink50);position:relative;transition:color var(--t);padding-block:.2rem;}
 .nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--amber);transition:width var(--t) var(--ease);}
@@ -232,8 +242,6 @@ a{text-decoration:none;}
 
 /* headline */
 .hero-h1{font-family:var(--f-d);font-size:clamp(3rem,8vw,7.2rem);font-weight:900;line-height:.97;letter-spacing:-.05em;color:var(--ink);margin-bottom:.4rem;opacity:0;animation:fadeUp .55s var(--ease) .1s forwards;}
-.char{display:inline-block;opacity:0;transform:translateY(60%) rotate(3deg);animation:charIn .55s var(--spring) forwards;}
-@keyframes charIn{to{opacity:1;transform:translateY(0) rotate(0);}}
 .hero-amber{color:var(--amber);font-style:italic;}
 /* typewriter subtitle line */
 .hero-tw-line{
@@ -271,37 +279,6 @@ flex-shrink:0;
   }
 }
 
-/* ===== TYPEWRITER (GLOBAL — CLEAN) ===== */
-
-.typewriter-wrap{
-  display:inline-flex;
-  align-items:center;
-  gap:4px;
-  white-space:nowrap;
-  min-width:0;
-  font-style:italic;
-}
-
-.typewriter-text{
-  color:var(--amber);
-  font-weight:600;
-}
-
-.typewriter-cursor{
-  display:inline-block;
-  width:2px;
-  height:1.2em;
-  background:var(--amber);
-  margin-left:2px;
-  border-radius:1px;
-  opacity:.7;
-  animation:blink 1s infinite;
-}
-
-@keyframes blink{
-  0%,50%,100%{opacity:1;}
-  25%,75%{opacity:0;}
-}
 
 
 .hero-sub{font-size:.875rem;color:var(--ink50);max-width:480px;line-height:1.88;margin-bottom:.8rem;opacity:0;animation:fadeUp .45s var(--ease) .38s forwards;}
@@ -321,7 +298,7 @@ flex-shrink:0;
 .hero-chips{position:absolute;right:3%;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1rem;z-index:1;opacity:0;animation:fadeUp .7s var(--ease) 1.1s forwards;}
 @media(max-width:1100px){.hero-chips{display:none;}}
 .chip{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:1.1rem 1.35rem;box-shadow:0 4px 24px rgba(0,0,0,.07);display:flex;align-items:center;gap:.9rem;min-width:196px;transition:transform .4s var(--spring),box-shadow var(--t),border-color var(--t);backdrop-filter:blur(8px);}
-.chip:hover{transform:translateX(-8px);box-shadow:0 12px 36px rgba(0,0,0,.12);border-color:var(--a30);}
+.chip:hover{transform:translateX(-8px);box-shadow:0 12px 36px rgba(0,0,0,.12);border-color:var(--a30);animation-play-state:paused;}
 .chip:nth-child(odd){animation:chipFloat 5s ease-in-out infinite;}
 .chip:nth-child(even){animation:chipFloat 6.2s ease-in-out 1.4s infinite;}
 @keyframes chipFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-9px);}}
@@ -348,6 +325,19 @@ flex-shrink:0;
 .m-item{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--f-m);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink50);padding-inline:2rem;white-space:nowrap;}
 .m-item::before{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--amber);flex-shrink:0;}
 
+
+/* ══════════════════════════════════════════
+   PROCESS / HOW I WORK
+══════════════════════════════════════════ */
+.process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin-top:3.5rem;position:relative;}
+.process-grid::before{content:'';position:absolute;top:28px;left:calc(100%/10);right:calc(100%/10);height:1px;background:linear-gradient(90deg,transparent,var(--border) 8%,var(--border) 92%,transparent);z-index:0;}
+@media(max-width:768px){.process-grid::before{display:none;}.process-grid{gap:1rem;}}
+.p-step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 1.25rem;position:relative;z-index:1;}
+.p-step-num{width:56px;height:56px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--f-d);font-size:1.1rem;font-weight:900;color:var(--ink50);margin-bottom:1.25rem;transition:all .4s var(--spring);}
+.p-step:hover .p-step-num{background:var(--amber);color:#fff;border-color:var(--amber);transform:scale(1.12);}
+.p-step h4{font-family:var(--f-d);font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:.4rem;}
+.p-step p{font-size:.78rem;color:var(--ink50);line-height:1.7;}
+
 /* ══════════════════════════════════════════
    REVEAL SYSTEM
 ══════════════════════════════════════════ */
@@ -361,15 +351,15 @@ flex-shrink:0;
 /* ══════════════════════════════════════════
    SECTION HELPERS
 ══════════════════════════════════════════ */
-.sec{padding-block:clamp(5rem,10vw,9rem);position:relative;}
-.sec-dark{background:var(--ink);color:#f0ede8;}
+.sec{padding-block:clamp(5rem,10vw,9rem);position:relative;scroll-margin-top:80px;}
+
 .sec-off{background:var(--bg2);}
 .sec-label{font-family:var(--f-m);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:.85rem;display:flex;align-items:center;gap:.55rem;}
 .sec-label::before{content:'';display:block;width:20px;height:1px;background:var(--amber);}
 .sec-title{font-family:var(--f-d);font-size:clamp(2rem,4.5vw,3.6rem);font-weight:900;letter-spacing:-.045em;line-height:1.04;color:var(--ink);}
-.sec-dark .sec-title{color:#f0ede8;}
+
 .sec-sub{margin-top:.85rem;font-size:.875rem;color:var(--ink50);max-width:480px;line-height:1.9;}
-.sec-dark .sec-sub{color:rgba(240,237,232,.55);}
+
 
 /* split-letter title animation */
 .split-title .ltr{display:inline-block;opacity:0;transform:translateY(55%) rotate(4deg);animation:ltrIn .55s var(--spring) forwards;}
@@ -398,6 +388,7 @@ flex-shrink:0;
 .metric-cell:hover::after{transform:scaleX(1);}
 .m-num{font-family:var(--f-d);font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--amber);letter-spacing:-.045em;line-height:1;display:block;}
 .m-lbl{font-family:var(--f-m);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink50);}
+.m-sub{font-family:var(--f-b);font-size:.72rem;color:var(--ink50);line-height:1.55;margin-top:.2rem;}
 
 /* ══════════════════════════════════════════
    HOW I DRIVE GROWTH
@@ -461,26 +452,21 @@ flex-shrink:0;
 /* ══════════════════════════════════════════
    ABOUT SPLIT
 ══════════════════════════════════════════ */
-.about-features{display:grid;gap:1.1rem;}
-.af{display:flex;gap:1rem;align-items:flex-start;padding:1.4rem 1.6rem;border:1px solid var(--border);border-radius:16px;background:var(--card);transition:all var(--t);cursor:default;}
-.af:hover{border-color:var(--amber);box-shadow:0 4px 24px rgba(242,92,5,.12);transform:translateX(5px);}
-.af{align-items:flex-start;}
-.af-dot{width:8px;height:8px;border-radius:50%;background:var(--amber);flex-shrink:0;margin-top:6px;}
-.af h4{font-family:var(--f-d);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:.3rem;}
-.af p{font-size:.8rem;color:var(--ink70);}
+
+
 
 
 /* ══════════════════════════════════════════
    FOCUS QUOTE (dark)
 ══════════════════════════════════════════ */
-.focus-sec{background:#111110;padding-block:clamp(4rem,8vw,7rem);position:relative;overflow:hidden;}
-.focus-sec .noise::after{opacity:.02;}
-.focus-deco{position:absolute;top:-5rem;left:-2rem;font-family:var(--f-d);font-size:18rem;color:rgba(255,255,255,.03);line-height:1;pointer-events:none;user-select:none;}
-.focus-inner{max-width:900px;margin-inline:auto;text-align:center;position:relative;z-index:1;}
-.focus-tag{font-family:var(--f-m);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:1.5rem;}
-.focus-quote{font-family:var(--f-d);font-size:clamp(1.5rem,3vw,2.5rem);font-weight:700;line-height:1.4;color:#f0ede8 !important;letter-spacing:-.025em;}
+
+.focus-sec 
+
+
+
+
 .focus-quote em{color:var(--amber);font-style:normal;}
-.focus-list{list-style:none;display:flex;flex-direction:column;gap:.85rem;margin-top:1.75rem;}
+
 .focus-list li{font-family:var(--f-m);font-size:.85rem;letter-spacing:.06em;color:rgba(240,237,232,.88);display:flex;align-items:center;justify-content:center;gap:.65rem;}
 .focus-list li::before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--amber);flex-shrink:0;}
 
@@ -506,8 +492,7 @@ flex-shrink:0;
 .res-row{display:flex;align-items:flex-start;gap:.7rem;padding-block:.85rem;border-bottom:1px solid var(--border);font-size:.875rem;color:var(--ink);font-weight:500;line-height:1.55;}
 .res-row:last-child{border-bottom:none;}
 .res-ck{width:18px;height:18px;border-radius:50%;background:var(--amber);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
-.case-footer-link{margin-top:1rem;display:inline-flex;align-items:center;gap:.4rem;font-family:var(--f-m);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);border-bottom:1px solid rgba(242,92,5,.3);transition:border-color var(--t);}
-.case-footer-link:hover{border-color:var(--amber);}
+
 /* nav */
 .case-nav{display:flex;align-items:center;justify-content:space-between;margin-top:2rem;}
 .c-dots{display:flex;gap:.4rem;}
@@ -522,13 +507,30 @@ flex-shrink:0;
 ══════════════════════════════════════════ */
 .exp-split{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:start;}
 @media(max-width:900px){.exp-split{grid-template-columns:1fr;}}
-.skill-bars{margin-top:2.5rem;display:grid;gap:1.1rem;}
-.skill-row{}
-.skill-info{display:flex;justify-content:space-between;margin-bottom:.35rem;}
-.skill-name{font-family:var(--f-m);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink70);}
-.skill-pct{font-family:var(--f-m);font-size:.68rem;color:var(--amber);}
-.skill-track{height:3px;background:var(--ink08);border-radius:999px;overflow:hidden;}
-.skill-fill{height:100%;background:linear-gradient(90deg,#F25C05,#FF6A00);width:0%;transition:width 1.3s var(--ease);border-radius:999px;}
+
+
+
+
+
+/* skill bars removed */
+
+
+/* ══════════════════════════════════════════
+   APPROACH PULL QUOTE
+══════════════════════════════════════════ */
+
+
+
+
+/* ══════════════════════════════════════════
+   EXPERIENCE STATEMENTS
+══════════════════════════════════════════ */
+.exp-statement{display:flex;gap:1.25rem;align-items:flex-start;padding:1.25rem 1.5rem;border:1px solid var(--border);border-radius:14px;background:var(--card);transition:border-color var(--t),transform .3s var(--ease);}
+.exp-statement:hover{border-color:var(--a30);transform:translateX(4px);}
+.exp-st-num{font-family:var(--f-d);font-size:1.6rem;font-weight:900;color:var(--amber);line-height:1;flex-shrink:0;min-width:52px;}
+.exp-statement strong{font-family:var(--f-m);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);display:block;margin-bottom:.35rem;}
+.exp-statement p{font-size:.8rem;color:var(--ink70);line-height:1.65;margin:0;}
+
 .exp-cards{display:grid;gap:1rem;}
 .exp-card{border:1px solid var(--border);border-radius:18px;padding:1.6rem;background:var(--card);transition:all var(--t);}
 .exp-card:hover{border-color:var(--amber);box-shadow:0 6px 28px rgba(0,0,0,.07);}
@@ -576,9 +578,9 @@ flex-shrink:0;
 .cta-inner{position:relative;z-index:1;max-width:660px;margin-inline:auto;text-align:center;}
 .cta-inner h2{font-family:var(--f-d);font-size:clamp(2rem,4.5vw,3.5rem);font-weight:900;letter-spacing:-.045em;color:var(--ink);margin-bottom:1rem;line-height:1.05;}
 .cta-inner p{font-size:.9rem;color:var(--ink70);margin-bottom:2.5rem;line-height:1.8;}
-.cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;}
-.cta-social{display:flex;justify-content:center;gap:1rem;margin-top:2rem;}
-.social-link{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--ink50);transition:all var(--t);}
+
+
+
 .social-link:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-3px);}
 
 /* ══════════════════════════════════════════
@@ -594,6 +596,50 @@ flex-shrink:0;
 .footer-links a{font-family:var(--f-m);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink50);transition:color var(--t);}
 .footer-links a:hover{color:var(--amber);}
 
+/* ══════════════════════════════════════════
+   CONTACT FORM
+══════════════════════════════════════════ */
+.contact-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:start;position:relative;z-index:1;}
+@media(max-width:860px){.contact-layout{grid-template-columns:1fr;gap:2.5rem;}}
+.contact-info .cta-inner{text-align:left;margin:0;max-width:none;}
+.contact-info .cta-inner h2{font-size:clamp(1.8rem,3.5vw,2.8rem);}
+.contact-methods{display:flex;flex-direction:column;gap:.75rem;margin-top:2rem;}
+.c-method{display:flex;align-items:center;gap:.85rem;padding:.9rem 1.1rem;border:1px solid var(--border);border-radius:14px;background:var(--card);text-decoration:none;color:var(--ink);transition:all var(--t);}
+.c-method:hover{border-color:var(--amber);box-shadow:0 4px 20px rgba(242,92,5,.12);transform:translateX(5px);}
+.c-method-ico{width:36px;height:36px;border-radius:10px;background:var(--a10);display:flex;align-items:center;justify-content:center;color:var(--amber);flex-shrink:0;transition:all var(--t);}
+.c-method:hover .c-method-ico{background:var(--amber);color:#fff;}
+.c-method-label{font-family:var(--f-m);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink50);display:block;margin-bottom:2px;}
+.c-method-val{font-family:var(--f-m);font-size:.78rem;font-weight:500;color:var(--ink);}
+.contact-form-wrap{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:2.5rem;box-shadow:var(--card-shadow);}
+.cf-title{font-family:var(--f-d);font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:.35rem;}
+.cf-sub{font-family:var(--f-m);font-size:.68rem;letter-spacing:.08em;color:var(--ink50);margin-bottom:2rem;}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:500px){.cf-row{grid-template-columns:1fr;}}
+.cf-group{display:flex;flex-direction:column;gap:.45rem;margin-bottom:1.1rem;}
+.cf-label{font-family:var(--f-m);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink70);}
+.cf-input,.cf-textarea,.cf-select{width:100%;font-family:var(--f-b);font-size:.85rem;color:var(--ink);background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;outline:none;transition:border-color var(--t),box-shadow var(--t);appearance:none;}
+.cf-input:focus,.cf-textarea:focus,.cf-select:focus{border-color:var(--amber);box-shadow:0 0 0 3px rgba(242,92,5,.12);}
+.cf-textarea{resize:vertical;min-height:110px;line-height:1.6;}
+.cf-select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23888' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;padding-right:2.5rem;}
+.cf-submit{width:100%;font-family:var(--f-m);font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:1rem 2rem;border-radius:999px;border:none;cursor:pointer;background:var(--amber);color:#fff;box-shadow:0 4px 24px rgba(242,92,5,.38);transition:background var(--t),box-shadow var(--t),transform .2s var(--spring);display:flex;align-items:center;justify-content:center;gap:.5rem;}
+.cf-submit:hover{background:var(--amber-h);box-shadow:0 8px 36px rgba(242,92,5,.5);transform:translateY(-2px);}
+.cf-submit:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+.cf-success{display:none;text-align:center;padding:2rem;}
+.cf-success-ico{width:52px;height:52px;border-radius:50%;background:rgba(242,92,5,.12);display:flex;align-items:center;justify-content:center;color:var(--amber);margin:0 auto 1rem;}
+.cf-success h3{font-family:var(--f-d);font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:.4rem;}
+.cf-success p{font-size:.8rem;color:var(--ink50);line-height:1.7;}
+
+
+[data-theme="dark"] .cf-input,
+[data-theme="dark"] .cf-textarea,
+[data-theme="dark"] .cf-select{
+  background:var(--bg3);
+  border-color:var(--border);
+  color:var(--ink);
+  color-scheme:dark;
+}
+[data-theme="dark"] .contact-form-wrap{background:var(--card);}
+[data-theme="dark"] .c-method{background:var(--card);}
 /* ══════════════════════════════════════════
    BACK TO TOP
 ══════════════════════════════════════════ */
@@ -659,68 +705,14 @@ flex-shrink:0;
   border-radius:999px;
 }
 
-/* ══════════════════════════════════════════
-   IMPACT CARD GRID
-══════════════════════════════════════════ */
-.impact-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:1.5rem;
-  margin-top:.5rem;
-}
-@media(max-width:600px){.impact-grid{grid-template-columns:1fr;}}
-.impact-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:2.2rem 2rem;
-  position:relative;
-  overflow:hidden;
-  transition:border-color var(--t),box-shadow .4s var(--ease),transform .4s var(--ease);
-}
-.impact-card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,#F25C05,#FF6A00);
-  transform:scaleX(0);transform-origin:left;
-  transition:transform .4s var(--ease);
-}
-.impact-card:hover::before{transform:scaleX(1);}
-.impact-card:hover{
-  border-color:var(--a30);
-  box-shadow:0 12px 40px rgba(0,0,0,.1);
-  transform:translateY(-4px);
-}
-.impact-num{
-  font-family:var(--f-d);font-size:clamp(2.5rem,5vw,3.5rem);
-  font-weight:900;color:var(--amber);
-  letter-spacing:-.045em;line-height:1;
-  margin-bottom:.35rem;
-}
-.impact-title{
-  font-family:var(--f-m);font-size:.75rem;letter-spacing:.13em;
-  text-transform:uppercase;color:var(--ink);
-  margin-bottom:.65rem;font-weight:600;
-}
-.impact-desc{
-  font-size:.8rem;color:var(--ink70);line-height:1.65;
-}
+/* impact-card removed */
 
-/* ══════════════════════════════════════════
-   TESTIMONIAL ROLE
-══════════════════════════════════════════ */
-.testi-role{
-  font-family:var(--f-m);font-size:.62rem;letter-spacing:.08em;
-  color:var(--ink50);margin-top:.2rem;
-}
+
 
 /* ══════════════════════════════════════════
    SECTION DIVIDER
 ══════════════════════════════════════════ */
-.sec-divider{
-  width:40px;height:2px;
-  background:linear-gradient(90deg,#F25C05,#FF6A00);
-  margin-bottom:2.5rem;border-radius:999px;
-}
+
 
 /* ══════════════════════════════════════════
    LOGO DARK MODE FILTER
@@ -735,82 +727,563 @@ flex-shrink:0;
 /* Only adapt in dark mode IF needed */
 [data-theme="dark"] .nav-logo img,
 [data-theme="dark"] .logo-loader,
-[data-theme="dark"] .logo-footer{
+[data-theme="dark"] .logo-footer,
+[data-theme="dark"] .footer-brand .footer-logo img{
   filter: brightness(0) invert(1);
 }
 
 /* ══════════════════════════════════════════
-   ACCESSIBILITY
+   FOOTER V2
 ══════════════════════════════════════════ */
-/* Skip to main */
-.skip-main{
-  position:fixed;top:-100%;left:1rem;z-index:10000;
-  background:var(--amber);color:#fff;
-  font-family:var(--f-m);font-size:.75rem;letter-spacing:.1em;
-  padding:.75rem 1.5rem;border-radius:999px;
-  transition:top .2s;
-}
-.skip-main:focus{top:1rem;}
+.footer-v2{border-top:1px solid var(--border);padding-block:3rem 2rem;}
+.footer-top{display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:start;padding-bottom:2.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
+@media(max-width:768px){.footer-top{grid-template-columns:1fr;gap:2rem;}}
+.footer-brand .footer-logo{margin-bottom:.75rem;}
+.footer-tagline{font-family:var(--f-m);font-size:.68rem;letter-spacing:.08em;color:var(--ink50);line-height:1.7;}
+.footer-nav-group{display:flex;gap:3rem;}
+@media(max-width:480px){.footer-nav-group{gap:2rem;}}
+.footer-nav-col{display:flex;flex-direction:column;gap:.6rem;}
+.footer-nav-hd{font-family:var(--f-m);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink50);margin-bottom:.2rem;}
+.footer-nav-col a{font-family:var(--f-m);font-size:.72rem;letter-spacing:.06em;color:var(--ink70);transition:color var(--t);}
+.footer-nav-col a:hover{color:var(--amber);}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;}
 
-/* Focus visible ring */
-:focus-visible{
-  outline:2px solid var(--amber);
-  outline-offset:3px;
-  border-radius:4px;
-}
-button:focus-visible,a:focus-visible{
-  outline:2px solid var(--amber);
-  outline-offset:3px;
-}
 
-/* Reduced motion */
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    animation-duration:.01ms !important;
-    animation-iteration-count:1 !important;
-    transition-duration:.01ms !important;
-    scroll-behavior:auto !important;
-  }
-  #hero-canvas{display:none;}
-  .hero-blob{display:none;}
-  .marquee-track{animation:none;}
-  .chip:nth-child(odd),.chip:nth-child(even){animation:none;}
+/* ══════════════════════════════════════════
+   1. AMBIENT DOT GRID — bg sections
+══════════════════════════════════════════ */
+body::before{
+  content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:radial-gradient(circle,var(--ink08) 1px,transparent 1px);
+  background-size:28px 28px;
+  opacity:.45;
+  transition:opacity .4s;
+}
+[data-theme="dark"] body::before{opacity:.18;}
+
+/* ══════════════════════════════════════════
+   2. SECTION HEADING — animated underline draw
+══════════════════════════════════════════ */
+.sec-title{position:relative;display:inline-block;}
+.sec-title.has-line::after{
+  content:'';position:absolute;left:0;bottom:-.18em;
+  height:3px;width:0;
+  background:linear-gradient(90deg,var(--amber),rgba(242,92,5,.25));
+  border-radius:999px;
+  transition:width .9s cubic-bezier(.16,1,.3,1);
+}
+.sec-title.has-line.line-on::after{width:60%;}
+
+/* ══════════════════════════════════════════
+   3. SEC-LABEL — scan-in animation
+══════════════════════════════════════════ */
+.sec-label::before{
+  width:0;
+  transition:width .55s var(--ease);
+}
+.sec-label.lbl-on::before{width:20px;}
+
+/* ══════════════════════════════════════════
+   4. CARD TILT — 3D perspective on hover
+══════════════════════════════════════════ */
+.tilt-card{transform-style:preserve-3d;will-change:transform;}
+.tilt-card .tilt-inner{
+  transition:box-shadow .4s var(--ease);
+  transform-style:preserve-3d;
 }
 
 /* ══════════════════════════════════════════
-   MOBILE MENU Z-INDEX FIX
-   .mob must be above .nav so overlay covers nav links
-   but ham button (inside nav z:700) stays tappable
+   5. METRICS — amber flash on entry + glow border
 ══════════════════════════════════════════ */
-.mob{z-index:690;}
-.mob.open{z-index:690;}
-
-/* ══════════════════════════════════════════
-   CHIP HOVER — pause animation during hover
-══════════════════════════════════════════ */
-.chip:hover{
-  animation-play-state:paused !important;
+.metrics-grid{
+  position:relative;
+  animation:metricsGlow 3s ease-in-out infinite;
+}
+@keyframes metricsGlow{
+  0%,100%{box-shadow:0 0 0 1px var(--border),0 4px 32px rgba(242,92,5,.08);}
+  50%{box-shadow:0 0 0 1px rgba(242,92,5,.35),0 8px 40px rgba(242,92,5,.18);}
+}
+.metric-cell.just-counted{animation:cellFlash .6s var(--ease);}
+@keyframes cellFlash{
+  0%{background:rgba(242,92,5,.12);}
+  100%{background:var(--card);}
 }
 
 /* ══════════════════════════════════════════
-   PORTFOLIO FILTER — smooth show/hide
+   6. PROCESS — animated track fill
 ══════════════════════════════════════════ */
-.port-item{
-  transition:opacity .32s var(--ease), transform .32s var(--ease);
+.process-grid::before{
+  height:2px;
+  background:var(--border);
+  top:27px;
+  transition:none;
 }
-.port-item.hiding{
+.process-track-fill{
+  position:absolute;top:27px;left:calc(100%/10);
+  height:2px;width:0;
+  background:linear-gradient(90deg,var(--amber),rgba(255,106,0,.4));
+  border-radius:999px;
+  z-index:1;
+  transition:width 1.4s cubic-bezier(.16,1,.3,1);
+}
+.process-grid.track-on .process-track-fill{width:80%;}
+.p-step-num{
+  position:relative;
+  transition:background .4s var(--spring),color .4s,border-color .4s,transform .4s var(--spring),box-shadow .4s;
+}
+.p-step-num::after{
+  content:'';position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid transparent;
+  transition:border-color .4s,transform .4s var(--spring);
+}
+.p-step:hover .p-step-num::after{
+  border-color:rgba(242,92,5,.3);
+  transform:scale(1.15);
+}
+.p-step:hover .p-step-num{
+  box-shadow:0 0 0 8px rgba(242,92,5,.08);
+}
+
+/* ══════════════════════════════════════════
+   7. TESTIMONIALS — featured large + 2 stacked
+══════════════════════════════════════════ */
+.testi-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+  margin-top:3rem;
+  align-items:start;
+}
+@media(max-width:900px){.testi-grid{grid-template-columns:1fr;}}
+.testi-featured{
+  border-top:3px solid var(--amber) !important;
+}
+.testi-featured .testi-txt{
+  font-size:.95rem;
+}
+
+/* ══════════════════════════════════════════
+   8. TAG STAGGER ENTRANCE
+══════════════════════════════════════════ */
+.tag{
   opacity:0;
-  transform:scale(.96);
+  transform:scale(.85) translateY(4px);
+  transition:opacity .3s var(--ease),transform .3s var(--spring),background var(--t),color var(--t);
+}
+.tags.tags-visible .tag{opacity:1;transform:none;}
+
+/* ══════════════════════════════════════════
+   9. HERO H1 — scramble text chars styling
+══════════════════════════════════════════ */
+
+
+/* ══════════════════════════════════════════
+   10. GROWTH CARDS — left-border accent reveal on hover
+══════════════════════════════════════════ */
+.g-card::after{
+  content:'';position:absolute;left:0;top:10%;bottom:10%;
+  width:3px;
+  background:linear-gradient(to bottom,var(--amber),rgba(242,92,5,.3));
+  border-radius:0 2px 2px 0;
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:transform .35s var(--ease);
+}
+.g-card:hover::after{transform:scaleY(1);}
+
+/* ══════════════════════════════════════════
+   11. PORTFOLIO ITEM — image colour shift on hover
+══════════════════════════════════════════ */
+.port-img-wrap::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(242,92,5,.15),transparent);
+  opacity:0;
+  transition:opacity .45s var(--ease);
+  mix-blend-mode:multiply;
   pointer-events:none;
 }
+.port-item:hover .port-img-wrap::after{opacity:1;}
+
+/* ══════════════════════════════════════════
+   12. CONTACT METHODS — animated left line
+══════════════════════════════════════════ */
+.c-method{
+  position:relative;
+  overflow:hidden;
+}
+.c-method::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:3px;background:var(--amber);
+  transform:scaleY(0);transform-origin:bottom;
+  transition:transform .3s var(--ease);
+  border-radius:0 2px 2px 0;
+}
+.c-method:hover::before{transform:scaleY(1);}
+
+/* ══════════════════════════════════════════
+   13. SECTION TRANSITIONS — alternating bg rhythm
+      (off sections get a very faint amber tint)
+══════════════════════════════════════════ */
+.sec-off{
+  background:var(--bg2);
+  position:relative;
+}
+.sec-off::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 70% 50% at 80% 50%,rgba(242,92,5,.028),transparent);
+}
+
+/* ══════════════════════════════════════════
+   14. EXP STATEMENT — number glow on hover
+══════════════════════════════════════════ */
+.exp-st-num{
+  transition:text-shadow .3s var(--ease),color .3s;
+}
+.exp-statement:hover .exp-st-num{
+  text-shadow:0 0 24px rgba(242,92,5,.45);
+}
+
+/* ══════════════════════════════════════════
+   15. CHIP — glass shimmer sweep on hover
+══════════════════════════════════════════ */
+.chip{overflow:hidden;position:relative;}
+.chip::before{
+  content:'';position:absolute;top:0;left:-100%;
+  width:60%;height:100%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.18),transparent);
+  transition:left .45s var(--ease);
+  pointer-events:none;
+}
+.chip:hover::before{left:140%;}
+
+/* ══════════════════════════════════════════
+   16. CASE STUDY BOX — result rows highlight
+══════════════════════════════════════════ */
+.res-row{
+  transition:background .2s,padding-left .2s;
+  border-radius:8px;
+  padding-left:.5rem;
+  margin-left:-.5rem;
+}
+.res-row:hover{
+  background:var(--a10);
+  padding-left:.85rem;
+}
+
+/* ══════════════════════════════════════════
+   17. NAV — active link gets a subtle glow dot
+══════════════════════════════════════════ */
+.nav-links a.act::before{
+  content:'';
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:4px;height:4px;
+  background:var(--amber);
+  border-radius:50%;
+  opacity:0;
+  top:-8px;left:50%;
+  transform:translateX(-50%);
+  transition:opacity .3s;
+}
+.nav-links a.act::before{opacity:1;}
+
+
+/* ══════════════════════════════════════════
+   TESTIMONIAL FEATURED CARD
+══════════════════════════════════════════ */
+.testi-featured{
+  border-left:3px solid var(--amber) !important;
+}
+.testi-featured .testi-txt{
+  font-size:1.02rem !important;
+  line-height:1.9 !important;
+}
+.testi-featured .testi-qm{
+  font-size:5.5rem !important;
+  opacity:.18 !important;
+}
+
+
+/* ══════════════════════════════════════════
+   SKILL GRID (replaces tag clouds)
+══════════════════════════════════════════ */
+.skill-grid{display:flex;flex-direction:column;gap:1.1rem;}
+.sk-row{}
+.sk-cat{border:1px solid var(--border);border-radius:16px;padding:1.25rem 1.4rem;background:var(--card);transition:border-color var(--t),box-shadow .3s;}
+.sk-cat:hover{border-color:var(--a30);box-shadow:0 4px 20px rgba(0,0,0,.06);}
+.sk-cat-hd{display:flex;align-items:center;gap:.55rem;font-family:var(--f-m);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink50);margin-bottom:.9rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
+.sk-cat-hd svg{color:var(--amber);flex-shrink:0;}
+.sk-items{display:flex;flex-wrap:wrap;gap:.4rem;}
+.sk-item{font-family:var(--f-m);font-size:.68rem;padding:.28rem .72rem;border-radius:999px;cursor:default;transition:all var(--t);}
+.sk-tier-1{background:var(--amber);color:#fff;font-weight:500;}
+.sk-tier-2{background:var(--a10);color:var(--amber);border:1px solid var(--a20);}
+.sk-tier-3{background:transparent;color:var(--ink50);border:1px solid var(--border);}
+.sk-item:hover{transform:translateY(-1px);}
+.sk-legend{display:flex;align-items:center;gap:1rem;margin-top:.9rem;font-family:var(--f-m);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink50);}
+.sk-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:.3rem;}
+.sk-dot.sk-tier-1{background:var(--amber);}
+.sk-dot.sk-tier-2{background:var(--a30);}
+.sk-dot.sk-tier-3{background:var(--border);}
+
+/* ══════════════════════════════════════════
+   WHATSAPP CONTACT METHOD
+══════════════════════════════════════════ */
+.c-method-wa{border-color:rgba(37,211,102,.25);}
+.c-method-wa:hover{border-color:rgba(37,211,102,.6);box-shadow:0 4px 20px rgba(37,211,102,.15);}
+.c-method-ico-wa{background:rgba(37,211,102,.12) !important;color:#25D366 !important;}
+.c-method-wa:hover .c-method-ico-wa{background:#25D366 !important;color:#fff !important;}
+[data-theme="dark"] .c-method-ico-wa{background:rgba(37,211,102,.18) !important;}
+
+/* ══════════════════════════════════════════
+   METRIC ICONS
+══════════════════════════════════════════ */
+.m-ico{
+  width:32px;height:32px;border-radius:10px;
+  background:var(--a10);display:flex;align-items:center;justify-content:center;
+  color:var(--amber);margin-bottom:.6rem;
+  transition:background var(--t),transform .3s var(--spring);
+}
+.metric-cell:hover .m-ico{background:var(--amber);color:#fff;transform:scale(1.1) rotate(-5deg);}
+
+/* ══════════════════════════════════════════
+   CONTACT TRUST SIGNALS
+══════════════════════════════════════════ */
+.cf-trust-signals{
+  display:flex;flex-wrap:wrap;gap:.5rem .85rem;
+  margin-top:.65rem;margin-bottom:1.25rem;
+}
+.cf-trust-item{
+  display:inline-flex;align-items:center;gap:.35rem;
+  font-family:var(--f-m);font-size:.62rem;letter-spacing:.08em;
+  color:var(--ink50);
+}
+.cf-trust-item svg{color:var(--amber);flex-shrink:0;}
+
+/* ══════════════════════════════════════════
+   PROCESS STEPS — enhanced
+══════════════════════════════════════════ */
+.p-step-num{
+  font-weight:900;
+  background:var(--card);
+  position:relative;
+}
+.p-step.on .p-step-num,
+.p-step:hover .p-step-num{
+  background:var(--amber);
+  color:#fff;
+  border-color:var(--amber);
+  transform:scale(1.1);
+  box-shadow:0 0 0 6px rgba(242,92,5,.12);
+}
+
+/* ══════════════════════════════════════════
+   HERO TRUST LINE — stronger style
+══════════════════════════════════════════ */
+.hero-trust{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  font-size:.72rem;
+}
+.hero-trust::before{
+  content:'';
+  display:inline-block;width:20px;height:1.5px;
+  background:linear-gradient(90deg,var(--amber),rgba(242,92,5,.2));
+  border-radius:999px;
+  flex-shrink:0;
+}
+
+/* ══════════════════════════════════════════
+   SK-ITEM — initial hidden for stagger
+══════════════════════════════════════════ */
+.sk-item{
+  opacity:0;
+  transform:scale(.85) translateY(4px);
+}
+
+/* ══════════════════════════════════════════
+   FOOTER NAV COL — WhatsApp link green
+══════════════════════════════════════════ */
+.footer-nav-col a[href*="wa.me"]{color:#25D366 !important;}
+.footer-nav-col a[href*="wa.me"]:hover{color:#1da851 !important;}
+  .process-track-fill{transition:none;}
+  .tag{opacity:1;transform:none;}
+  .scramble-char{transition:none;}
+  body::before{display:none;}
+  .sk-item{opacity:1;transform:none;}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+  html{scroll-behavior:auto;}
+  .marquee-track{animation:none;}
+  .hero-blob,.chip{animation:none;}
+}
+
+/* ══════════════════════════════════════════
+   HERO — eyebrow animation delay fix
+══════════════════════════════════════════ */
+.hero-rule{margin-bottom:1rem;}
+
+/* ══════════════════════════════════════════
+   METRICS GRID — icon hover + section border
+══════════════════════════════════════════ */
+.metrics-grid{
+  border-radius:20px;
+  overflow:hidden;
+}
+.metric-cell{
+  display:flex;flex-direction:column;gap:.35rem;
+}
+
+/* ══════════════════════════════════════════
+   GROWTH CARDS — numbered ghost larger
+══════════════════════════════════════════ */
+
+/* ══════════════════════════════════════════
+   PORTFOLIO — image aspect ratio consistency
+══════════════════════════════════════════ */
+.port-img-wrap{aspect-ratio:16/9;}
+
+/* ══════════════════════════════════════════
+   CASE STUDIES — slide animation
+══════════════════════════════════════════ */
+.case-slide.on{
+  animation:caseIn .4s cubic-bezier(.16,1,.3,1);
+}
+
+/* ══════════════════════════════════════════
+   PROCESS — track fill width fix
+══════════════════════════════════════════ */
+.process-grid.track-on .process-track-fill{
+  width:calc(80% - 2rem);
+}
+
+/* ══════════════════════════════════════════
+   EXPERTISE — exp-split responsive gap
+══════════════════════════════════════════ */
+@media(min-width:901px){
+  .exp-split{gap:3.5rem;}
+}
+
+/* ══════════════════════════════════════════
+   SKILL GRID — category card hover fix
+══════════════════════════════════════════ */
+.sk-cat-hd{
+  font-weight:500;
+}
+
+/* ══════════════════════════════════════════
+   TESTIMONIALS — consistent card height
+══════════════════════════════════════════ */
+.testi-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.testi-txt{flex:1;}
+
+/* ══════════════════════════════════════════
+   CONTACT — method card gap consistency
+══════════════════════════════════════════ */
+.contact-methods{gap:.65rem;}
+.c-method{
+  min-height:60px;
+}
+
+/* ══════════════════════════════════════════
+   FOOTER — brand section spacing
+══════════════════════════════════════════ */
+.footer-tagline{
+  margin-top:.5rem;
+  line-height:1.65;
+}
+
+/* ══════════════════════════════════════════
+   BACK TO TOP — tooltip on hover
+══════════════════════════════════════════ */
+#btt::before{
+  content:'Back to top';
+  position:absolute;right:calc(100% + .6rem);top:50%;
+  transform:translateY(-50%);
+  font-family:var(--f-m);font-size:.58rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink50);
+  white-space:nowrap;
+  opacity:0;transition:opacity .2s;
+  pointer-events:none;
+}
+#btt.show:hover::before{opacity:1;}
+
+/* ══════════════════════════════════════════
+   MOBILE — hero chips stack horizontal
+══════════════════════════════════════════ */
+@media(max-width:1100px){
+  .hero-chips{display:none;}
+}
+
+/* ══════════════════════════════════════════
+   CONTACT FORM — select dark mode fix
+══════════════════════════════════════════ */
+[data-theme="dark"] .cf-select option{
+  background:var(--bg3);
+  color:var(--ink);
+}
+
+/* ══════════════════════════════════════════
+   SEC-LABEL — keep consistent across all
+══════════════════════════════════════════ */
+.sec-label span{
+  color:var(--amber);
+}
+
+/* ══════════════════════════════════════════
+   MARQUEE — pause on reduced motion
+══════════════════════════════════════════ */
+@media(prefers-reduced-motion:no-preference){
+  .marquee-track:hover{animation-play-state:paused;}
+}
+
+/* ===== TYPEWRITER SYSTEM ===== */
+.hero-tw-static{opacity:.55;white-space:nowrap;flex-shrink:0;font-style:normal;}
+.typewriter{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;overflow:hidden;min-width:0;max-width:100%;font-style:italic;}
+.typewriter__text{color:var(--amber);font-weight:600;}
+.typewriter__cursor{width:2px;height:1.2em;background:var(--amber);border-radius:1px;opacity:.7;flex-shrink:0;animation:tw-blink 1s infinite;}
+@keyframes tw-blink{0%,50%,100%{opacity:1;}25%,75%{opacity:0;}}
+@media(max-width:640px){.hero-tw-line{letter-spacing:.05em;}.typewriter{gap:2px;}}
+
+/* ── CASE SLIDE VISIBILITY ── */
+.case-slide.on .case-big-title{color:var(--ink);}
+.case-slide.on .cdt{color:var(--ink70);}
+.case-slide.on .cdl{color:var(--amber);}
+.case-slide.on .res-row{color:var(--ink);}
+.case-slide.on .case-cotag{color:var(--amber);}
+.case-slide.on strong{color:var(--amber);}
+.case-slide.on .case-box{background:var(--bg2);}
 </style>
 <script>
 (function(){try{var s=localStorage.getItem('raqmetrics-theme');var p=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(p?'dark':'light'));}catch(e){}})();
 </script>
 </head>
 <body>
+<!-- ██ SKIP TO MAIN ██ -->
+<a href="#home" class="skip-link">Skip to main content</a>
 
-<a href="#about" class="skip-main">Skip to main content</a>
+<!-- ██ STRUCTURED DATA ██ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Cherif Eddine Haddad",
+  "url": "https://raqmetrics.com",
+  "jobTitle": "Performance Marketing & Growth Specialist",
+  "description": "Growth specialist focused on CAC reduction, paid acquisition, and data-driven marketing systems across MENA, Europe and North America.",
+  "sameAs": [
+    "https://www.linkedin.com/in/cherifeddinehaddad/"
+  ],
+  "knowsAbout": ["Performance Marketing","Paid Advertising","Growth Marketing","CAC Reduction","Marketing Analytics","Attribution Modeling","Meta Ads","Google Ads"]
+}
+</script>
+
+
 <!-- ██ PAGE LOADER ██ -->
 <div id="loader">
   <div class="loader-logo">
@@ -829,15 +1302,20 @@ button:focus-visible,a:focus-visible{
 <div id="prog"></div>
 
 <!-- ██ MOBILE MENU ██ -->
-<div class="mob" id="mobMenu">
+<div class="mob" id="mobMenu" role="dialog" aria-modal="true" aria-label="Navigation menu">
   <a href="#about" onclick="closeMob()">Approach</a>
   <a href="#portfolio" onclick="closeMob()">Portfolio</a>
   <a href="#expertise" onclick="closeMob()">Expertise</a>
   <a href="#contact" onclick="closeMob()">Contact</a>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;margin-top:.5rem;">
+    <div class="avail-badge"><span class="avail-dot"></span>Available for projects</div>
+    <a href="#contact" onclick="closeMob()" class="btn btn-fill" style="padding:.75rem 2rem;font-size:.75rem;">Let's Work Together</a>
+    <a href="https://wa.me/213773266725" target="_blank" rel="noopener noreferrer" style="font-family:var(--f-m);font-size:.65rem;letter-spacing:.1em;color:#25D366;display:flex;align-items:center;gap:.4rem;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>WhatsApp</a>
+  </div>
 </div>
 
 <!-- ██ BACK TO TOP ██ -->
-<button id="btt" aria-label="Back to top">
+<button id="btt" aria-label="Back to top" type="button">
   <svg class="btt-ring" viewBox="0 0 48 48" width="48" height="48">
     <circle class="btt-track" cx="24" cy="24" r="21"/>
     <circle class="btt-prog" id="bttCircle" cx="24" cy="24" r="21"
@@ -851,8 +1329,8 @@ button:focus-visible,a:focus-visible{
 <!-- ══════════════════ NAV ══════════════════ -->
 <nav class="nav" id="nav">
   <div class="wrap nav-inner">
-   <a href="/" class="nav-logo">
-  <img src="/logo.svg" alt="Raqmetrics" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=\'font-family:var(--f-d);font-size:1.3rem;font-weight:900;letter-spacing:-.04em;\'>Raq<span style=\'color:var(--amber)\'>metrics</span></span>');">
+   <a href="/" class="nav-logo" aria-label="Raqmetrics — go to homepage">
+  <img src="/logo.svg" alt="Raqmetrics" loading="eager" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=\'font-family:var(--f-d);font-size:1.3rem;font-weight:900;letter-spacing:-.04em;\'>Raq<span style=\'color:var(--amber)\'>metrics</span></span>');">
 </a>
     <ul class="nav-links">
       <li><a href="#about" data-s="about">Approach</a></li>
@@ -862,18 +1340,18 @@ button:focus-visible,a:focus-visible{
     </ul>
     <div class="nav-right">
       <div class="avail-badge"><span class="avail-dot"></span>Available</div>
-      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode" type="button">
         <svg id="themeIco" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
       </button>
-      <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener" class="btn btn-fill nav-cta-btn" style="padding:.5rem 1.1rem;font-size:.65rem;">Connect ↗</a>
-      <button class="ham" id="ham"><span></span><span></span><span></span></button>
+      <a href="#contact" class="btn btn-fill nav-cta-btn" style="padding:.5rem 1.1rem;font-size:.65rem;">Work With Me</a>
+      <button class="ham" id="ham" type="button" aria-expanded="false" aria-controls="mobMenu" aria-label="Open navigation"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
 
 <!-- ══════════════════ HERO ══════════════════ -->
-<section class="hero" id="home">
-  <canvas id="hero-canvas"></canvas>
+<section class="hero" id="home" aria-label="Introduction">
+  <canvas id="hero-canvas" aria-hidden="true"></canvas>
   <div class="hero-blob hero-blob-1"></div>
   <div class="hero-blob hero-blob-2"></div>
   <div class="hero-blob hero-blob-3"></div>
@@ -881,22 +1359,23 @@ button:focus-visible,a:focus-visible{
   <div class="wrap" style="position:relative;z-index:1;display:grid;">
     <div class="hero-inner">
       <span class="hero-rule"></span>
-      <div class="eyebrow"><span class="eyebrow-dot"></span>Performance Marketing &amp; Growth</div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span>Available for projects</div>
 
-      <h1 class="hero-h1">
-        Scaling Acquisition<br/><span class="hero-amber">&amp; Revenue</span>
+      <h1 class="hero-h1" id="heroH1">
+        Scaling Acquisition<br/><span class="hero-amber">& Revenue</span>
       </h1>
       <p class="hero-tw-line">
-        <span style="opacity:.6;">I operate as</span>
-        <span class="typewriter-wrap">
-          <span class="typewriter-text" id="typeText"></span><span class="typewriter-cursor"></span>
+        <span class="hero-tw-static">I</span>
+        <span class="typewriter">
+          <span id="typeText" class="typewriter__text"></span>
+          <span class="typewriter__cursor"></span>
         </span>
       </p>
 
-      <p class="hero-sub">Reduced CAC by 20%+ across multi-regional markets through acquisition system optimization, advanced attribution modeling, and full-funnel performance analysis.</p>
-      <p class="hero-trust">Trusted across MENA, Europe &amp; North America</p>
+      <p class="hero-sub">I design and scale multi-channel acquisition systems across Meta, Google, and TikTok — focused on reducing CAC and improving revenue efficiency across multi-regional markets.</p>
+      <p class="hero-trust">Active across MENA, Europe &amp; North America</p>
       <div class="hero-cta">
-        <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener" class="btn btn-fill mag">
+        <a href="#contact" class="btn btn-fill mag">
           Let's Work Together
           <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
         </a>
@@ -906,10 +1385,10 @@ button:focus-visible,a:focus-visible{
 
     <!-- Chips -->
     <div class="hero-chips">
-      <div class="chip"><div class="chip-ico"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div><div><div class="chip-val">20%+</div><div class="chip-lbl">CAC Reduction</div></div></div>
-      <div class="chip"><div class="chip-ico"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><div><div class="chip-val">100+</div><div class="chip-lbl">Campaigns</div></div></div>
-      <div class="chip"><div class="chip-ico"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div><div class="chip-val">4+</div><div class="chip-lbl">Markets</div></div></div>
-      <div class="chip"><div class="chip-ico"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><div class="chip-val">$80K+</div><div class="chip-lbl">Monthly Spend</div></div></div>
+      <div class="chip"><div class="chip-ico"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div><div><div class="chip-val">20%+</div><div class="chip-lbl">CAC Reduced</div></div></div>
+      <div class="chip"><div class="chip-ico"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><div class="chip-val">$80K+</div><div class="chip-lbl">Monthly Ad Spend</div></div></div>
+      <div class="chip"><div class="chip-ico"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div><div><div class="chip-val">100+</div><div class="chip-lbl">Campaigns / Month</div></div></div>
+      <div class="chip"><div class="chip-ico"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div><div class="chip-val">4+</div><div class="chip-lbl">Markets Active</div></div></div>
     </div>
   </div>
 
@@ -921,163 +1400,110 @@ button:focus-visible,a:focus-visible{
   <div class="marquee-track" id="mq"></div>
 </div>
 
+
 <!-- ══════════════════ METRICS ══════════════════ -->
-<section class="sec">
+<section class="sec" style="padding-block:clamp(2.5rem,5vw,4rem);">
   <div class="wrap">
     <div class="metrics-grid rv">
-      <div class="metric-cell"><span class="m-num" data-target="20" data-suffix="%+">0%+</span><span class="m-lbl">CAC Reduction</span></div>
-      <div class="metric-cell"><span class="m-num" data-target="100" data-suffix="+">0+</span><span class="m-lbl">Campaigns Managed</span></div>
-      <div class="metric-cell"><span class="m-num" data-target="4" data-suffix="+">0+</span><span class="m-lbl">Multi-Regional Markets</span></div>
-      <div class="metric-cell"><span class="m-num" data-target="80" data-prefix="$" data-suffix="K+">$0K+</span><span class="m-lbl">Monthly Ad Spend</span></div>
+      <div class="metric-cell">
+        <div class="m-ico"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg></div>
+        <span class="m-num" data-target="20" data-suffix="%+">0%+</span>
+        <span class="m-lbl">CAC Reduction</span>
+        <span class="m-sub">Avg. across all campaigns</span>
+      </div>
+      <div class="metric-cell">
+        <div class="m-ico"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <span class="m-num" data-target="100" data-suffix="+">0+</span>
+        <span class="m-lbl">Campaigns / Month</span>
+        <span class="m-sub">Active campaigns managed on average</span>
+      </div>
+      <div class="metric-cell">
+        <div class="m-ico"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <span class="m-num" data-target="4" data-suffix="+">0+</span>
+        <span class="m-lbl">Markets Served</span>
+        <span class="m-sub">MENA · Europe · North America</span>
+      </div>
+      <div class="metric-cell">
+        <div class="m-ico"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <span class="m-num" data-target="80" data-prefix="$" data-suffix="K+">$0K+</span>
+        <span class="m-lbl">Monthly Ad Spend</span>
+        <span class="m-sub">Peak across active accounts</span>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════ HOW I DRIVE GROWTH ══════════════════ -->
-<section id="about" class="sec sec-off">
+<section id="about" class="sec sec-off" aria-label="My approach">
   <div class="wrap">
     <div class="rv">
-      <div class="sec-label">My Approach</div>
-      <h2 class="sec-title">How I Drive Growth</h2>
-      <p class="sec-sub">I approach growth as a system — not isolated campaigns. My focus is on building scalable acquisition engines that improve efficiency, attribution, and revenue outcomes.</p>
+      <div class="sec-label">What I Actually Do</div>
+      <h2 class="sec-title has-line">What You're Hiring Me For</h2>
+      <p class="sec-sub">Most ad accounts waste 30–40% of budget on audiences that don't convert, tracking that misfires, and creatives that never get tested. I fix that — then build the system that keeps it fixed.</p>
     </div>
     <div class="growth-grid">
-      <div class="g-card rv" data-d="1" data-n="01">
+      <div class="g-card rv tilt-card" data-d="1" data-n="01">
         <div class="g-card-bg"></div>
         <div class="g-ico"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-        <h3>Acquisition Systems</h3>
-        <p>Scaling multi-channel acquisition systems — focused on sustainable CAC reduction and revenue efficiency.</p>
+        <h3>Paid Acquisition</h3>
+        <p>I structure campaigns around your unit economics — audience segmentation, bid strategy, and budget allocation that tie directly to CAC targets. Not set-and-forget. Active management.</p>
       </div>
-      <div class="g-card rv" data-d="2" data-n="02">
+      <div class="g-card rv tilt-card" data-d="2" data-n="02">
         <div class="g-card-bg"></div>
         <div class="g-ico"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
         <h3>Tracking &amp; Attribution</h3>
-        <p>GA4, GTM, Meta CAPI, and event architecture — ensuring accurate, decision-grade attribution.</p>
+        <p>If your data is wrong, every decision downstream is wrong. I implement GA4, GTM, and Meta CAPI so you know exactly which channel, ad, and audience is generating revenue — not just clicks.</p>
       </div>
-      <div class="g-card rv" data-d="3" data-n="03">
+      <div class="g-card rv tilt-card" data-d="3" data-n="03">
         <div class="g-card-bg"></div>
         <div class="g-ico"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-        <h3>Experimentation Framework</h3>
-        <p>Structured A/B testing across creatives, audiences, and funnels to find winning patterns at scale.</p>
+        <h3>Testing &amp; Optimisation</h3>
+        <p>Every test has a written hypothesis and defined win criteria before it runs. I track results in a shared doc. You know what was tested, what won, and why — not just "we tried some things."</p>
       </div>
-      <div class="g-card rv" data-d="4" data-n="04">
+      <div class="g-card rv tilt-card" data-d="4" data-n="04">
         <div class="g-card-bg"></div>
         <div class="g-ico"><svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-        <h3>Performance Optimization</h3>
-        <p>Continuous CAC, ROAS, and LTV optimization — aligned with revenue outcomes, not vanity metrics.</p>
+        <h3>CAC &amp; ROAS Management</h3>
+        <p>I look at CAC, ROAS, and payback period — not CPM or CTR in isolation. When a campaign is underperforming I can tell you exactly which variable is the problem and what I'm changing.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════════════ SELECTED IMPACT ══════════════════ -->
-<section class="sec">
-  <div class="wrap">
-    <div style="max-width:800px;margin-inline:auto;" class="rv">
-      <div class="sec-label" style="justify-content:center;">Selected Impact</div>
-      <h2 class="sec-title" style="text-align:center;margin-bottom:2.5rem;">
-        Proven Impact Across Acquisition & Growth
-      </h2>
-
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1rem;">
-
-        <div class="af rv" data-d="1">
-          <div class="af-dot"></div>
-          <div>
-            <h4>20%+ CAC Reduction</h4>
-            <p>Reduced acquisition costs across multi-regional markets through structured experimentation, bidding optimization, and budget reallocation.</p>
-          </div>
-        </div>
-
-        <div class="af rv" data-d="2">
-          <div class="af-dot"></div>
-          <div>
-            <h4>Scaled Multi-Channel Acquisition</h4>
-            <p>Built and scaled acquisition systems across Meta, Google, and TikTok, driving consistent growth across MENA, Europe, and North America.</p>
-          </div>
-        </div>
-
-        <div class="af rv" data-d="3">
-          <div class="af-dot"></div>
-          <div>
-            <h4>End-to-End Tracking Infrastructure</h4>
-            <p>Implemented GA4, GTM, and CAPI event architecture to enable accurate attribution and reliable performance measurement.</p>
-          </div>
-        </div>
-
-        <div class="af rv" data-d="4">
-          <div class="af-dot"></div>
-          <div>
-            <h4>+30% Conversion Growth</h4>
-            <p>Improved conversion rates through landing page optimization, funnel restructuring, and continuous A/B testing.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-      <!-- CTA -->
-      <div style="text-align:center;margin-top:2.5rem;">
-        <p style="margin-bottom:1rem;font-size:.9rem;color:var(--ink70);">
-          Looking to reduce CAC and scale acquisition across markets?
-        </p>
-        <a href="https://www.linkedin.com/in/cherifeddinehaddad/"
-           class="btn btn-fill"
-           target="_blank" rel="noopener">
-           Let’s Connect
-        </a>
-      </div>
-  </div>
-</section>
-
-<!-- ══════════════════ FOCUS QUOTE ══════════════════ -->
-<section class="focus-sec noise">
-  <div class="focus-deco">"</div>
-  <div class="wrap">
-    <div class="focus-inner rv">
-      <div class="focus-tag">What I Focus On</div>
-      <p class="focus-quote">I design acquisition systems — not campaigns.</p>
-      <ul class="focus-list">
-        <li>Scaling acquisition across channels and regions</li>
-        <li>Reducing CAC through structured experimentation</li>
-        <li>Building reliable tracking (GA4, GTM, CAPI)</li>
-        <li>Aligning marketing with revenue (LTV, ROAS)</li>
-      </ul>
-    </div>
-  </div>
-</section>
 
 <!-- ══════════════════ PORTFOLIO GRID ══════════════════ -->
-<section id="portfolio" class="sec">
+<section id="portfolio" class="sec" aria-label="Portfolio">
   <div class="wrap">
     <div class="rv">
-      <div class="sec-label">Selected Work</div>
-      <h2 class="sec-title">Selected Work &amp; Impact</h2>
-      <p class="sec-sub">Strategic campaigns that delivered measurable results across acquisition, retention, and revenue optimization</p>
+      <div class="sec-label">Client Work</div>
+      <h2 class="sec-title has-line">Projects &amp; Results</h2>
+      <p class="sec-sub">A selection of campaigns across verticals and channels. Each card shows the platform mix and key result.</p>
     </div>
 
     <div style="margin-top:2.5rem;" class="rv">
       <div class="port-filters">
-        <button class="pf on" data-f="all">All Work</button>
-        <button class="pf" data-f="Paid Marketing">Paid Marketing</button>
-        <button class="pf" data-f="Strategy & Analytics">Strategy &amp; Analytics</button>
-        <button class="pf" data-f="Creative Strategy">Creative Strategy</button>
+        <button class="pf on" data-f="all" type="button">All Work</button>
+        <button class="pf" data-f="Paid Marketing" type="button">Paid Marketing</button>
+        <button class="pf" data-f="Strategy & Analytics" type="button">Strategy &amp; Analytics</button>
+        <button class="pf" data-f="CRM & Automation" type="button">CRM &amp; Automation</button>
+        <button class="pf" data-f="Creative Strategy" type="button">Creative Strategy</button>
       </div>
 
+      <div id="portEmpty" style="display:none;text-align:center;padding:3rem 1rem;"><p style="font-family:var(--f-m);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink50);">No projects in this category yet</p></div>
       <div class="port-grid">
-        <div class="port-item rv" data-f="Paid Marketing" data-d="1">
+        <div class="port-item rv tilt-card" data-f="Paid Marketing" data-d="1">
           <div class="port-img-wrap">
             <img class="port-img" src="https://d2xsxph8kpxj0f.cloudfront.net/310419663030567616/2YhBxqd8JaL2MQs9Zmtjnk/Meta%20Liwa%20Portfolio_c18c327a.png" alt="App Growth" loading="lazy"/>
-            <div class="port-overlay"><span class="port-metric">61+ Campaigns</span><span class="port-metric">151K+ Impressions</span><span class="port-metric">Multi-Regional</span></div>
+            <div class="port-overlay"><span class="port-metric">61+ Campaigns</span><span class="port-metric">20%+ CAC Reduction</span><span class="port-metric">Multi-Regional</span></div>
           </div>
           <div class="port-body">
             <div class="port-cat">Paid Marketing</div>
             <div class="port-title">App Growth — Multi-Channel Acquisition</div>
-            <p class="port-desc">Scaled a multi-channel acquisition system across Meta, Google, and TikTok — optimizing full-funnel performance from installs to in-app events across multi-regional markets.</p>
+            <p class="port-desc">61 campaigns running simultaneously across MENA and Europe. Managed audience structure, creative testing, and bid strategy from installs through to in-app revenue events.</p>
             <div class="port-tags"><span class="pt">Meta</span><span class="pt">Google Ads</span><span class="pt">TikTok</span><span class="pt">Attribution</span><span class="pt">App Growth</span></div>
           </div>
         </div>
-        <div class="port-item rv" data-f="Paid Marketing" data-d="2">
+        <div class="port-item rv tilt-card" data-f="Paid Marketing" data-d="2">
           <div class="port-img-wrap">
             <img class="port-img" src="https://d2xsxph8kpxj0f.cloudfront.net/310419663030567616/2YhBxqd8JaL2MQs9Zmtjnk/Google%20Ads%20Ecommerce_a7953edc.jpg" alt="Ecommerce" loading="lazy"/>
             <div class="port-overlay"><span class="port-metric">Improved ROAS</span><span class="port-metric">Reduced CPC</span><span class="port-metric">Scaled Conversions</span></div>
@@ -1085,11 +1511,11 @@ button:focus-visible,a:focus-visible{
           <div class="port-body">
             <div class="port-cat">Paid Marketing</div>
             <div class="port-title">Ecommerce Growth — Performance Marketing</div>
-            <p class="port-desc">Scaled ecommerce revenue through paid acquisition and continuous funnel optimization — improving ROAS and reducing CPC across categories.</p>
+            <p class="port-desc">Google and Meta campaigns structured by product category and margin. Iterative creative testing and landing page changes that pushed ROAS up and CPC down over time.</p>
             <div class="port-tags"><span class="pt">Google Ads</span><span class="pt">Meta</span><span class="pt">GA4</span><span class="pt">CRO</span><span class="pt">Ecommerce</span></div>
           </div>
         </div>
-        <div class="port-item rv" data-f="Paid Marketing" data-d="3">
+        <div class="port-item rv tilt-card" data-f="Paid Marketing" data-d="3">
           <div class="port-img-wrap">
             <img class="port-img" src="https://d2xsxph8kpxj0f.cloudfront.net/310419663030567616/2YhBxqd8JaL2MQs9Zmtjnk/RealEstate_Meta_Campaigns_20c5db5b.webp" alt="Real Estate" loading="lazy"/>
             <div class="port-overlay"><span class="port-metric">816 Total Leads</span><span class="port-metric">DZD 167–191 CPL</span><span class="port-metric">DZD 125K+ Spend</span></div>
@@ -1097,23 +1523,35 @@ button:focus-visible,a:focus-visible{
           <div class="port-body">
             <div class="port-cat">Paid Marketing</div>
             <div class="port-title">Real Estate — Lead Generation System</div>
-            <p class="port-desc">Delivered 816 qualified leads through full-funnel lead generation frameworks and structured acquisition management.</p>
+            <p class="port-desc">816 leads at a CPL between DZD 167–191 over a DZD 125K+ spend. Meta lead gen campaigns with audience segmentation by location, property type, and intent signal.</p>
             <div class="port-tags"><span class="pt">Paid Acquisition</span><span class="pt">Lead Gen</span><span class="pt">CRM</span></div>
           </div>
         </div>
-        <div class="port-item rv" data-f="Paid Marketing" data-d="4">
+        <div class="port-item rv tilt-card" data-f="Paid Marketing" data-d="4">
           <div class="port-img-wrap">
             <img class="port-img" src="https://d2xsxph8kpxj0f.cloudfront.net/310419663030567616/2YhBxqd8JaL2MQs9Zmtjnk/LinkedIn%20Ads%20%28CSA%29_f42b9310.png" alt="LinkedIn" loading="lazy"/>
-            <div class="port-overlay"><span class="port-metric">Qualified B2B Leads</span><span class="port-metric">High-Value Prospects</span></div>
+            <div class="port-overlay"><span class="port-metric">LinkedIn Campaigns</span><span class="port-metric">Decision-Maker Targeting</span><span class="port-metric">HubSpot Follow-up</span></div>
           </div>
           <div class="port-body">
             <div class="port-cat">Paid Marketing</div>
             <div class="port-title">B2B Growth — Multi-Channel Acquisition</div>
-            <p class="port-desc">Developed B2B acquisition strategy for high-value lead generation with precise targeting and funnel optimization.</p>
+            <p class="port-desc">LinkedIn campaigns targeting decision-makers by job title and company size. Gated content offers and follow-up sequences built in HubSpot. Focused entirely on lead quality, not volume.</p>
             <div class="port-tags"><span class="pt">LinkedIn Ads</span><span class="pt">B2B</span><span class="pt">Lead Gen</span></div>
           </div>
         </div>
-        <div class="port-item rv" data-f="Strategy & Analytics" data-d="1">
+        <div class="port-item rv tilt-card" data-f="Education" data-d="5">
+          <div class="port-img-wrap" style="background:linear-gradient(135deg,var(--bg3) 0%,var(--bg2) 100%);display:flex;align-items:center;justify-content:center;">
+            <div style="font-family:var(--f-d);font-size:2rem;font-weight:900;color:var(--ink20);letter-spacing:-.04em;position:absolute;">HIS · IRAcademy · HTC</div>
+            <div class="port-overlay"><span class="port-metric">+30% Qualified Leads</span><span class="port-metric">3 Brands</span><span class="port-metric">Meta · Google · LinkedIn · TikTok</span></div>
+          </div>
+          <div class="port-body">
+            <div class="port-cat">Education</div>
+            <div class="port-title">HIS University &amp; Sub-brands — Multi-Brand Acquisition</div>
+            <p class="port-desc">Built paid acquisition from zero for HIS University and its two sub-brands: IRAcademy (language learning centre) and HTC (corporate &amp; individual training centre). Separate funnels, landing pages, and tracking per brand. 30% more qualified applicants in the first enrollment cycle.</p>
+            <div class="port-tags"><span class="pt">Meta Ads</span><span class="pt">Google Ads</span><span class="pt">LinkedIn Ads</span><span class="pt">TikTok Ads</span><span class="pt">3 Brands</span></div>
+          </div>
+        </div>
+        <div class="port-item rv tilt-card" data-f="Strategy & Analytics" data-d="1">
           <div class="port-img-wrap">
             <img class="port-img" src="https://d2xsxph8kpxj0f.cloudfront.net/310419663030567616/2YhBxqd8JaL2MQs9Zmtjnk/Report%20Looker%20Studio_537576ee.png" alt="Looker Studio" loading="lazy"/>
             <div class="port-overlay"><span class="port-metric">Real-time Reporting</span><span class="port-metric">Multi-source Data</span><span class="port-metric">Custom Metrics</span></div>
@@ -1121,11 +1559,11 @@ button:focus-visible,a:focus-visible{
           <div class="port-body">
             <div class="port-cat">Strategy &amp; Analytics</div>
             <div class="port-title">Looker Studio Analytics Dashboard</div>
-            <p class="port-desc">Built comprehensive Looker Studio dashboards for multi-channel marketing analytics and KPI reporting.</p>
+            <p class="port-desc">Connected GA4, Meta, Google Ads, and CRM data into a single Looker Studio view. Built for marketers, not analysts — the client can read it without a data background.</p>
             <div class="port-tags"><span class="pt">Looker Studio</span><span class="pt">GA4</span></div>
           </div>
         </div>
-        <div class="port-item rv" data-f="Strategy & Analytics" data-d="2">
+        <div class="port-item rv tilt-card" data-f="CRM & Automation" data-d="2">
           <div class="port-img-wrap">
             <img class="port-img" src="https://d2xsxph8kpxj0f.cloudfront.net/310419663030567616/2YhBxqd8JaL2MQs9Zmtjnk/HubSpot_Report_Updated_d2b4254b.png" alt="CRM & Marketing Automation" loading="lazy"/>
             <div class="port-overlay"><span class="port-metric">97.5% Delivery Rate</span><span class="port-metric">0.67% Hard Bounce</span></div>
@@ -1133,30 +1571,24 @@ button:focus-visible,a:focus-visible{
           <div class="port-body">
             <div class="port-cat">CRM &amp; Automation</div>
             <div class="port-title">CRM, Emailing &amp; Marketing Automation</div>
-            <p class="port-desc">Set up and managed end-to-end CRM systems, email marketing flows, and automation workflows — improving lead nurturing, segmentation, and operational efficiency across multiple tools and stacks.</p>
+            <p class="port-desc">HubSpot setup from scratch: pipeline stages, lead scoring, automated nurture sequences, and a reporting layer the sales team could actually use. 97.5% email delivery rate maintained throughout.</p>
             <div class="port-tags"><span class="pt">HubSpot</span><span class="pt">GoHighLevel</span><span class="pt">Brevo</span><span class="pt">Mailchimp</span><span class="pt">Zapier</span><span class="pt">ClickUp</span></div>
           </div>
         </div>
-        <div class="port-item rv" data-f="Creative Strategy" data-d="1">
+        <div class="port-item rv tilt-card" data-f="Creative Strategy" data-d="1">
           <div class="port-img-wrap">
             <img class="port-img" src="https://d2xsxph8kpxj0f.cloudfront.net/310419663030567616/2YhBxqd8JaL2MQs9Zmtjnk/Creatives%20Approach%20_6b2cab67.png" alt="Creative Strategy" loading="lazy"/>
-            <div class="port-overlay"><span class="port-metric">Creative Strategy</span><span class="port-metric">Audience Alignment</span><span class="port-metric">Performance-Driven</span></div>
+            <div class="port-overlay"><span class="port-metric">Meta &amp; Google</span><span class="port-metric">Brief → Test → Iterate</span><span class="port-metric">CTR &amp; CVR tracked</span></div>
           </div>
           <div class="port-body">
             <div class="port-cat">Creative Strategy</div>
             <div class="port-title">Creative Strategy &amp; Ad Development</div>
-            <p class="port-desc">Developed strategic creative frameworks and content optimization strategies that balance brand messaging with performance metrics.</p>
+            <p class="port-desc">Ad creative direction across Meta and Google — brief writing, format selection, and performance review. Every creative decision tied to a hypothesis and measured against CTR and conversion rate.</p>
             <div class="port-tags"><span class="pt">Meta</span><span class="pt">Google Ads</span></div>
           </div>
         </div>
       </div>
 
-      <div style="text-align:center;margin-top:2.5rem;">
-        <a href="https://drive.google.com/drive/folders/1AkLIlbMkhXKsuN0knigx7flwsErfp9p6?usp=drive_link" target="_blank" rel="noopener" class="btn btn-ghost mag" style="display:inline-flex;">
-          View Full Portfolio
-          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </a>
-      </div>
     </div>
   </div>
 </section>
@@ -1166,65 +1598,151 @@ button:focus-visible,a:focus-visible{
   <div class="wrap">
     <div class="rv">
       <div class="sec-label">Case Studies</div>
-      <h2 class="sec-title">Deep-Dive Case Studies</h2>
-      <p class="sec-sub">Strategic campaigns that moved the needle across markets</p>
+      <h2 class="sec-title has-line">Deep-Dive Case Studies</h2>
+      <p class="sec-sub">Three engagements with full context — what the problem was, what I did, and what the numbers looked like after.</p>
     </div>
     <div style="margin-top:2.5rem;" class="rv">
       <div class="cases-tabs">
-        <button class="c-tab on" data-c="0">Yassir</button>
-        <button class="c-tab" data-c="1">HIS University</button>
-        <button class="c-tab" data-c="2">CSA Research</button>
+        <button class="c-tab on" data-c="0" type="button">Yassir</button>
+        <button type="button" class="c-tab" aria-selected="false" role="tab" data-c="1" type="button">HIS University</button>
+        <button type="button" class="c-tab" aria-selected="false" role="tab" data-c="2" type="button">CSA Research</button>
       </div>
       <!-- Slide 1 -->
       <div class="case-slide on" id="c0">
-        <div><div class="case-cotag">Yassir</div><h3 class="case-big-title">App Growth – Multi-Market Acquisition</h3><div class="case-detail"><div class="cdl">Context</div><div class="cdt">Managed large-scale user acquisition campaigns across MENA, Europe, and global markets.</div></div><div class="case-detail"><div class="cdl">Action</div><div class="cdt">Optimized Meta, Google, and TikTok campaigns, improved audience targeting, and implemented data-driven creative testing with deep linking strategies.</div></div><div class="case-detail"><div class="cdl">Scale</div><div class="cdt">Multi-market campaigns across MENA, Europe, and North America</div></div></div>
-        <div><div class="case-box"><div class="case-box-label">Results</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Reduced CAC by 20%+ across multi-regional markets (MENA, Europe, North America)</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Scaled installs and in-app engagement</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Improved attribution accuracy and campaign efficiency</div></div></div>
+        <div><div class="case-cotag">Yassir · Super-App · MENA &amp; EU</div><h3 class="case-big-title">App Growth – Multi-Market Acquisition</h3><div class="case-detail"><div class="cdl">Context</div><div class="cdt">Managed large-scale user acquisition campaigns across MENA, Europe, and global markets for one of Africa's fastest-growing super-apps.</div></div><div class="case-detail"><div class="cdl">Action</div><div class="cdt">Optimized Meta, Google, and TikTok campaigns across 61+ active campaigns, improved audience targeting, and implemented data-driven creative testing with deep linking strategies.</div></div><div class="case-detail"><div class="cdl">Scale</div><div class="cdt">61 active campaigns · Meta, Google, TikTok · installs + in-app event optimisation</div></div></div>
+        <div><div class="case-box"><div class="case-box-label">Results</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><strong>20%+ CAC reduction</strong> across multi-regional markets through bidding &amp; audience restructuring</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Scaled spend across 4 markets while maintaining positive unit economics and consistent ROAS</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Improved install-to-engagement rate through deep linking &amp; creative testing</div></div></div>
       </div>
       <!-- Slide 2 -->
       <div class="case-slide" id="c1">
-        <div><div class="case-cotag">HIS University</div><h3 class="case-big-title">Lead Generation &amp; Growth</h3><div class="case-detail"><div class="cdl">Context</div><div class="cdt">Built acquisition system for a private university to increase qualified student leads.</div></div><div class="case-detail"><div class="cdl">Action</div><div class="cdt">Developed full-funnel strategy across Meta, Google, and LinkedIn, optimized landing pages, and implemented email marketing flows.</div></div><div class="case-detail"><div class="cdl">Scale</div><div class="cdt">National acquisition campaigns with multi-channel funnel</div></div></div>
-        <div><div class="case-box"><div class="case-box-label">Results</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Increased qualified leads by 30%</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Reduced CPL through funnel optimization</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Strengthened inbound acquisition via SEO &amp; email</div></div></div>
+        <div><div class="case-cotag">HIS University · Education · MENA</div><h3 class="case-big-title">Lead Generation &amp; Multi-Brand Student Acquisition</h3><div class="case-detail"><div class="cdl">Context</div><div class="cdt">HIS University and its two sub-brands — IRAcademy (language learning centre) and HTC (corporate and individual training centre) — needed qualified applicants across three distinct audiences with no existing paid acquisition infrastructure.</div></div><div class="case-detail"><div class="cdl">Action</div><div class="cdt">Built separate acquisition funnels for each brand: HIS University on Meta, Google and LinkedIn; IRAcademy targeting language learners via Meta and TikTok; HTC reaching HR managers and individuals via LinkedIn. Redesigned landing pages per brand, launched email nurturing flows, and introduced SEO to reduce paid dependency over time.</div></div><div class="case-detail"><div class="cdl">Scale</div><div class="cdt">3 brands · Meta, Google, LinkedIn, TikTok · landing pages redesigned per brand · email nurturing built from zero</div></div></div>
+        <div><div class="case-box"><div class="case-box-label">Results</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><strong>+30% qualified leads</strong> within the first enrollment cycle vs prior year</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>CPL reduced through landing page A/B testing &amp; funnel stage optimisation</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Organic inbound established — SEO &amp; email reducing paid reliance across all three brands</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>IRAcademy and HTC acquisition built from zero — separate funnels, creatives and tracking per brand</div></div></div>
       </div>
       <!-- Slide 3 -->
       <div class="case-slide" id="c2">
-        <div><div class="case-cotag">CSA Research (USA)</div><h3 class="case-big-title">B2B Marketing Operations</h3><div class="case-detail"><div class="cdl">Context</div><div class="cdt">Supported B2B marketing operations and lead generation for a US-based research company.</div></div><div class="case-detail"><div class="cdl">Action</div><div class="cdt">Implemented HubSpot workflows, improved segmentation, and supported LinkedIn content &amp; gated campaigns.</div></div><div class="case-detail"><div class="cdl">Scale</div><div class="cdt">B2B international marketing operations (US market)</div></div></div>
-        <div><div class="case-box"><div class="case-box-label">Results</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Increased LinkedIn content output by 200%</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Improved lead nurturing and marketing efficiency</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Enhanced reporting and campaign visibility</div></div></div>
+        <div><div class="case-cotag">CSA Research · B2B · USA</div><h3 class="case-big-title">B2B Marketing Operations &amp; Automation</h3><div class="case-detail"><div class="cdl">Context</div><div class="cdt">A US-based B2B research firm needed better lead nurturing, improved reporting visibility, and more consistent content output from their marketing function.</div></div><div class="case-detail"><div class="cdl">Action</div><div class="cdt">Implemented HubSpot automation workflows, improved CRM segmentation, launched gated content campaigns on LinkedIn, and built a systematic content calendar.</div></div><div class="case-detail"><div class="cdl">Scale</div><div class="cdt">HubSpot + LinkedIn · gated content campaigns · systematic content calendar</div></div></div>
+        <div><div class="case-box"><div class="case-box-label">Results</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><strong>+200% LinkedIn content output</strong> — from ad-hoc posts to a systematic publishing engine</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Lead nurturing time reduced through HubSpot workflow automation</div><div class="res-row"><div class="res-ck"><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>Full reporting visibility established — campaigns, pipeline &amp; channel performance unified</div></div></div>
       </div>
 
       <div class="case-nav">
-        <div class="c-dots"><button class="c-dot on" data-i="0"></button><button class="c-dot" data-i="1"></button><button class="c-dot" data-i="2"></button></div>
-        <div class="c-arrs"><button class="c-arr" id="cPrev"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button><button class="c-arr" id="cNext"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button></div>
+        <div class="c-dots"><button class="c-dot on" data-i="0" type="button"></button><button class="c-dot" data-i="1" type="button"></button><button class="c-dot" data-i="2" type="button"></button></div>
+        <div class="c-arrs"><button class="c-arr" id="cPrev" type="button"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button><button class="c-arr" id="cNext" type="button"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button></div>
       </div>
     </div>
 
-    <div style="text-align:center;margin-top:2.5rem;" class="rv">
-      <p style="font-size:.85rem;color:var(--ink70);margin-bottom:1rem;">Explore more detailed case studies, campaign breakdowns, and project work.</p>
-      <a href="https://drive.google.com/drive/folders/1AkLIlbMkhXKsuN0knigx7flwsErfp9p6?usp=drive_link" target="_blank" rel="noopener" class="btn btn-ghost mag" style="display:inline-flex;">View Full Portfolio</a>
+  </div>
+</section>
+
+
+<!-- ══════════════════ HOW I WORK ══════════════════ -->
+<section class="sec sec-off">
+  <div class="wrap">
+    <div class="rv" style="text-align:center;">
+      <div class="sec-label" style="justify-content:center;">Process</div>
+      <h2 class="sec-title has-line">How an Engagement Works</h2>
+      <p class="sec-sub" style="margin-inline:auto;max-width:520px;">From first call to live campaigns, here's what the process looks like — no ambiguity.</p>
+    </div>
+    <div class="process-grid" id="processGrid">
+      <div class="process-track-fill" id="processFill"></div>
+      <div class="p-step rv" data-d="1">
+        <div class="p-step-num">01</div>
+        <h4>Audit &amp; Diagnose</h4>
+        <p>I go through your ad accounts, analytics setup, and conversion data. I'm looking for wasted spend, broken tracking, and the one or two levers most likely to move CAC.</p>
+      </div>
+      <div class="p-step rv" data-d="2">
+        <div class="p-step-num">02</div>
+        <h4>Build the System</h4>
+        <p>Based on the audit, I map out which channels to run, how to structure campaigns, what to track, and how to report. You sign off before anything goes live.</p>
+      </div>
+      <div class="p-step rv" data-d="3">
+        <div class="p-step-num">03</div>
+        <h4>Launch &amp; Test</h4>
+        <p>Small budget, clear hypothesis, defined win criteria. I don't scale spend until there's evidence of what's working — and I document every test result.</p>
+      </div>
+      <div class="p-step rv" data-d="4">
+        <div class="p-step-num">04</div>
+        <h4>Optimise &amp; Scale</h4>
+        <p>Once we have winners, I scale them and cut what's not performing. Every decision is logged so nothing gets lost when the campaign grows.</p>
+      </div>
+      <div class="p-step rv" data-d="5">
+        <div class="p-step-num">05</div>
+        <h4>Report &amp; Align</h4>
+        <p>You get a live Looker Studio dashboard and a weekly summary. No waiting for end-of-month reports to know if things are working.</p>
+      </div>
     </div>
   </div>
 </section>
 
 
 <!-- ══════════════════ EXPERTISE ══════════════════ -->
-<section id="expertise" class="sec">
+<section id="expertise" class="sec" aria-label="Expertise">
   <div class="wrap">
     <div class="exp-split">
       <div class="rvl">
-        <div class="sec-label">Expertise</div>
-        <h2 class="sec-title">How I Operate</h2>
-        <p class="sec-sub">Focused on acquisition strategy, marketing analytics, and scalable growth systems</p>
-        <div class="skill-bars" id="skillBars">
-          <div class="skill-row"><div class="skill-info"><span class="skill-name">Paid Advertising</span><span class="skill-pct">95%</span></div><div class="skill-track"><div class="skill-fill" data-w="95"></div></div></div>
-          <div class="skill-row"><div class="skill-info"><span class="skill-name">Analytics &amp; Tracking</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" data-w="90"></div></div></div>
-          <div class="skill-row"><div class="skill-info"><span class="skill-name">Growth Optimization</span><span class="skill-pct">88%</span></div><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
-          <div class="skill-row"><div class="skill-info"><span class="skill-name">Marketing Automation</span><span class="skill-pct">82%</span></div><div class="skill-track"><div class="skill-fill" data-w="82"></div></div></div>
-          <div class="skill-row"><div class="skill-info"><span class="skill-name">Creative Strategy</span><span class="skill-pct">85%</span></div><div class="skill-track"><div class="skill-fill" data-w="85"></div></div></div>
+        <div class="sec-label">Tools &amp; Skills</div>
+        <h2 class="sec-title has-line">What I Work With</h2>
+        <p class="sec-sub">The platforms, tools, and methods I use day-to-day. No generalist fluff — I've run live campaigns on all of these.</p>
+        <div class="skill-bars" id="skillBars" style="margin-top:2rem;display:grid;gap:.85rem;">
+          <div class="exp-statement rv" data-d="1">
+            <span class="exp-st-num">4+</span>
+            <div><strong>Years running live paid campaigns</strong><p>Not consulting. Not auditing. Actually in the accounts daily — managing spend, writing copy briefs, testing audiences, reading the data, adjusting bids. That's the job.</p></div>
+          </div>
+          <div class="exp-statement rv" data-d="2">
+            <span class="exp-st-num">$80K+</span>
+            <div><strong>Monthly ad budget managed</strong><p>Across e-commerce, lead gen, app growth, and B2B. At that scale, every percentage point of efficiency improvement is real money.</p></div>
+          </div>
+          <div class="exp-statement rv" data-d="3">
+            <span class="exp-st-num">3</span>
+            <div><strong>Regions, one consistent approach</strong><p>MENA, Europe, and North America. Different markets, different CPMs, different buyer behaviours — but the same rigour on tracking and testing.</p></div>
+          </div>
         </div>
       </div>
       <div class="exp-cards rvr">
-        <div class="exp-card"><div class="exp-card-hd">Acquisition</div><div class="tags"><span class="tag">Meta Ads</span><span class="tag">Google Ads</span><span class="tag">TikTok Ads</span><span class="tag">LinkedIn Ads</span><span class="tag">Snapchat Ads</span><span class="tag">DV360</span></div></div>
-        <div class="exp-card"><div class="exp-card-hd">Analytics</div><div class="tags"><span class="tag">GA4</span><span class="tag">Google Tag Manager</span><span class="tag">Meta CAPI</span><span class="tag">Attribution Modeling</span><span class="tag">Looker Studio</span></div></div>
-        <div class="exp-card"><div class="exp-card-hd">Growth Systems</div><div class="tags"><span class="tag">A/B Testing</span><span class="tag">Funnel Optimization</span><span class="tag">CAC Reduction</span><span class="tag">ROAS Optimization</span><span class="tag">GoHighLevel</span><span class="tag">Brevo</span><span class="tag">Mailchimp</span><span class="tag">Zapier</span><span class="tag">ClickUp</span></div></div>
+        <div class="skill-grid">
+
+          <div class="sk-row">
+            <div class="sk-cat">
+              <div class="sk-cat-hd"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>Paid Channels</div>
+              <div class="sk-items">
+                <span class="sk-item sk-tier-1">Meta Ads</span>
+                <span class="sk-item sk-tier-1">Google Ads</span>
+                <span class="sk-item sk-tier-1">TikTok Ads</span>
+                <span class="sk-item sk-tier-2">LinkedIn Ads</span>
+                <span class="sk-item sk-tier-2">Snapchat Ads</span>
+                <span class="sk-item sk-tier-3">DV360</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sk-row">
+            <div class="sk-cat">
+              <div class="sk-cat-hd"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Analytics & Tracking</div>
+              <div class="sk-items">
+                <span class="sk-item sk-tier-1">GA4</span>
+                <span class="sk-item sk-tier-1">Google Tag Manager</span>
+                <span class="sk-item sk-tier-1">Meta CAPI</span>
+                <span class="sk-item sk-tier-2">Looker Studio</span>
+                <span class="sk-item sk-tier-2">Attribution Modeling</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sk-row">
+            <div class="sk-cat">
+              <div class="sk-cat-hd"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>Growth & Automation</div>
+              <div class="sk-items">
+                <span class="sk-item sk-tier-1">A/B Testing</span>
+                <span class="sk-item sk-tier-1">Funnel Optimisation</span>
+                <span class="sk-item sk-tier-2">HubSpot</span>
+                <span class="sk-item sk-tier-2">GoHighLevel</span>
+                <span class="sk-item sk-tier-2">Brevo</span>
+                <span class="sk-item sk-tier-3">Zapier</span>
+                <span class="sk-item sk-tier-3">ClickUp</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <p class="sk-legend"><span class="sk-dot sk-tier-1"></span>Daily use <span class="sk-dot sk-tier-2"></span>Regular use <span class="sk-dot sk-tier-3"></span>Occasional</p>
       </div>
     </div>
   </div>
@@ -1234,59 +1752,135 @@ button:focus-visible,a:focus-visible{
 <section class="sec sec-off">
   <div class="wrap">
     <div style="text-align:center;" class="rv">
-      <div class="sec-label" style="justify-content:center;"><span>Social Proof</span></div>
-      <h2 class="sec-title">What Clients Say</h2>
+      <div class="sec-label" style="justify-content:center;"><span>From Clients</span></div>
+      <h2 class="sec-title has-line">In Their Words</h2>
     </div>
     <div class="testi-grid">
-      <div class="testi-card rv" data-d="1"><div class="testi-shine"></div><div class="testi-qm">"</div><p class="testi-txt">"Chérif combines strategic thinking with strong execution. His work directly improved our visibility and client acquisition in AI-driven solutions."</p><div class="testi-source"><div class="testi-av">W</div><div class="testi-name"><a href="https://www.webetterai.com/en" target="_blank" rel="noopener">We Better AI</a><div class="testi-role">AI Solutions Company</div></div></div></div>
-      <div class="testi-card rv" data-d="2"><div class="testi-shine"></div><div class="testi-qm">"</div><p class="testi-txt">"Organized, efficient, and creative. He quickly adapts to new technologies and plays a key role in executing digital marketing campaigns."</p><div class="testi-source"><div class="testi-av">C</div><div class="testi-name"><a href="https://csa-research.com" target="_blank" rel="noopener">CSA Research</a><div class="testi-role">B2B Research — North America</div></div></div></div>
-      <div class="testi-card rv" data-d="3"><div class="testi-shine"></div><div class="testi-qm">"</div><p class="testi-txt">"Strong expertise in paid ads and analytics. Reliable, proactive, and consistently delivers quality results with a great team spirit."</p><div class="testi-source"><div class="testi-av">H</div><div class="testi-name"><a href="https://his.edu.dz" target="_blank" rel="noopener">HIS University</a><div class="testi-role">Higher Education — MENA</div></div></div></div>
+      <div class="testi-card rv testi-featured" data-d="1"><div class="testi-shine"></div><div class="testi-qm">"</div><p class="testi-txt">"Chérif combines strategic thinking with strong execution. His work directly improved our visibility and client acquisition in AI-driven solutions."</p><div class="testi-source"><div class="testi-av" style="background:linear-gradient(135deg,#7C3AED,#4F46E5);">W</div><div class="testi-name"><a href="https://www.webetterai.com/en" target="_blank" rel="noopener noreferrer">We Better AI</a><div class="testi-role">AI &amp; Automation Services · Türkiye</div></div><img src="https://www.webetterai.com/favicon.ico" alt="" role="presentation" width="18" height="18" style="margin-left:auto;opacity:.4;border-radius:4px;" onerror="this.style.display='none'"></div></div>
+      <div class="testi-card rv" data-d="2"><div class="testi-shine"></div><div class="testi-qm">"</div><p class="testi-txt">"Organized, efficient, and creative. He quickly adapts to new technologies and plays a key role in executing digital marketing campaigns."</p><div class="testi-source"><div class="testi-av" style="background:linear-gradient(135deg,#0F6E56,#1D9E75);">C</div><div class="testi-name"><a href="https://csa-research.com" target="_blank" rel="noopener noreferrer">CSA Research</a><div class="testi-role">Market Research &amp; Intelligence · USA</div></div><img src="https://csa-research.com/favicon.ico" alt="" role="presentation" width="18" height="18" style="margin-left:auto;opacity:.4;border-radius:4px;" onerror="this.style.display='none'"></div></div>
+      <div class="testi-card rv" data-d="3"><div class="testi-shine"></div><div class="testi-qm">"</div><p class="testi-txt">"Strong expertise in paid ads and analytics. Reliable, proactive, and consistently delivers quality results with a great team spirit."</p><div class="testi-source"><div class="testi-av" style="background:linear-gradient(135deg,#185FA5,#378ADD);">H</div><div class="testi-name"><a href="https://his.edu.dz" target="_blank" rel="noopener noreferrer">HIS University</a><div class="testi-role">Private University · MENA</div></div><img src="https://his.edu.dz/favicon.ico" alt="" role="presentation" width="18" height="18" style="margin-left:auto;opacity:.4;border-radius:4px;" onerror="this.style.display='none'"></div></div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════ CTA / CONTACT ══════════════════ -->
-<section id="contact" class="sec cta-sec">
+<section id="contact" class="sec cta-sec" aria-label="Contact">
   <div class="mesh">
     <div class="mesh-blob"></div><div class="mesh-blob"></div><div class="mesh-blob"></div>
   </div>
   <div class="wrap">
-    <div class="cta-inner rv">
-      <h2>Let's Build Your Acquisition System</h2>
-      <p>I help companies scale efficiently across channels and markets through structured growth systems.</p>
-      <div class="cta-btns">
-        <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener" class="btn btn-fill mag">
-          Start a Conversation
-          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-        </a>
-        <a href="#portfolio" class="btn btn-ghost mag">View Work</a>
+    <div class="contact-layout">
+      <!-- Left: info -->
+      <div class="contact-info rv">
+        <div class="cta-inner">
+          <div class="sec-label" style="justify-content:flex-start;">Get in touch</div>
+          <h2 class="sec-title">Work With Me</h2>
+          <p class="sec-sub">If your paid channels are underperforming, your attribution is unreliable, or you're scaling spend without a clear system — that's what I fix. Tell me what's broken and I'll tell you if I can help.</p>
+        </div>
+        <div class="contact-methods">
+          <a class="c-method" href="mailto:cherifedd@gmail.com">
+            <div class="c-method-ico"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+            <div><span class="c-method-label">Email</span><span class="c-method-val">cherifedd@gmail.com</span></div>
+          </a>
+          <a class="c-method" href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener noreferrer">
+            <div class="c-method-ico"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+            <div><span class="c-method-label">LinkedIn</span><span class="c-method-val">Cherif Eddine Haddad</span></div>
+          </a>
+          <a class="c-method" href="https://drive.google.com/drive/folders/1AkLIlbMkhXKsuN0knigx7flwsErfp9p6?usp=drive_link" target="_blank" rel="noopener noreferrer">
+            <div class="c-method-ico"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div><span class="c-method-label">Portfolio</span><span class="c-method-val">View full case studies</span></div>
+          </a>
+          <a class="c-method c-method-wa" href="https://wa.me/213773266725" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+            <div class="c-method-ico c-method-ico-wa"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></div>
+            <div><span class="c-method-label">WhatsApp</span><span class="c-method-val">+213 773 266 725</span></div>
+          </a>
+        </div>
       </div>
-      <div class="cta-social">
-        <a class="social-link" href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-        <a class="social-link" href="mailto:cherifedd@gmail.com" aria-label="Email">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </a>
-        <a class="social-link" href="https://drive.google.com/drive/folders/1AkLIlbMkhXKsuN0knigx7flwsErfp9p6?usp=drive_link" target="_blank" rel="noopener" aria-label="Portfolio">
-          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        </a>
+      <!-- Right: form -->
+      <div class="rvr">
+        <div class="contact-form-wrap" id="cfWrap">
+          <div id="cfForm">
+            <div class="cf-title">Tell me about your situation</div>
+            <div class="cf-sub">I respond within 24 hours, usually same day</div>
+            <div class="cf-trust-signals">
+              <span class="cf-trust-item"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>No commitment required</span>
+              <span class="cf-trust-item"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>I'll tell you if I can't help</span>
+              <span class="cf-trust-item"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Available now</span>
+            </div>
+            <div class="cf-row">
+              <div class="cf-group">
+                <label class="cf-label" for="cf-name">Name</label>
+                <input class="cf-input" id="cf-name" type="text" placeholder="Your name" autocomplete="name"/>
+              </div>
+              <div class="cf-group">
+                <label class="cf-label" for="cf-email">Email</label>
+                <input class="cf-input" id="cf-email" type="email" placeholder="you@company.com" autocomplete="email"/>
+              </div>
+            </div>
+            <div class="cf-group">
+              <label class="cf-label" for="cf-type">What are you working on?</label>
+              <select class="cf-select" id="cf-type">
+                <option value="" disabled selected>Select a topic…</option>
+                <option>My ads are not performing</option>
+                <option>My tracking and attribution is broken</option>
+                <option>My CAC is too high</option>
+                <option>I need automation and CRM setup</option>
+                <option>Not sure yet — let's talk</option>
+              </select>
+            </div>
+            <div class="cf-group">
+              <label class="cf-label" for="cf-msg">Message</label>
+              <textarea class="cf-textarea" id="cf-msg" placeholder="Describe your project, current channels, and the main challenge you're trying to solve…"></textarea>
+            </div>
+            <button class="cf-submit" id="cfSubmit" type="button" aria-label="Send message" onclick="submitForm()">
+              Send Message
+              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+          <div class="cf-success" id="cfSuccess">
+            <div class="cf-success-ico">
+              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <h3>Message sent!</h3>
+            <p>Thanks for reaching out. I'll get back to you within 24 hours.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ══════════════════ FOOTER ══════════════════ -->
-<footer class="footer">
-  <div class="wrap footer-inner">
-    <div class="footer-logo">
-      <img src="/logo.svg" alt="Raqmetrics" class="logo-footer" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=\'font-family:var(--f-d);font-size:1.1rem;font-weight:900;letter-spacing:-.04em;\'>Raq<span style=\'color:var(--amber)\'>metrics</span></span>');">
+<footer class="footer footer-v2">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <img src="/logo.svg" alt="Raqmetrics" class="logo-footer" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=\'font-family:var(--f-d);font-size:1.1rem;font-weight:900;letter-spacing:-.04em;\'>Raq<span style=\'color:var(--amber)\'>metrics</span></span>');">
+        </div>
+        <p class="footer-tagline">Performance Marketing &amp; Growth<br/>MENA · Europe · North America</p>
+        <div class="avail-badge" style="margin-top:1rem;width:fit-content;"><span class="avail-dot"></span>Available for projects</div>
+      </div>
+      <div class="footer-nav-group">
+        <div class="footer-nav-col">
+          <div class="footer-nav-hd">Navigate</div>
+          <a href="#about">Approach</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#expertise">Expertise</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-nav-col">
+          <div class="footer-nav-hd">Connect</div>
+          <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="mailto:cherifedd@gmail.com">Email</a>
+          <a href="https://wa.me/213773266725" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href="https://drive.google.com/drive/folders/1AkLIlbMkhXKsuN0knigx7flwsErfp9p6?usp=drive_link" target="_blank" rel="noopener noreferrer">Portfolio Drive</a>
+        </div>
+      </div>
     </div>
-    <p class="footer-copy">© 2026 Cherif Eddine Haddad. All rights reserved.</p>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:cherifedd@gmail.com">Email</a>
-      <a href="https://drive.google.com/drive/folders/1AkLIlbMkhXKsuN0knigx7flwsErfp9p6?usp=drive_link" target="_blank" rel="noopener">Portfolio</a>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2026 Cherif Eddine Haddad · Raqmetrics. All rights reserved.</p>
+      <p class="footer-copy" style="color:var(--ink50);">Paid acquisition &amp; analytics — MENA, Europe &amp; North America</p>
     </div>
   </div>
 </footer>
@@ -1348,9 +1942,44 @@ const prog=document.getElementById('prog');
 const navEl=document.getElementById('nav');
 const btt=document.getElementById('btt');
 const bttCircle=document.getElementById('bttCircle');
-const circ=2*Math.PI*21;
+const circ=2*Math.PI*21; // r=21
 if(bttCircle)bttCircle.style.strokeDasharray=circ;
-if(btt)btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+/* ── UNIFIED SCROLL HANDLER ── */
+const heroInnerEl=document.querySelector('.hero-inner');
+const heroChipsEl=document.querySelector('.hero-chips');
+const heroSecEl=document.getElementById('home');
+const useParallax=window.innerWidth>768&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+let scrollTick=false;
+const navLinks=document.querySelectorAll('.nav-links a[data-s]');
+function onScroll(){
+  const s=window.scrollY;
+  const total=document.documentElement.scrollHeight-innerHeight;
+  const ratio=total>0?s/total:0;
+  if(prog)prog.style.width=(ratio*100)+'%';
+  if(bttCircle)bttCircle.style.strokeDashoffset=circ-(ratio*circ);
+  if(navEl)navEl.classList.toggle('solid',s>60);
+  if(btt)btt.classList.toggle('show',s>400);
+  let cur='';
+  ['about','portfolio','expertise','contact','home'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el&&s>=el.offsetTop-140)cur=id;
+  });
+  if(navLinks)navLinks.forEach(a=>a.classList.toggle('act',a.dataset.s===cur));
+  if(useParallax&&heroInnerEl&&heroSecEl&&s<heroSecEl.offsetHeight){
+    const p=s/heroSecEl.offsetHeight;
+    heroInnerEl.style.transform='translateY('+(s*.22)+'px) scale('+(1-p*.04)+')';
+    heroInnerEl.style.opacity=Math.max(0,1-p*1.15);
+    if(heroChipsEl){heroChipsEl.style.transform='translateY(calc(-50% + '+(s*.12)+'px))';heroChipsEl.style.opacity=Math.max(0,1-p*1.8);}
+  }
+}
+window.addEventListener('scroll',()=>{
+  if(!scrollTick){requestAnimationFrame(()=>{onScroll();scrollTick=false;});scrollTick=true;}
+},{passive:true});
+onScroll();
+btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+document.querySelector('.nav-logo')?.addEventListener('click',e=>{
+  if(window.scrollY>100){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});}
+});
 
 /* ── DARK MODE (init in <head>) ── */
 const themeBtn=document.getElementById('themeBtn');
@@ -1373,63 +2002,48 @@ ham.addEventListener('click',()=>{
 });
 
 /* ── MARQUEE BUILD ── */
-const mqItems=['Meta Ads','Google Ads','TikTok Ads','GA4','GTM','Meta CAPI','GoHighLevel','Brevo','Mailchimp','Looker Studio','A/B Testing','LinkedIn Ads','Funnel Optimization','Attribution Modeling','Snapchat Ads','Zapier','ClickUp','ROAS Optimization'];
+const mqItems=['20%+ CAC Reduction','Multi-Channel Acquisition','$80K+/mo Managed','Attribution Modeling','$80K+/mo Managed Spend','Growth Systems','A/B Testing at Scale','ROAS Optimisation','GA4 + GTM + Meta CAPI','Funnel Architecture','Real Estate — 816 Leads','B2B Marketing Operations','HubSpot & GoHighLevel','Looker Studio Reporting','97.5% Email Delivery','MENA · Europe · North America'];
 const mqEl=document.getElementById('mq');
 const mqHtml=mqItems.map(s=>`<span class="m-item">${s}</span>`).join('');
 mqEl.innerHTML=mqHtml+mqHtml;
 
 /* ── INTERSECTION OBSERVER ── */
-if('IntersectionObserver' in window){
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});
-  },{threshold:.1});
-  document.querySelectorAll('.rv,.rvl,.rvr,.rvs').forEach(el=>io.observe(el));
-  const cio=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(!e.isIntersecting)return;
-      const el=e.target;
-      const tgt=+el.dataset.target;
-      const pre=el.dataset.prefix||'';
-      const suf=el.dataset.suffix||'';
-      const dur=2000;const t0=performance.now();
-      const tick=t=>{
-        const p=Math.min((t-t0)/dur,1);
-        el.textContent=pre+Math.floor((1-Math.pow(1-p,3))*tgt)+suf;
-        if(p<1)requestAnimationFrame(tick);
-      };
-      requestAnimationFrame(tick);
-      cio.unobserve(el);
-    });
-  },{threshold:.5});
-  document.querySelectorAll('[data-target]').forEach(el=>cio.observe(el));
-  const sbio=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(!e.isIntersecting)return;
-      e.target.querySelectorAll('.skill-fill').forEach(f=>{f.style.width=f.dataset.w+'%';});
-      sbio.unobserve(e.target);
-    });
-  },{threshold:.25});
-  const skillEl=document.getElementById('skillBars');
-  if(skillEl)sbio.observe(skillEl);
-} else {
-  /* Fallback: show all animated elements immediately */
-  document.querySelectorAll('.rv,.rvl,.rvr,.rvs').forEach(el=>el.classList.add('on'));
-  document.querySelectorAll('[data-target]').forEach(el=>{
-    const pre=el.dataset.prefix||'';const suf=el.dataset.suffix||'';
-    el.textContent=pre+el.dataset.target+suf;
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});
+},{threshold:.1});
+document.querySelectorAll('.rv,.rvl,.rvr,.rvs').forEach(el=>io.observe(el));
+
+/* ── COUNTERS ── */
+const cio=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target;
+    const tgt=+el.dataset.target;
+    const pre=el.dataset.prefix||'';
+    const suf=el.dataset.suffix||'';
+    const dur=2000;const t0=performance.now();
+    const tick=t=>{
+      const p=Math.min((t-t0)/dur,1);
+      const val=Math.floor((1-Math.pow(1-p,3))*tgt);
+      const formatted=tgt>=1000?val.toLocaleString():val;
+      el.textContent=pre+formatted+suf;
+      if(p<1)requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+    cio.unobserve(el);
   });
-  document.querySelectorAll('.skill-fill').forEach(f=>{f.style.width=f.dataset.w+'%';});
-}
+},{threshold:.5});
+document.querySelectorAll('[data-target]').forEach(el=>cio.observe(el));
 
-
+/* skill bars removed — replaced with experience context */
 
 /* ── TYPEWRITER — organic human pacing ── */
 (function(){
   const words = [
-    'Acquisition Expert',
-    'Growth Strategist',
-    'Performance Marketer',
-    'Marketing Analytics'
+    'build acquisition systems',
+    'manage paid media at scale',
+    'reduce CAC through data and testing',
+    'optimize across Meta, Google & TikTok'
   ];
   const el = document.getElementById('typeText');
   if (!el) return;
@@ -1481,28 +2095,38 @@ if('IntersectionObserver' in window){
 
 
 /* ── PORTFOLIO FILTER ── */
-document.querySelectorAll('.pf').forEach(btn=>{
-  btn.addEventListener('click',()=>{
-    document.querySelectorAll('.pf').forEach(b=>b.classList.remove('on'));
-    btn.classList.add('on');
-    const f=btn.dataset.f;
-    document.querySelectorAll('.port-item').forEach(item=>{
-      const match=f==='all'||item.dataset.f===f;
-      if(match){
-        item.classList.remove('hidden');
-        item.style.display='';
-      } else {
-        item.classList.add('hiding');
-        setTimeout(()=>{
-          if(item.classList.contains('hiding')){
-            item.classList.add('hidden');
-            item.classList.remove('hiding');
-          }
-        },340);
-      }
+(function(){
+  // Build counts
+  const allItems = document.querySelectorAll('.port-item');
+  const counts = {all: allItems.length};
+  allItems.forEach(item=>{
+    const f = item.dataset.f;
+    if(f) counts[f] = (counts[f]||0)+1;
+  });
+  // Inject count badges
+  document.querySelectorAll('.pf').forEach(btn=>{
+    const f = btn.dataset.f;
+    const n = counts[f]||0;
+    if(n>0){
+      const badge = document.createElement('span');
+      badge.textContent = n;
+      badge.style.cssText='margin-left:.35rem;font-size:.6rem;opacity:.7;font-style:normal;';
+      btn.appendChild(badge);
+    }
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.pf').forEach(b=>b.classList.remove('on'));
+      btn.classList.add('on');
+      let visible=0;
+      document.querySelectorAll('.port-item').forEach(item=>{
+        const match=f==='all'||item.dataset.f===f;
+        item.classList.toggle('hidden',!match);
+        if(match)visible++;
+      });
+      const emp=document.getElementById('portEmpty');
+      if(emp)emp.style.display=visible===0?'block':'none';
     });
   });
-});
+})();
 
 /* ── CASE STUDIES ── */
 let curCase=0;
@@ -1520,64 +2144,164 @@ function showCase(i){
 }
 let cTimer=setInterval(()=>showCase(curCase+1),6000);
 function showCaseManual(i){clearInterval(cTimer);showCase(i);cTimer=setInterval(()=>showCase(curCase+1),6000);}
-cTabs.forEach((t,i)=>t.addEventListener('click',()=>showCaseManual(i)));
-cDots.forEach((d,i)=>d.addEventListener('click',()=>showCaseManual(i)));
-const cPrevBtn=document.getElementById('cPrev');
-const cNextBtn=document.getElementById('cNext');
-if(cPrevBtn)cPrevBtn.addEventListener('click',()=>showCaseManual(curCase-1));
-if(cNextBtn)cNextBtn.addEventListener('click',()=>showCaseManual(curCase+1));
-
-/* ── UNIFIED SCROLL HANDLER ── */
-
-/* Parallax elements */
-const heroInner=document.querySelector('.hero-inner');
-const heroChips=document.querySelector('.hero-chips');
-const heroSection=document.getElementById('home');
-const useParallax=window.innerWidth>768&&!window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-const navLinks=document.querySelectorAll('.nav-links a[data-s]');
-let scrollTicking=false;
-function onScroll(){
-  const s=window.scrollY;
-  const total=document.documentElement.scrollHeight-innerHeight;
-  const ratio=total>0?s/total:0;
-  if(prog)prog.style.width=(ratio*100)+'%';
-  if(bttCircle)bttCircle.style.strokeDashoffset=circ-(ratio*circ);
-  if(navEl)navEl.classList.toggle('solid',s>60);
-  if(btt)btt.classList.toggle('show',s>400);
-  /* active nav */
-  let cur='';
-  ['about','portfolio','expertise','contact'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el&&s>=el.offsetTop-140)cur=id;
+cTabs.forEach((t,i)=>{
+  t.addEventListener('keydown',e=>{
+    if(e.key==='ArrowRight')showCaseManual((i+1)%cTabs.length);
+    if(e.key==='ArrowLeft')showCaseManual((i-1+cTabs.length)%cTabs.length);
   });
-  navLinks.forEach(a=>a.classList.toggle('act',a.dataset.s===cur));
-  /* parallax hero */
-  if(useParallax&&heroInner&&heroSection&&s<heroSection.offsetHeight){
-    const p=s/heroSection.offsetHeight;
-    heroInner.style.transform=`translateY(${s*.22}px) scale(${1-p*.04})`;
-    heroInner.style.opacity=Math.max(0,1-p*1.15);
-    if(heroChips){heroChips.style.transform=`translateY(calc(-50% + ${s*.12}px))`;heroChips.style.opacity=Math.max(0,1-p*1.8);}
-  }
-}
-window.addEventListener('scroll',()=>{
-  if(!scrollTicking){requestAnimationFrame(()=>{onScroll();scrollTicking=false;});scrollTicking=true;}
-},{passive:true});
-onScroll();
+  t.addEventListener('click',()=>{
+    showCaseManual(i);
+    cTabs.forEach(tab=>tab.setAttribute('aria-selected','false'));
+    t.setAttribute('aria-selected','true');
+  });
+});
+cDots.forEach((d,i)=>d.addEventListener('click',()=>showCaseManual(i)));
+document.getElementById('cPrev').addEventListener('click',()=>showCaseManual(curCase-1));
+document.getElementById('cNext').addEventListener('click',()=>showCaseManual(curCase+1));
+/* ── ACTIVE NAV ── */
+
 
 
 
 /* ── MAGNETIC BUTTONS ── */
-document.querySelectorAll('.mag').forEach(btn=>{
-  btn.addEventListener('mousemove',e=>{
-    const r=btn.getBoundingClientRect();
-    const x=(e.clientX-r.left-r.width/2)*.28;
-    const y=(e.clientY-r.top-r.height/2)*.28;
-    btn.style.transform=`translate(${x}px,${y}px)`;
+
+
+/* ── CONTACT FORM ── */
+function submitForm(){
+  const name=document.getElementById('cf-name').value.trim();
+  const email=document.getElementById('cf-email').value.trim();
+  const type=document.getElementById('cf-type').value;
+  const msg=document.getElementById('cf-msg').value.trim();
+  if(!name||!email||!msg){
+    [['cf-name',name],['cf-email',email],['cf-msg',msg]].forEach(([id,val])=>{
+      if(!val){const el=document.getElementById(id);el.style.borderColor='#E24B4A';el.style.boxShadow='0 0 0 3px rgba(226,75,74,.12)';el.addEventListener('input',()=>{el.style.borderColor='';el.style.boxShadow='';},{once:true});}
+    });
+    return;
+  }
+  const btn=document.getElementById('cfSubmit');
+  btn.disabled=true;btn.textContent='Sending…';
+  /* mailto fallback — opens default mail client with pre-filled message */
+  const subject=encodeURIComponent('Raqmetrics enquiry'+(type?' — '+type:''));
+  const body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nTopic: '+(type||'General')+'\n\n'+msg);
+  window.location.href='mailto:cherifedd@gmail.com?subject='+subject+'&body='+body;
+  setTimeout(()=>{
+    document.getElementById('cfForm').style.display='none';
+    document.getElementById('cfSuccess').style.display='block';
+    document.querySelector('.cf-success p').textContent='Thanks for reaching out. I\'ll get back to you within 24 hours — or reach me directly on WhatsApp at +213 773 266 725.';
+  },800);
+}
+
+
+/* ══════════════════════════════════════════
+   VISUAL ENHANCEMENTS
+══════════════════════════════════════════ */
+
+/* — Section title underline draw + sec-label scan — */
+(function(){
+  const io1 = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('line-on');io1.unobserve(e.target);} });
+  },{threshold:.3});
+  const io2 = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){e.target.classList.add('lbl-on');io2.unobserve(e.target);} });
+  },{threshold:.4});
+  document.querySelectorAll('.sec-title.has-line').forEach(el=>io1.observe(el));
+  document.querySelectorAll('.sec-label').forEach(el=>io2.observe(el));
+})();
+
+/* — Card 3D tilt — */
+document.querySelectorAll('.tilt-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    const intensity=card.classList.contains('g-card')?5:7;
+    card.style.transform=`perspective(700px) rotateY(${x*intensity}deg) rotateX(${-y*intensity}deg) translateY(-4px)`;
   });
-  btn.addEventListener('mouseleave',()=>btn.style.transform='');
+  card.addEventListener('mouseleave',()=>{ card.style.transform=''; });
 });
 
-/* ── PARTICLE CANVAS ── */
+/* — H1 scramble on load — */
+(function(){
+  const CHARS='ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#@%&';
+  function scrambleNode(node,dur){
+    const orig=node.textContent;
+    let frame=0;
+    const total=Math.round(dur/36);
+    const iv=setInterval(()=>{
+      node.textContent=orig.split('').map((ch,i)=>{
+        if(ch===' ')return ' ';
+        if(frame/total>i/orig.length)return ch;
+        return CHARS[Math.floor(Math.random()*CHARS.length)];
+      }).join('');
+      if(++frame>=total){node.textContent=orig;clearInterval(iv);}
+    },36);
+  }
+  const h1=document.getElementById('heroH1');
+  if(!h1)return;
+  setTimeout(()=>{
+    const walker=document.createTreeWalker(h1,NodeFilter.SHOW_TEXT);
+    const nodes=[];let n;
+    while((n=walker.nextNode()))if(n.textContent.trim())nodes.push(n);
+    nodes.forEach((node,i)=>setTimeout(()=>scrambleNode(node,700),i*150));
+  },1500);
+})();
+
+/* — Process track fill + step highlight — */
+(function(){
+  const grid=document.getElementById('processGrid');
+  const fill=document.getElementById('processFill');
+  if(!grid||!fill)return;
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      grid.classList.add('track-on');
+      /* stagger-activate each step number */
+      grid.querySelectorAll('.p-step').forEach((step,i)=>{
+        setTimeout(()=>step.classList.add('on'),300+i*180);
+      });
+      obs.unobserve(grid);
+    });
+  },{threshold:.2});
+  obs.observe(grid);
+})();
+
+/* — Skill item stagger entrance — */
+(function(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      e.target.querySelectorAll('.sk-item').forEach((t,i)=>{
+        setTimeout(()=>{ t.style.opacity='1'; t.style.transform='none'; },i*40);
+      });
+      obs.unobserve(e.target);
+    });
+  },{threshold:.15});
+  document.querySelectorAll('.sk-items').forEach(el=>obs.observe(el));
+})();
+
+/* — Metric cell flash after counter — */
+(function(){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      setTimeout(()=>e.target.classList.add('just-counted'),1900);
+      obs.unobserve(e.target);
+    });
+  },{threshold:.6});
+  document.querySelectorAll('.metric-cell').forEach(c=>obs.observe(c));
+})();
+
+/* — Extended cursor labels — */
+document.querySelectorAll('.c-tab').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{
+    document.body.classList.add('cursor-view');
+    const lbl=document.getElementById('cur-label');
+    if(lbl)lbl.textContent='Read';
+  });
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('cursor-view'));
+});
+
+
 function initParticles(){
   const canvas=document.getElementById('hero-canvas');
   const ctx=canvas.getContext('2d');
@@ -1632,9 +2356,8 @@ function initParticles(){
       ctx.fillStyle=amber+p.op+')';
       ctx.fill();
     });
-    if(!document.hidden)requestAnimationFrame(draw);
+    requestAnimationFrame(draw);
   }
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)draw();});
   draw();
 }
 </script>
