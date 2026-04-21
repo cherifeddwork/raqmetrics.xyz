@@ -326,7 +326,79 @@ flex-shrink:0;
 ══════════════════════════════════════════ */
 .process-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin-top:3.5rem;position:relative;}
 .process-grid::before{content:'';position:absolute;top:28px;left:calc(100%/10);right:calc(100%/10);height:1px;background:linear-gradient(90deg,transparent,var(--border) 8%,var(--border) 92%,transparent);z-index:0;}
-@media(max-width:768px){.process-grid::before{display:none;}.process-grid{gap:1rem;}}
+@media(max-width:768px){
+  .process-grid::before{display:none;}
+  .process-track-fill{display:none;}
+  .process-grid{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    margin-top:2rem;
+    position:relative;
+  }
+
+  /* Vertical connector line */
+  .process-grid::after{
+    content:'';
+    position:absolute;
+    left:27px;top:28px;bottom:28px;
+    width:2px;
+    background:linear-gradient(to bottom,var(--amber),rgba(242,92,5,.08));
+    border-radius:999px;
+    z-index:0;
+  }
+
+  /* Each step — horizontal card layout */
+  .p-step{
+    display:flex;
+    flex-direction:row;
+    align-items:flex-start;
+    gap:1rem;
+    text-align:left;
+    padding:.1rem 0 2rem 0;
+    position:relative;
+    z-index:1;
+  }
+  .p-step:last-child{padding-bottom:.25rem;}
+
+  /* Number circle — stays fixed on left */
+  .p-step-num{
+    width:56px;height:56px;
+    flex-shrink:0;
+    margin-bottom:0;
+    font-size:.95rem;
+    background:var(--card);
+    border:2px solid var(--border);
+    box-shadow:0 2px 12px rgba(0,0,0,.07);
+    position:relative;z-index:2;
+  }
+
+  /* Step content block */
+  .p-step-body{
+    flex:1;
+    padding-top:.65rem;
+  }
+  .p-step h4{
+    font-size:1rem;
+    margin-bottom:.4rem;
+    color:var(--ink);
+  }
+  .p-step p{
+    font-size:.8rem;
+    color:var(--ink50);
+    line-height:1.75;
+    max-width:100%;
+  }
+
+  /* Active/on state on mobile */
+  .p-step.on .p-step-num{
+    background:var(--amber);
+    border-color:var(--amber);
+    color:#fff;
+    transform:none;
+    box-shadow:0 0 0 5px rgba(242,92,5,.14),0 4px 18px rgba(242,92,5,.28);
+  }
+}
 .p-step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 1.25rem;position:relative;z-index:1;}
 .p-step-num{width:56px;height:56px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--f-d);font-size:1.1rem;font-weight:900;color:var(--ink50);margin-bottom:1.25rem;transition:all .4s var(--spring);}
 .p-step:hover .p-step-num{background:var(--amber);color:#fff;border-color:var(--amber);transform:scale(1.12);}
@@ -1381,14 +1453,10 @@ body::after{
 }
 [data-theme="dark"] body::after{opacity:.055;mix-blend-mode:overlay;}
 
-/* ── Hero amber — shimmer gradient text ── */
+/* ── Hero amber — plain amber, no effect ── */
 .hero-amber{
-  background:linear-gradient(110deg,#F25C05 0%,#FF8C42 40%,#F25C05 60%,#FF6A00 100%);
-  background-size:240% auto;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
-  animation:shimmerText 5s linear infinite;
+  color:var(--amber);
+  font-style:italic;
 }
 @keyframes shimmerText{to{background-position:240% center;}}
 
@@ -1763,7 +1831,7 @@ body::after{
 /* ── Reduce motion: disable grain ── */
 @media(prefers-reduced-motion:reduce){
   body::after{display:none;}
-  .hero-amber,.m-num,.ft-cta-headline em{animation:none;}
+  .m-num,.ft-cta-headline em{animation:none;}
   .btn-fill::after{display:none;}
 }
 
@@ -2159,28 +2227,38 @@ body::after{
       <div class="process-track-fill" id="processFill"></div>
       <div class="p-step rv" data-d="1">
         <div class="p-step-num">01</div>
-        <h4>Audit &amp; Diagnose</h4>
-        <p>I go through your ad accounts, analytics setup, and conversion data. I'm looking for wasted spend, broken tracking, and the one or two levers most likely to move CAC.</p>
+        <div class="p-step-body">
+          <h4>Audit &amp; Diagnose</h4>
+          <p>I go through your ad accounts, analytics setup, and conversion data. I'm looking for wasted spend, broken tracking, and the one or two levers most likely to move CAC.</p>
+        </div>
       </div>
       <div class="p-step rv" data-d="2">
         <div class="p-step-num">02</div>
-        <h4>Build the System</h4>
-        <p>Based on the audit, I map out which channels to run, how to structure campaigns, what to track, and how to report. You sign off before anything goes live.</p>
+        <div class="p-step-body">
+          <h4>Build the System</h4>
+          <p>Based on the audit, I map out which channels to run, how to structure campaigns, what to track, and how to report. You sign off before anything goes live.</p>
+        </div>
       </div>
       <div class="p-step rv" data-d="3">
         <div class="p-step-num">03</div>
-        <h4>Launch &amp; Test</h4>
-        <p>Small budget, clear hypothesis, defined win criteria. I don't scale spend until there's evidence of what's working — and I document every test result.</p>
+        <div class="p-step-body">
+          <h4>Launch &amp; Test</h4>
+          <p>Small budget, clear hypothesis, defined win criteria. I don't scale spend until there's evidence of what's working — and I document every test result.</p>
+        </div>
       </div>
       <div class="p-step rv" data-d="4">
         <div class="p-step-num">04</div>
-        <h4>Optimise &amp; Scale</h4>
-        <p>Once we have winners, I scale them and cut what's not performing. Every decision is logged so nothing gets lost when the campaign grows.</p>
+        <div class="p-step-body">
+          <h4>Optimise &amp; Scale</h4>
+          <p>Once we have winners, I scale them and cut what's not performing. Every decision is logged so nothing gets lost when the campaign grows.</p>
+        </div>
       </div>
       <div class="p-step rv" data-d="5">
         <div class="p-step-num">05</div>
-        <h4>Report &amp; Align</h4>
-        <p>You get a live Looker Studio dashboard and a weekly summary. No waiting for end-of-month reports to know if things are working.</p>
+        <div class="p-step-body">
+          <h4>Report &amp; Align</h4>
+          <p>You get a live Looker Studio dashboard and a weekly summary. No waiting for end-of-month reports to know if things are working.</p>
+        </div>
       </div>
     </div>
   </div>
