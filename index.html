@@ -229,12 +229,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 .hero-scroll-active .hero-inner{transition:none;}
 
 /* accent rule above eyebrow */
-.hero-rule{
-  display:block;width:36px;height:2.5px;
-  background:linear-gradient(90deg,#F25C05,rgba(255,106,0,.3));
-  border-radius:999px;margin-bottom:1.4rem;
-  opacity:0;animation:fadeUp .4s var(--ease) .02s forwards;
-}
+
 
 /* eyebrow */
 .eyebrow{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--f-m);font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);background:rgba(242,92,5,.08);border:1px solid rgba(242,92,5,.18);padding:.35rem 1rem;border-radius:999px;margin-bottom:1.55rem;opacity:0;animation:fadeUp .45s var(--ease) .06s forwards;backdrop-filter:blur(6px);}
@@ -460,11 +455,6 @@ flex-shrink:0;
    FOCUS QUOTE (dark)
 ══════════════════════════════════════════ */
 
-.focus-sec 
-
-
-
-
 .focus-quote em{color:var(--amber);font-style:normal;}
 
 .focus-list li{font-family:var(--f-m);font-size:.85rem;letter-spacing:.06em;color:rgba(240,237,232,.88);display:flex;align-items:center;justify-content:center;gap:.65rem;}
@@ -532,9 +522,9 @@ flex-shrink:0;
 .exp-statement p{font-size:.8rem;color:var(--ink70);line-height:1.65;margin:0;}
 
 .exp-cards{display:grid;gap:1rem;}
-.exp-card{border:1px solid var(--border);border-radius:18px;padding:1.6rem;background:var(--card);transition:all var(--t);}
+
 .exp-card:hover{border-color:var(--amber);box-shadow:0 6px 28px rgba(0,0,0,.07);}
-.exp-card-hd{font-family:var(--f-m);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink50);margin-bottom:.9rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
+
 .tags{display:flex;flex-wrap:wrap;gap:.4rem;}
 .tag{font-family:var(--f-m);font-size:.68rem;padding:.28rem .72rem;border-radius:999px;background:var(--a10);color:var(--amber);border:1px solid var(--a20);transition:all var(--t);cursor:default;}
 .tag:hover{background:var(--amber);color:#fff;}
@@ -567,7 +557,7 @@ flex-shrink:0;
 /* ══════════════════════════════════════════
    CTA
 ══════════════════════════════════════════ */
-.cta-sec{position:relative;overflow:hidden;background:var(--bg3);}
+
 /* animated gradient mesh */
 .mesh{position:absolute;inset:0;z-index:0;overflow:hidden;}
 .mesh-blob{position:absolute;border-radius:50%;filter:blur(80px);animation:meshAnim 8s ease-in-out infinite;}
@@ -575,9 +565,9 @@ flex-shrink:0;
 .mesh-blob:nth-child(2){width:350px;height:350px;background:rgba(242,92,5,.07);bottom:-80px;right:-80px;animation-delay:2.5s;}
 .mesh-blob:nth-child(3){width:250px;height:250px;background:rgba(242,92,5,.06);top:50%;left:50%;animation-delay:5s;}
 @keyframes meshAnim{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(30px,-20px) scale(1.1);}}
-.cta-inner{position:relative;z-index:1;max-width:660px;margin-inline:auto;text-align:center;}
-.cta-inner h2{font-family:var(--f-d);font-size:clamp(2rem,4.5vw,3.5rem);font-weight:900;letter-spacing:-.045em;color:var(--ink);margin-bottom:1rem;line-height:1.05;}
-.cta-inner p{font-size:.9rem;color:var(--ink70);margin-bottom:2.5rem;line-height:1.8;}
+
+
+
 
 
 
@@ -586,30 +576,27 @@ flex-shrink:0;
 /* ══════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════ */
-.footer{border-top:1px solid var(--border);padding-block:1.75rem;}
-.footer-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
-@media(max-width:560px){.footer-inner{flex-direction:column;align-items:flex-start;gap:.75rem;}}
+/* .footer base rule removed — styling now in .ft-nav-wrap and .ft-cta-strip */
+
+@media(max-width:560px){}
 .footer-logo{font-family:var(--f-d);font-size:1.1rem;font-weight:900;letter-spacing:-.04em;color:var(--ink);}
 .footer-logo span{color:var(--amber);}
-.footer-copy{font-family:var(--f-m);font-size:.65rem;letter-spacing:.08em;color:var(--ink50);}
-.footer-links{display:flex;gap:1.5rem;}
-.footer-links a{font-family:var(--f-m);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink50);transition:color var(--t);}
-.footer-links a:hover{color:var(--amber);}
+
+
+
+
 
 /* ══════════════════════════════════════════
    CONTACT FORM
 ══════════════════════════════════════════ */
-.contact-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:start;position:relative;z-index:1;}
-@media(max-width:860px){.contact-layout{grid-template-columns:1fr;gap:2.5rem;}}
-.contact-info .cta-inner{text-align:left;margin:0;max-width:none;}
-.contact-info .cta-inner h2{font-size:clamp(1.8rem,3.5vw,2.8rem);}
-.contact-methods{display:flex;flex-direction:column;gap:.65rem;margin-top:2rem;}
-.c-method{display:flex;align-items:center;gap:.85rem;padding:.9rem 1.1rem;border:1px solid var(--border);border-radius:14px;background:var(--card);text-decoration:none;color:var(--ink);transition:all var(--t);}
-.c-method:hover{border-color:var(--amber);box-shadow:0 4px 20px rgba(242,92,5,.12);transform:translateX(5px);}
-.c-method-ico{width:36px;height:36px;border-radius:10px;background:var(--a10);display:flex;align-items:center;justify-content:center;color:var(--amber);flex-shrink:0;transition:all var(--t);}
-.c-method:hover .c-method-ico{background:var(--amber);color:#fff;}
-.c-method-label{font-family:var(--f-m);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink50);display:block;margin-bottom:2px;}
-.c-method-val{font-family:var(--f-m);font-size:.78rem;font-weight:500;color:var(--ink);}
+
+@media(max-width:860px){}
+
+
+
+
+
+
 .contact-form-wrap{background:var(--card);border:1px solid var(--border);border-radius:24px;padding:2.5rem;box-shadow:var(--card-shadow);}
 .cf-title{font-family:var(--f-d);font-size:1.2rem;font-weight:700;color:var(--ink);margin-bottom:.35rem;}
 .cf-sub{font-family:var(--f-m);font-size:.68rem;letter-spacing:.08em;color:var(--ink50);margin-bottom:2rem;}
@@ -639,7 +626,6 @@ flex-shrink:0;
   color-scheme:dark;
 }
 [data-theme="dark"] .contact-form-wrap{background:var(--card);}
-[data-theme="dark"] .c-method{background:var(--card);}
 /* ══════════════════════════════════════════
    BACK TO TOP
 ══════════════════════════════════════════ */
@@ -661,9 +647,6 @@ flex-shrink:0;
    RESPONSIVE
 ══════════════════════════════════════════ */
 @media(max-width:640px){
-  .hero-cta,.cta-btns{flex-direction:column;align-items:stretch;}
-  .hero-cta .btn,.cta-btns .btn{width:100%;justify-content:center;}
-  .cta-btns{align-items:center;}
   .sec{padding-block:clamp(3rem,7vw,5rem);}
   .hero{padding-top:5.5rem;padding-bottom:3rem;}
   .hero-h1{font-size:clamp(2.2rem,10vw,3.5rem);letter-spacing:-.03em;}
@@ -671,7 +654,7 @@ flex-shrink:0;
   .hero-sub{font-size:.875rem;}
   .btn{padding:.75rem 1.5rem;font-size:.72rem;min-height:48px;}
   .growth-grid{grid-template-columns:1fr;gap:1rem;}
-  .impact-grid{grid-template-columns:1fr;}
+  
   .exp-split{gap:2rem;}
   .case-slide.on{grid-template-columns:1fr;gap:1.5rem;}
   .testi-grid{grid-template-columns:1fr;}
@@ -732,21 +715,188 @@ flex-shrink:0;
 }
 
 /* ══════════════════════════════════════════
-   FOOTER V2
+   FOOTER NAV
 ══════════════════════════════════════════ */
-.footer-v2{border-top:1px solid var(--border);padding-block:3rem 2rem;}
-.footer-top{display:grid;grid-template-columns:1fr auto;gap:4rem;align-items:start;padding-bottom:2.5rem;border-bottom:1px solid var(--border);margin-bottom:1.5rem;}
-@media(max-width:768px){.footer-top{grid-template-columns:1fr;gap:2rem;}}
-.footer-brand .footer-logo{margin-bottom:.75rem;}
-.footer-tagline{font-family:var(--f-m);font-size:.68rem;letter-spacing:.08em;color:var(--ink50);line-height:1.7;}
-.footer-nav-group{display:flex;gap:3rem;}
-@media(max-width:480px){.footer-nav-group{gap:2rem;}}
-.footer-nav-col{display:flex;flex-direction:column;gap:.6rem;}
-.footer-nav-hd{font-family:var(--f-m);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink50);margin-bottom:.2rem;}
-.footer-nav-col a{font-family:var(--f-m);font-size:.72rem;letter-spacing:.06em;color:var(--ink70);transition:color var(--t);}
-.footer-nav-col a:hover{color:var(--amber);}
-.footer-bottom{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;}
+.ft-footer{display:block;} /* base reset — all styling via child wrappers */
+.ft-nav-wrap{
+  background:var(--bg);
+  border-top:1px solid var(--border);
+  position:relative;
+  overflow:hidden;
+}
+/* Subtle amber top accent line */
+.ft-nav-wrap::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--amber),rgba(242,92,5,.3),transparent);
+  opacity:.6;
+}
+.ft-nav-grid{
+  display:grid;
+  grid-template-columns:1.6fr 1fr 1fr 1fr;
+  gap:3rem;
+  padding-block:3.5rem;
+  border-bottom:1px solid var(--border);
+}
+@media(max-width:900px){.ft-nav-grid{grid-template-columns:1fr 1fr;gap:2.5rem;}}
+@media(max-width:520px){.ft-nav-grid{grid-template-columns:1fr;gap:2rem;padding-block:2.5rem;}}
 
+/* Brand col */
+.ft-brand-col .footer-logo{margin-bottom:.9rem;}
+.ft-brand-desc{
+  font-family:var(--f-m);font-size:.7rem;letter-spacing:.04em;
+  color:var(--ink50);line-height:1.8;max-width:260px;margin-bottom:1.25rem;
+}
+.ft-avail{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--f-m);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--amber);
+}
+
+/* Nav cols */
+.ft-col{display:flex;flex-direction:column;gap:.55rem;}
+.ft-col-hd{
+  font-family:var(--f-m);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink50);margin-bottom:.4rem;
+  padding-bottom:.5rem;
+  border-bottom:1px solid var(--border);
+}
+.ft-link{
+  font-family:var(--f-m);font-size:.72rem;letter-spacing:.04em;
+  color:var(--ink70);text-decoration:none;
+  display:inline-flex;align-items:center;gap:.4rem;
+  transition:color var(--t),transform var(--t);
+  width:fit-content;
+}
+.ft-link:hover{color:var(--amber);transform:translateX(3px);}
+.ft-link-wa:hover{color:#25D366 !important;}
+
+/* Bottom bar */
+.ft-bottom-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:.5rem;
+  padding-block:1.25rem;
+}
+.ft-copy{
+  font-family:var(--f-m);font-size:.63rem;letter-spacing:.06em;color:var(--ink50);
+}
+.ft-copy-mid{
+  color:var(--ink20);
+}
+@media(max-width:640px){.ft-copy-mid{display:none;}}
+
+
+/* ══════════════════════════════════════════
+   CONTACT INFO — badge + channel rows
+══════════════════════════════════════════ */
+
+
+
+
+
+
+
+
+
+
+/* ══════════════════════════════════════════
+   COMBINED CONTACT + CTA GRID
+══════════════════════════════════════════ */
+.combined-grid{
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:clamp(3rem,6vw,6rem);
+  align-items:start;
+  position:relative;z-index:1;
+}
+@media(max-width:860px){.combined-grid{grid-template-columns:1fr;gap:2.5rem;}}
+.combined-left{position:sticky;top:7rem;}
+@media(max-width:860px){.combined-left{position:static;}}
+
+/* ══════════════════════════════════════════
+   FOOTER V3 — combined CTA strip
+══════════════════════════════════════════ */
+.ft-cta-strip{
+  position:relative;overflow:hidden;
+  background:var(--bg);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding-block:clamp(4rem,8vw,6rem);
+}
+.ft-cta-glow{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 50% 70% at 0% 50%,rgba(242,92,5,.07),transparent 60%),
+    radial-gradient(ellipse 40% 60% at 100% 80%,rgba(242,92,5,.05),transparent 55%);
+}
+/* Decorative large letter */
+.ft-cta-strip::after{
+  content:'R';
+  position:absolute;right:-2rem;top:50%;transform:translateY(-50%);
+  font-family:var(--f-d);font-size:clamp(14rem,22vw,20rem);font-weight:900;
+  color:var(--ink);opacity:.025;line-height:1;pointer-events:none;
+  letter-spacing:-.05em;
+}
+
+@media(max-width:768px){}
+
+.ft-cta-pre{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:var(--f-m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:1.4rem;
+}
+.ft-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);animation:pulse 1.8s ease infinite;}
+.ft-cta-headline{
+  font-family:var(--f-d);font-size:clamp(2.6rem,5.5vw,4.5rem);font-weight:900;
+  letter-spacing:-.045em;color:var(--ink);line-height:1.0;
+}
+.ft-cta-headline em{color:var(--amber);font-style:italic;display:block;}
+
+.ft-cta-right-intro{
+  font-size:.88rem;color:var(--ink70);line-height:1.8;
+  margin-bottom:1.75rem;max-width:420px;
+}
+.ft-cta-channels{display:flex;flex-direction:column;gap:.5rem;}
+.ft-ch{
+  display:flex;align-items:center;gap:.85rem;
+  padding:.9rem 1.1rem;border:1px solid var(--border);border-radius:14px;
+  text-decoration:none;color:var(--ink);
+  background:var(--card);
+  transition:all var(--t);position:relative;overflow:hidden;
+}
+.ft-ch::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--a10),transparent 60%);
+  opacity:0;transition:opacity .3s;
+}
+.ft-ch:hover::before{opacity:1;}
+.ft-ch:hover{border-color:var(--amber);box-shadow:0 4px 24px rgba(242,92,5,.12);transform:translateX(5px);}
+.ft-ch svg:first-child{
+  width:36px;height:36px;padding:10px;flex-shrink:0;
+  background:var(--a10);border-radius:10px;color:var(--amber);
+  transition:all var(--t);
+}
+.ft-ch:hover svg:first-child{background:var(--amber);color:#fff;}
+.ft-ch span{
+  font-family:var(--f-m);font-size:.75rem;font-weight:500;
+  letter-spacing:.06em;color:var(--ink);flex:1;
+}
+.ft-ch-arr{color:var(--ink20);transition:color var(--t),transform var(--t);flex-shrink:0;}
+.ft-ch:hover .ft-ch-arr{color:var(--amber);transform:translate(2px,-2px);}
+/* LinkedIn specific */
+.ft-ch-li svg:first-child{background:rgba(10,102,194,.1);color:#0A66C2;}
+.ft-ch-li:hover{border-color:#0A66C2;box-shadow:0 4px 24px rgba(10,102,194,.12);}
+.ft-ch-li:hover svg:first-child{background:#0A66C2;color:#fff;}
+.ft-ch-li:hover::before{background:linear-gradient(90deg,rgba(10,102,194,.08),transparent 60%);}
+/* WhatsApp specific */
+.ft-ch-wa svg:first-child{background:rgba(37,211,102,.1);color:#25D366;}
+.ft-ch-wa:hover{border-color:#25D366;box-shadow:0 4px 24px rgba(37,211,102,.12);}
+.ft-ch-wa:hover svg:first-child{background:#25D366;color:#fff;}
+.ft-ch-wa:hover::before{background:linear-gradient(90deg,rgba(37,211,102,.08),transparent 60%);}
+.ft-cta-micro{
+  font-family:var(--f-m);font-size:.62rem;letter-spacing:.06em;
+  color:var(--ink50);margin-top:1.2rem;
+}
 
 /* ══════════════════════════════════════════
    1. AMBIENT DOT GRID — bg sections
@@ -897,10 +1047,7 @@ body::before{
 /* ══════════════════════════════════════════
    12. CONTACT METHODS — animated left line
 ══════════════════════════════════════════ */
-.c-method{
-  position:relative;
-  overflow:hidden;
-}
+
 .c-method::before{
   content:'';position:absolute;left:0;top:0;bottom:0;
   width:3px;background:var(--amber);
@@ -999,7 +1146,7 @@ body::before{
    SKILL GRID (replaces tag clouds)
 ══════════════════════════════════════════ */
 .skill-grid{display:flex;flex-direction:column;gap:1.1rem;}
-.sk-row{}
+
 .sk-cat{border:1px solid var(--border);border-radius:16px;padding:1.25rem 1.4rem;background:var(--card);transition:border-color var(--t),box-shadow .3s;}
 .sk-cat:hover{border-color:var(--a30);box-shadow:0 4px 20px rgba(0,0,0,.06);}
 .sk-cat-hd{display:flex;align-items:center;gap:.55rem;font-family:var(--f-m);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink50);margin-bottom:.9rem;padding-bottom:.75rem;border-bottom:1px solid var(--border);}
@@ -1079,16 +1226,22 @@ body::before{
 
 /* ══════════════════════════════════════════
    SK-ITEM — initial hidden for stagger
-══════════════════════════════════════════ *//* ══════════════════════════════════════════
-   FOOTER NAV COL — WhatsApp link green
 ══════════════════════════════════════════ */
-.footer-nav-col a[href*="wa.me"]{color:#25D366 !important;}
-.footer-nav-col a[href*="wa.me"]:hover{color:#1da851 !important;}
-  .process-track-fill{transition:none;}
-  .tag{opacity:1;transform:none;}
-  .scramble-char{transition:none;}
-  body::before{display:none;}
-  .sk-item{opacity:1;transform:none;}
+.sk-items .sk-item{opacity:0;transform:translateY(6px);}
+
+/* ══════════════════════════════════════════
+   GROWTH AUDIT — intake form enhancements
+══════════════════════════════════════════ */
+.audit-label{
+  letter-spacing:.22em;
+}
+
+/* microcopy under submit */
+.cf-micro{
+  font-family:var(--f-m);font-size:.6rem;letter-spacing:.1em;
+  text-align:center;color:var(--ink50);
+  margin-top:.85rem;line-height:1.6;
+}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
   html{scroll-behavior:auto;}
@@ -1099,7 +1252,7 @@ body::before{
 /* ══════════════════════════════════════════
    HERO — eyebrow animation delay fix
 ══════════════════════════════════════════ */
-.hero-rule{margin-bottom:1rem;}
+
 
 /* ══════════════════════════════════════════
    METRICS GRID — icon hover + section border
@@ -1150,17 +1303,12 @@ body::before{
 
 /* ══════════════════════════════════════════
    CONTACT — method card gap consistency
-══════════════════════════════════════════ */.c-method{
-  min-height:60px;
-}
+══════════════════════════════════════════ */
 
 /* ══════════════════════════════════════════
    FOOTER — brand section spacing
 ══════════════════════════════════════════ */
-.footer-tagline{
-  margin-top:.5rem;
-  line-height:1.65;
-}
+
 
 /* ══════════════════════════════════════════
    BACK TO TOP — tooltip on hover
@@ -1226,12 +1374,6 @@ body::before{
 .hero-proof{font-size:.82rem;color:var(--amber);font-family:var(--f-m);letter-spacing:.03em;max-width:500px;line-height:1.65;margin-bottom:1.6rem;opacity:0;animation:fadeUp .45s var(--ease) .42s forwards;}
 .hero-reassure{font-family:var(--f-m);font-size:.65rem;letter-spacing:.07em;color:var(--ink50);margin-top:.85rem;}
 
-.trust-bar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg2);padding-block:.85rem;overflow:hidden;}
-.trust-bar-inner{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}
-.trust-group{display:flex;align-items:center;gap:.5rem;white-space:nowrap;}
-.trust-label{font-family:var(--f-m);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);}
-.trust-items{font-family:var(--f-m);font-size:.68rem;color:var(--ink70);}
-.trust-divider{width:1px;height:12px;background:var(--border);flex-shrink:0;}
 </style>
 <script>
 (function(){try{var s=localStorage.getItem('raqmetrics-theme');var p=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(p?'dark':'light'));}catch(e){}})();
@@ -1283,7 +1425,7 @@ body::before{
   <a href="#contact" onclick="closeMob()">Contact</a>
   <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;margin-top:.5rem;">
     <div class="avail-badge"><span class="avail-dot"></span>Available for projects</div>
-    <a href="#contact" onclick="closeMob()" class="btn btn-fill" style="padding:.75rem 2rem;font-size:.75rem;">Let's Work Together</a>
+  <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener noreferrer" onclick="closeMob()" class="btn btn-fill" style="padding:.75rem 2rem;font-size:.75rem;">Let's Connect</a>
     <a href="https://wa.me/213773266725" target="_blank" rel="noopener noreferrer" style="font-family:var(--f-m);font-size:.65rem;letter-spacing:.1em;color:#25D366;display:flex;align-items:center;gap:.4rem;"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>WhatsApp</a>
   </div>
 </div>
@@ -1317,7 +1459,7 @@ body::before{
       <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode" type="button">
         <svg id="themeIco" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
       </button>
-      <a href="#contact" class="btn btn-fill nav-cta-btn" style="padding:.5rem 1.1rem;font-size:.65rem;">Work With Me</a>
+      <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener noreferrer" class="btn btn-fill nav-cta-btn" style="padding:.5rem 1.1rem;font-size:.65rem;">Let's Connect</a>
       <button class="ham" id="ham" type="button" aria-expanded="false" aria-controls="mobMenu" aria-label="Open navigation"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -1351,14 +1493,14 @@ body::before{
       <p class="hero-proof">Reduced CAC by 20%+ across multi-regional markets through full-funnel optimization and attribution systems.</p>
 
       <div class="hero-cta">
-        <a href="#contact" class="btn btn-fill">
-          Book a Strategy Call
-          <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+        <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener noreferrer" class="btn btn-fill">
+          <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Let's Connect on LinkedIn
         </a>
         <a href="#portfolio" class="btn btn-ghost">View Case Studies</a>
       </div>
 
-      <p class="hero-reassure">No commitment. Focused on identifying growth opportunities.</p>
+      <p class="hero-reassure">Connect via LinkedIn, Email, or WhatsApp — async-first, response within 24–48h.</p>
     </div>
 
     <!-- Chips -->
@@ -1374,32 +1516,7 @@ body::before{
 </section>
 
 
-<!-- ══════════════════ TRUST BAR ══════════════════ -->
-<div class="trust-bar">
-  <div class="wrap">
-    <div class="trust-bar-inner">
-      <div class="trust-group">
-        <span class="trust-label">Markets</span>
-        <span class="trust-items">MENA &nbsp;&middot;&nbsp; Europe &nbsp;&middot;&nbsp; North America</span>
-      </div>
-      <div class="trust-divider"></div>
-      <div class="trust-group">
-        <span class="trust-label">Platforms</span>
-        <span class="trust-items">Meta &nbsp;&middot;&nbsp; Google &nbsp;&middot;&nbsp; TikTok &nbsp;&middot;&nbsp; LinkedIn</span>
-      </div>
-      <div class="trust-divider"></div>
-      <div class="trust-group">
-        <span class="trust-label">Stack</span>
-        <span class="trust-items">GA4 &nbsp;&middot;&nbsp; GTM &nbsp;&middot;&nbsp; Meta CAPI &nbsp;&middot;&nbsp; Looker Studio</span>
-      </div>
-      <div class="trust-divider"></div>
-      <div class="trust-group">
-        <span class="trust-label">Verticals</span>
-        <span class="trust-items">Ecom &nbsp;&middot;&nbsp; Lead Gen &nbsp;&middot;&nbsp; App &nbsp;&middot;&nbsp; B2B</span>
-      </div>
-    </div>
-  </div>
-</div>
+
 <!-- ══════════════════ MARQUEE ══════════════════ -->
 <div class="marquee-sec" aria-hidden="true">
   <div class="marquee-track" id="mq"></div>
@@ -1608,9 +1725,9 @@ body::before{
     </div>
     <div style="margin-top:2.5rem;" class="rv">
       <div class="cases-tabs">
-        <button class="c-tab on" data-c="0" type="button">Yassir</button>
-        <button type="button" class="c-tab" aria-selected="false" role="tab" data-c="1" type="button">HIS University</button>
-        <button type="button" class="c-tab" aria-selected="false" role="tab" data-c="2" type="button">CSA Research</button>
+        <button class="c-tab on" aria-selected="true" role="tab" data-c="0" type="button">Yassir</button>
+        <button class="c-tab" aria-selected="false" role="tab" data-c="1" type="button">HIS University</button>
+        <button class="c-tab" aria-selected="false" role="tab" data-c="2" type="button">CSA Research</button>
       </div>
       <!-- Slide 1 -->
       <div class="case-slide on" id="c0">
@@ -1768,124 +1885,181 @@ body::before{
   </div>
 </section>
 
-<!-- ══════════════════ CTA / CONTACT ══════════════════ -->
-<section id="contact" class="sec cta-sec" aria-label="Contact">
-  <div class="mesh">
-    <div class="mesh-blob"></div><div class="mesh-blob"></div><div class="mesh-blob"></div>
-  </div>
-  <div class="wrap">
-    <div class="contact-layout">
-      <!-- Left: info -->
-      <div class="contact-info rv">
-        <div class="cta-inner">
-          <div class="sec-label" style="justify-content:flex-start;">Get in touch</div>
-          <h2 class="sec-title">Work With Me</h2>
-          <p class="sec-sub">If your paid channels are underperforming, your attribution is unreliable, or you're scaling spend without a clear system — that's what I fix. Tell me what's broken and I'll tell you if I can help.</p>
-        </div>
-        <div class="contact-methods">
-          <a class="c-method" href="mailto:cherifedd@gmail.com">
-            <div class="c-method-ico"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div><span class="c-method-label">Email</span><span class="c-method-val">cherifedd@gmail.com</span></div>
-          </a>
-          <a class="c-method" href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener noreferrer">
-            <div class="c-method-ico"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
-            <div><span class="c-method-label">LinkedIn</span><span class="c-method-val">Cherif Eddine Haddad</span></div>
-          </a>
-          <a class="c-method" href="https://drive.google.com/drive/folders/1AkLIlbMkhXKsuN0knigx7flwsErfp9p6?usp=drive_link" target="_blank" rel="noopener noreferrer">
-            <div class="c-method-ico"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
-            <div><span class="c-method-label">Portfolio</span><span class="c-method-val">View full case studies</span></div>
-          </a>
-          <a class="c-method c-method-wa" href="https://wa.me/213773266725" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-            <div class="c-method-ico c-method-ico-wa"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg></div>
-            <div><span class="c-method-label">WhatsApp</span><span class="c-method-val">+213 773 266 725</span></div>
-          </a>
-        </div>
-      </div>
-      <!-- Right: form -->
-      <div class="rvr">
-        <div class="contact-form-wrap" id="cfWrap">
-          <div id="cfForm">
-            <div class="cf-title">Tell me about your situation</div>
-            <div class="cf-sub">I respond within 24 hours, usually same day</div>
-            <div class="cf-trust-signals">
-              <span class="cf-trust-item"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>No commitment required</span>
-              <span class="cf-trust-item"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>I'll tell you if I can't help</span>
-              <span class="cf-trust-item"><svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Available now</span>
-            </div>
-            <div class="cf-row">
-              <div class="cf-group">
-                <label class="cf-label" for="cf-name">Name</label>
-                <input class="cf-input" id="cf-name" type="text" placeholder="Your name" autocomplete="name"/>
-              </div>
-              <div class="cf-group">
-                <label class="cf-label" for="cf-email">Email</label>
-                <input class="cf-input" id="cf-email" type="email" placeholder="you@company.com" autocomplete="email"/>
-              </div>
-            </div>
-            <div class="cf-group">
-              <label class="cf-label" for="cf-type">What are you working on?</label>
-              <select class="cf-select" id="cf-type">
-                <option value="" disabled selected>Select a topic…</option>
-                <option>My ads are not performing</option>
-                <option>My tracking and attribution is broken</option>
-                <option>My CAC is too high</option>
-                <option>I need automation and CRM setup</option>
-                <option>Not sure yet — let's talk</option>
-              </select>
-            </div>
-            <div class="cf-group">
-              <label class="cf-label" for="cf-msg">Message</label>
-              <textarea class="cf-textarea" id="cf-msg" placeholder="Describe your project, current channels, and the main challenge you're trying to solve…"></textarea>
-            </div>
-            <button class="cf-submit" id="cfSubmit" type="button" aria-label="Send message" onclick="submitForm()">
-              Send Message
-              <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-            </button>
-          </div>
-          <div class="cf-success" id="cfSuccess">
-            <div class="cf-success-ico">
-              <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-            </div>
-            <h3>Message sent!</h3>
-            <p>Thanks for reaching out. I'll get back to you within 24 hours.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ══════════════════ CONTACT + FOOTER ══════════════════ -->
+<footer id="contact" class="ft-footer" aria-label="Contact">
 
-<!-- ══════════════════ FOOTER ══════════════════ -->
-<footer class="footer footer-v2">
-  <div class="wrap">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <img src="/logo.svg" alt="Raqmetrics" class="logo-footer" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=\'font-family:var(--f-d);font-size:1.1rem;font-weight:900;letter-spacing:-.04em;\'>Raq<span style=\'color:var(--amber)\'>metrics</span></span>');">
+  <!-- ── Combined CTA + Form ── -->
+  <div class="ft-cta-strip">
+    <div class="ft-cta-glow" aria-hidden="true"></div>
+    <div class="mesh" aria-hidden="true">
+      <div class="mesh-blob"></div><div class="mesh-blob"></div><div class="mesh-blob"></div>
+    </div>
+    <div class="wrap">
+      <div class="combined-grid rv">
+
+        <!-- Left: headline + channels -->
+        <div class="combined-left">
+          <p class="ft-cta-pre"><span class="ft-dot"></span>Open to new projects</p>
+          <h2 class="ft-cta-headline">Let's build<br/>something<br/><em>that converts.</em></h2>
+          <p class="ft-cta-right-intro">No cold calls. Reach out on the channel that works for you — I respond to every relevant message within 24–48h.</p>
+          <div class="ft-cta-channels">
+            <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener noreferrer" class="ft-ch ft-ch-li">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              <span>Connect on LinkedIn</span>
+              <svg class="ft-ch-arr" width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+            <a href="mailto:cherifedd@gmail.com" class="ft-ch ft-ch-em">
+              <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>Send an Email</span>
+              <svg class="ft-ch-arr" width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+            <a href="https://wa.me/213773266725" target="_blank" rel="noopener noreferrer" class="ft-ch ft-ch-wa">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+              <span>Message on WhatsApp</span>
+              <svg class="ft-ch-arr" width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+            </a>
+          </div>
+          <p class="ft-cta-micro">Async-first &nbsp;·&nbsp; Response within 24–48h</p>
         </div>
-        <p class="footer-tagline">Performance Marketing &amp; Growth<br/>MENA · Europe · North America</p>
-        <div class="avail-badge" style="margin-top:1rem;width:fit-content;"><span class="avail-dot"></span>Available for projects</div>
-      </div>
-      <div class="footer-nav-group">
-        <div class="footer-nav-col">
-          <div class="footer-nav-hd">Navigate</div>
-          <a href="#about">Approach</a>
-          <a href="#portfolio">Portfolio</a>
-          <a href="#expertise">Expertise</a>
-          <a href="#contact">Contact</a>
+
+        <!-- Right: form -->
+        <div class="combined-right rvr">
+          <div class="contact-form-wrap" id="cfWrap">
+            <div id="cfForm">
+              <div class="cf-title">Growth Audit Intake</div>
+              <div class="cf-sub">Takes 2 minutes. The more specific, the better the assessment.</div>
+              <div class="cf-row">
+                <div class="cf-group">
+                  <label class="cf-label" for="cf-name">Name</label>
+                  <input class="cf-input" id="cf-name" type="text" placeholder="Your name" autocomplete="name"/>
+                </div>
+                <div class="cf-group">
+                  <label class="cf-label" for="cf-email">Email</label>
+                  <input class="cf-input" id="cf-email" type="email" placeholder="you@company.com" autocomplete="email"/>
+                </div>
+              </div>
+              <div class="cf-group">
+                <label class="cf-label" for="cf-budget">Monthly ad budget</label>
+                <select class="cf-select" id="cf-budget">
+                  <option value="" disabled selected>Select budget range…</option>
+                  <option value="under-5k">Under $5,000/mo</option>
+                  <option value="5k-15k">$5,000 – $15,000/mo</option>
+                  <option value="15k-50k">$15,000 – $50,000/mo</option>
+                  <option value="50k-150k">$50,000 – $150,000/mo</option>
+                  <option value="150k+">$150,000+/mo</option>
+                </select>
+              </div>
+              <div class="cf-group">
+                <label class="cf-label" for="cf-market">Target market</label>
+                <select class="cf-select" id="cf-market">
+                  <option value="" disabled selected>Select region…</option>
+                  <option value="mena">MENA</option>
+                  <option value="europe">Europe</option>
+                  <option value="north-america">North America</option>
+                  <option value="mena-eu">MENA + Europe</option>
+                  <option value="global">Global / Multi-region</option>
+                </select>
+              </div>
+              <div class="cf-group">
+                <label class="cf-label" for="cf-objective">Primary objective</label>
+                <select class="cf-select" id="cf-objective">
+                  <option value="" disabled selected>Select objective…</option>
+                  <option value="leads">Lead generation</option>
+                  <option value="sales">E-commerce sales</option>
+                  <option value="app">App installs / in-app events</option>
+                  <option value="b2b">B2B pipeline</option>
+                  <option value="brand">Brand awareness at scale</option>
+                </select>
+              </div>
+              <div class="cf-group">
+                <label class="cf-label" for="cf-channels">Current acquisition channels</label>
+                <input class="cf-input" id="cf-channels" type="text" placeholder="e.g. Meta, Google, TikTok, organic…"/>
+              </div>
+              <div class="cf-group">
+                <label class="cf-label" for="cf-challenge">Main growth challenge</label>
+                <textarea class="cf-textarea" id="cf-challenge" placeholder="Describe the specific problem — rising CAC, broken attribution, plateauing growth, unclear ROAS — and what you've already tried."></textarea>
+              </div>
+              <button class="cf-submit" id="cfSubmit" type="button" aria-label="Submit Growth Audit request" onclick="submitAuditForm()">
+                Submit for Review
+                <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
+              <p class="cf-micro">Response within 24–48h &nbsp;·&nbsp; LinkedIn · Email · WhatsApp &nbsp;·&nbsp; Async-first</p>
+            </div>
+            <div class="cf-success" id="cfSuccess">
+              <div class="cf-success-ico">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <h3>Audit request received.</h3>
+              <p>Reviewed personally within 24–48 hours. I'll follow up via email — or feel free to reach out on <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener noreferrer" style="color:var(--amber)">LinkedIn</a> or <a href="https://wa.me/213773266725" target="_blank" rel="noopener noreferrer" style="color:var(--amber)">WhatsApp</a>.</p>
+            </div>
+          </div>
         </div>
-        <div class="footer-nav-col">
-          <div class="footer-nav-hd">Connect</div>
-          <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="mailto:cherifedd@gmail.com">Email</a>
-          <a href="https://wa.me/213773266725" target="_blank" rel="noopener noreferrer">WhatsApp</a>
-          <a href="https://drive.google.com/drive/folders/1AkLIlbMkhXKsuN0knigx7flwsErfp9p6?usp=drive_link" target="_blank" rel="noopener noreferrer">Portfolio Drive</a>
-        </div>
+
       </div>
     </div>
-    <div class="footer-bottom">
-      <p class="footer-copy">© 2026 Cherif Eddine Haddad · Raqmetrics. All rights reserved.</p>
-      <p class="footer-copy" style="color:var(--ink50);">Paid acquisition &amp; analytics — MENA, Europe &amp; North America</p>
+  </div>
+
+  <!-- ── Footer nav / bottom ── -->
+  <div class="ft-nav-wrap">
+    <div class="wrap">
+
+      <div class="ft-nav-grid">
+
+        <!-- Brand col -->
+        <div class="ft-brand-col">
+          <div class="footer-logo">
+            <img src="/logo.svg" alt="Raqmetrics" class="logo-footer" onerror="this.style.display='none';this.insertAdjacentHTML('afterend','<span style=\'font-family:var(--f-d);font-size:1.15rem;font-weight:900;letter-spacing:-.04em;\'>Raq<span style=\'color:var(--amber)\'>metrics</span></span>');">
+          </div>
+          <p class="ft-brand-desc">Performance Marketing &amp; Growth Specialist. Building acquisition systems that reduce CAC and scale revenue — across MENA, Europe &amp; North America.</p>
+          <div class="ft-avail">
+            <span class="avail-dot"></span>
+            <span>Available for new projects</span>
+          </div>
+        </div>
+
+        <!-- Navigate col -->
+        <div class="ft-col">
+          <div class="ft-col-hd">Navigate</div>
+          <a href="#about" class="ft-link">Approach</a>
+          <a href="#portfolio" class="ft-link">Portfolio</a>
+          <a href="#expertise" class="ft-link">Expertise</a>
+          <a href="#contact" class="ft-link">Contact</a>
+        </div>
+
+        <!-- Work col -->
+        <div class="ft-col">
+          <div class="ft-col-hd">Work</div>
+          <a href="https://drive.google.com/drive/folders/1AkLIlbMkhXKsuN0knigx7flwsErfp9p6?usp=drive_link" target="_blank" rel="noopener noreferrer" class="ft-link">Portfolio Drive</a>
+          <a href="#portfolio" class="ft-link">Case Studies</a>
+          <a href="#expertise" class="ft-link">Skills &amp; Stack</a>
+        </div>
+
+        <!-- Connect col -->
+        <div class="ft-col">
+          <div class="ft-col-hd">Connect</div>
+          <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener noreferrer" class="ft-link ft-link-icon">
+            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="mailto:cherifedd@gmail.com" class="ft-link ft-link-icon">
+            <svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Email
+          </a>
+          <a href="https://wa.me/213773266725" target="_blank" rel="noopener noreferrer" class="ft-link ft-link-icon ft-link-wa">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="ft-bottom-bar">
+        <p class="ft-copy">© 2026 Cherif Eddine Haddad · Raqmetrics</p>
+        <p class="ft-copy ft-copy-mid">Performance Marketing · MENA · Europe · North America</p>
+        <p class="ft-copy">Designed &amp; built by <span style="color:var(--amber);">Raqmetrics</span></p>
+      </div>
+
     </div>
   </div>
 </footer>
@@ -1981,14 +2155,14 @@ window.addEventListener('scroll',()=>{
   if(!scrollTick){requestAnimationFrame(()=>{onScroll();scrollTick=false;});scrollTick=true;}
 },{passive:true});
 onScroll();
-btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+btt?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 document.querySelector('.nav-logo')?.addEventListener('click',e=>{
   if(window.scrollY>100){e.preventDefault();window.scrollTo({top:0,behavior:'smooth'});}
 });
 
 /* ── DARK MODE (init in <head>) ── */
 const themeBtn=document.getElementById('themeBtn');
-themeBtn.addEventListener('click',()=>{
+themeBtn?.addEventListener('click',()=>{
   const dark=document.documentElement.getAttribute('data-theme')==='dark';
   const next=dark?'light':'dark';
   document.documentElement.setAttribute('data-theme',next);
@@ -1999,7 +2173,7 @@ themeBtn.addEventListener('click',()=>{
 const ham=document.getElementById('ham');
 const mob=document.getElementById('mobMenu');
 function closeMob(){if(!mob||!ham)return;mob.classList.remove('open');ham.classList.remove('open');document.body.style.overflow='';}
-ham.addEventListener('click',()=>{
+ham?.addEventListener('click',()=>{
   if(!mob)return;
   const o=mob.classList.toggle('open');
   ham.classList.toggle('open',o);
@@ -2010,7 +2184,7 @@ ham.addEventListener('click',()=>{
 const mqItems=['20%+ CAC Reduction','Multi-Channel Acquisition','$80K+/mo Managed','Attribution Modeling','$80K+/mo Managed Spend','Growth Systems','A/B Testing at Scale','ROAS Optimisation','GA4 + GTM + Meta CAPI','Funnel Architecture','Real Estate — 816 Leads','B2B Marketing Operations','HubSpot & GoHighLevel','Looker Studio Reporting','97.5% Email Delivery','MENA · Europe · North America'];
 const mqEl=document.getElementById('mq');
 const mqHtml=mqItems.map(s=>`<span class="m-item">${s}</span>`).join('');
-mqEl.innerHTML=mqHtml+mqHtml;
+if(mqEl)mqEl.innerHTML=mqHtml+mqHtml;
 
 /* ── INTERSECTION OBSERVER ── */
 const io=new IntersectionObserver(entries=>{
@@ -2172,28 +2346,78 @@ document.getElementById('cNext').addEventListener('click',()=>showCaseManual(cur
 
 
 /* ── CONTACT FORM ── */
-function submitForm(){
-  const name=document.getElementById('cf-name').value.trim();
-  const email=document.getElementById('cf-email').value.trim();
-  const type=document.getElementById('cf-type').value;
-  const msg=document.getElementById('cf-msg').value.trim();
-  if(!name||!email||!msg){
-    [['cf-name',name],['cf-email',email],['cf-msg',msg]].forEach(([id,val])=>{
-      if(!val){const el=document.getElementById(id);el.style.borderColor='#E24B4A';el.style.boxShadow='0 0 0 3px rgba(226,75,74,.12)';el.addEventListener('input',()=>{el.style.borderColor='';el.style.boxShadow='';},{once:true});}
-    });
-    return;
-  }
-  const btn=document.getElementById('cfSubmit');
-  btn.disabled=true;btn.textContent='Sending…';
-  /* mailto fallback — opens default mail client with pre-filled message */
-  const subject=encodeURIComponent('Raqmetrics enquiry'+(type?' — '+type:''));
-  const body=encodeURIComponent('Name: '+name+'\nEmail: '+email+'\nTopic: '+(type||'General')+'\n\n'+msg);
-  window.location.href='mailto:cherifedd@gmail.com?subject='+subject+'&body='+body;
-  setTimeout(()=>{
-    document.getElementById('cfForm').style.display='none';
-    document.getElementById('cfSuccess').style.display='block';
-    document.querySelector('.cf-success p').textContent='Thanks for reaching out. I\'ll get back to you within 24 hours — or reach me directly on WhatsApp at +213 773 266 725.';
-  },800);
+function submitAuditForm(){
+  const name      = document.getElementById('cf-name').value.trim();
+  const email     = document.getElementById('cf-email').value.trim();
+  const budget    = document.getElementById('cf-budget').value;
+  const market    = document.getElementById('cf-market').value;
+  const objective = document.getElementById('cf-objective').value;
+  const channels  = document.getElementById('cf-channels').value.trim();
+  const challenge = document.getElementById('cf-challenge').value.trim();
+
+  // Validate required fields
+  const required = [
+    ['cf-name', name],
+    ['cf-email', email],
+    ['cf-budget', budget],
+    ['cf-market', market],
+    ['cf-objective', objective],
+    ['cf-challenge', challenge],
+  ];
+  let hasError = false;
+  required.forEach(([id, val]) => {
+    const el = document.getElementById(id);
+    if(!val){
+      hasError = true;
+      el.style.borderColor = '#E24B4A';
+      el.style.boxShadow   = '0 0 0 3px rgba(226,75,74,.12)';
+      el.addEventListener('input', () => { el.style.borderColor=''; el.style.boxShadow=''; }, { once:true });
+      el.addEventListener('change', () => { el.style.borderColor=''; el.style.boxShadow=''; }, { once:true });
+    }
+  });
+  if(hasError) return;
+
+  const btn = document.getElementById('cfSubmit');
+  btn.disabled = true;
+  btn.innerHTML = 'Submitting…';
+
+  // Build the email body
+  const budgetLabels = {
+    'under-5k':'Under $5,000/mo','5k-15k':'$5,000–$15,000/mo',
+    '15k-50k':'$15,000–$50,000/mo','50k-150k':'$50,000–$150,000/mo','150k+':'$150,000+/mo'
+  };
+  const marketLabels = {
+    'mena':'MENA','europe':'Europe','north-america':'North America',
+    'mena-eu':'MENA + Europe','global':'Global / Multi-region'
+  };
+  const objectiveLabels = {
+    'leads':'Lead generation','sales':'E-commerce sales','app':'App installs / in-app events',
+    'b2b':'B2B pipeline','brand':'Brand awareness'
+  };
+
+  const bodyLines = [
+    'GROWTH AUDIT REQUEST',
+    '─────────────────────',
+    'Name: ' + name,
+    'Email: ' + email,
+    '',
+    'Budget: ' + (budgetLabels[budget] || budget),
+    'Target market: ' + (marketLabels[market] || market),
+    'Objective: ' + (objectiveLabels[objective] || objective),
+    'Current channels: ' + (channels || 'Not specified'),
+    '',
+    'Main growth challenge:',
+    challenge,
+  ];
+
+  const subject = encodeURIComponent('Growth Audit Request — ' + name);
+  const body    = encodeURIComponent(bodyLines.join('\n'));
+  window.location.href = 'mailto:cherifedd@gmail.com?subject=' + subject + '&body=' + body;
+
+  setTimeout(() => {
+    document.getElementById('cfForm').style.display  = 'none';
+    document.getElementById('cfSuccess').style.display = 'block';
+  }, 800);
 }
 
 
