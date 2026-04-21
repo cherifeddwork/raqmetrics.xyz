@@ -1374,6 +1374,407 @@ body::before{
 .hero-proof{font-size:.82rem;color:var(--amber);font-family:var(--f-m);letter-spacing:.03em;max-width:500px;line-height:1.65;margin-bottom:1.6rem;opacity:0;animation:fadeUp .45s var(--ease) .42s forwards;}
 .hero-reassure{font-family:var(--f-m);font-size:.65rem;letter-spacing:.07em;color:var(--ink50);margin-top:.85rem;}
 
+/* ══════════════════════════════════════════
+   ENHANCED UI — Premium Layer
+══════════════════════════════════════════ */
+
+/* ── Grain / film texture overlay ── */
+body::after{
+  content:'';
+  position:fixed;inset:0;z-index:9997;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+  background-size:220px 220px;
+  opacity:.022;
+  mix-blend-mode:overlay;
+}
+[data-theme="dark"] body::after{opacity:.055;mix-blend-mode:overlay;}
+
+/* ── Hero amber — shimmer gradient text ── */
+.hero-amber{
+  background:linear-gradient(110deg,#F25C05 0%,#FF8C42 40%,#F25C05 60%,#FF6A00 100%);
+  background-size:240% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:shimmerText 5s linear infinite;
+}
+@keyframes shimmerText{to{background-position:240% center;}}
+
+/* ── Scroll progress glow ── */
+#prog{
+  box-shadow:0 0 10px rgba(242,92,5,.55),0 0 3px rgba(242,92,5,.8);
+  height:2.5px;
+}
+
+/* ── Nav enhanced ── */
+.nav.solid{
+  box-shadow:0 1px 0 var(--border),0 4px 32px rgba(0,0,0,.06);
+}
+[data-theme="dark"] .nav.solid{
+  box-shadow:0 1px 0 var(--border),0 4px 32px rgba(0,0,0,.28);
+}
+.nav-logo{transition:opacity var(--t),transform var(--t);}
+.nav-logo:hover{opacity:.7;transform:translateY(-1px);}
+
+/* ── Eyebrow badge refined ── */
+.eyebrow{
+  box-shadow:0 2px 20px rgba(242,92,5,.1),inset 0 1px 0 rgba(255,255,255,.06);
+  letter-spacing:.2em;
+}
+
+/* ── Hero H1 — text shadow depth ── */
+.hero-h1{
+  text-shadow:0 2px 40px rgba(0,0,0,.04);
+}
+[data-theme="dark"] .hero-h1{
+  text-shadow:0 2px 40px rgba(0,0,0,.25);
+}
+
+/* ── Buttons — shimmer sweep on hover ── */
+.btn-fill{position:relative;overflow:hidden;}
+.btn-fill::after{
+  content:'';position:absolute;top:0;left:-110%;
+  width:55%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent);
+  transition:left .55s var(--ease);
+  pointer-events:none;
+}
+.btn-fill:hover::after{left:140%;}
+
+/* ── Metrics grid — premium borders + glow ── */
+.metrics-grid{
+  border-radius:24px;
+  border:none;
+  outline:1px solid var(--border);
+  box-shadow:0 2px 40px rgba(0,0,0,.05);
+}
+[data-theme="dark"] .metrics-grid{
+  box-shadow:0 2px 40px rgba(0,0,0,.25);
+}
+.metric-cell{
+  transition:background var(--t),transform .3s var(--spring);
+}
+.metric-cell:hover{
+  transform:translateY(-2px);
+  z-index:2;
+  box-shadow:0 8px 32px rgba(0,0,0,.1);
+}
+[data-theme="dark"] .metric-cell:hover{
+  box-shadow:0 8px 32px rgba(0,0,0,.35);
+}
+
+/* ── Metric numbers — gradient text ── */
+.m-num{
+  background:linear-gradient(135deg,#F25C05 0%,#FF8C42 50%,#F25C05 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:shimmerText 6s linear infinite;
+  display:inline-block;
+}
+
+/* ── Metric icon — spring on hover ── */
+.m-ico{transition:all .38s var(--spring);}
+.metric-cell:hover .m-ico{
+  background:var(--amber);color:#fff;
+  transform:scale(1.18) rotate(-8deg);
+  box-shadow:0 4px 18px rgba(242,92,5,.35);
+}
+
+/* ── Metric cell — top accent bar ── */
+.metric-cell{position:relative;}
+.metric-cell::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--amber),rgba(242,92,5,.15));
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .45s var(--ease);
+}
+.metric-cell:hover::before{transform:scaleX(1);}
+
+/* ── Growth cards — spotlight glow via CSS var ── */
+.g-card{
+  transition:box-shadow .4s var(--ease),transform .4s var(--ease),border-color .3s;
+  background-image:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(242,92,5,.04) 0%,transparent 60%);
+}
+.g-card:hover{
+  background-image:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(242,92,5,.09) 0%,transparent 55%);
+}
+
+/* ── Process step numbers — richer design ── */
+.p-step-num{
+  background:linear-gradient(145deg,var(--card),var(--bg2));
+  box-shadow:0 2px 14px rgba(0,0,0,.07),inset 0 1px 0 rgba(255,255,255,.08);
+  font-size:1rem;
+}
+.p-step.on .p-step-num,.p-step:hover .p-step-num{
+  background:linear-gradient(135deg,#F25C05,#FF8C42);
+  box-shadow:0 0 0 6px rgba(242,92,5,.12),0 6px 24px rgba(242,92,5,.28);
+}
+
+/* ── Portfolio items — enhanced image overlay ── */
+.port-overlay{
+  background:linear-gradient(to top,rgba(14,13,12,.92) 0%,rgba(14,13,12,.4) 52%,transparent 100%);
+}
+.port-img{transition:transform .7s var(--ease),filter .5s;}
+.port-item:hover .port-img{transform:scale(1.1);filter:saturate(1.1);}
+
+/* ── Portfolio items — card glow ── */
+.port-item:hover{
+  box-shadow:0 20px 60px rgba(0,0,0,.14),0 0 0 1px var(--a30);
+}
+[data-theme="dark"] .port-item:hover{
+  box-shadow:0 20px 60px rgba(0,0,0,.45),0 0 0 1px var(--a30);
+}
+
+/* ── Port metric pills — enhanced ── */
+.port-metric{
+  font-size:.62rem;letter-spacing:.08em;
+  backdrop-filter:blur(8px);
+  background:rgba(242,92,5,.9);
+  box-shadow:0 2px 8px rgba(242,92,5,.35);
+  padding:.22rem .65rem;
+}
+
+/* ── Portfolio tags — micro-hover ── */
+.pt{transition:all var(--t);}
+.pt:hover{background:var(--amber);color:#fff;border-color:var(--amber);}
+
+/* ── Skill category cards ── */
+.sk-cat{
+  background:linear-gradient(145deg,var(--card) 0%,var(--bg2) 100%);
+  position:relative;overflow:hidden;
+}
+.sk-cat::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(242,92,5,.3),transparent);
+  opacity:0;transition:opacity .4s;
+}
+.sk-cat:hover::before{opacity:1;}
+.sk-cat:hover{
+  box-shadow:0 8px 32px rgba(0,0,0,.08);
+}
+[data-theme="dark"] .sk-cat:hover{
+  box-shadow:0 8px 32px rgba(0,0,0,.28);
+}
+
+/* ── Experience statements ── */
+.exp-statement{
+  background:linear-gradient(135deg,var(--card),var(--bg2));
+  transition:border-color var(--t),transform .3s var(--ease),box-shadow .3s;
+}
+.exp-statement:hover{
+  box-shadow:0 6px 28px rgba(0,0,0,.07);
+}
+[data-theme="dark"] .exp-statement:hover{
+  box-shadow:0 6px 28px rgba(0,0,0,.3);
+}
+.exp-st-num{
+  font-size:1.75rem;letter-spacing:-.04em;
+}
+
+/* ── Testimonials — featured richer ── */
+.testi-featured{
+  box-shadow:0 0 0 1px rgba(242,92,5,.18),0 8px 48px rgba(242,92,5,.07) !important;
+  background:linear-gradient(145deg,var(--card) 0%,rgba(242,92,5,.02) 100%) !important;
+}
+.testi-card{
+  background:linear-gradient(145deg,var(--card),var(--bg2));
+  transition:transform .4s var(--ease),box-shadow .4s,border-color .3s;
+}
+.testi-card:hover{
+  box-shadow:0 16px 48px rgba(0,0,0,.09),0 0 0 1px var(--a30) !important;
+}
+[data-theme="dark"] .testi-card:hover{
+  box-shadow:0 16px 48px rgba(0,0,0,.4),0 0 0 1px var(--a30) !important;
+}
+
+/* ── Testi avatar glow ── */
+.testi-av{
+  box-shadow:0 2px 12px rgba(0,0,0,.15);
+  flex-shrink:0;
+}
+
+/* ── Result check marks ── */
+.res-ck{
+  background:linear-gradient(135deg,#F25C05,#FF8C42);
+  box-shadow:0 2px 8px rgba(242,92,5,.3);
+  flex-shrink:0;
+}
+
+/* ── Contact form — enhanced inputs ── */
+.cf-input:focus,.cf-textarea:focus,.cf-select:focus{
+  background:var(--card);
+  box-shadow:0 0 0 3px rgba(242,92,5,.14),0 2px 16px rgba(242,92,5,.07);
+}
+.contact-form-wrap{
+  background:linear-gradient(145deg,var(--card) 0%,var(--bg2) 100%);
+  box-shadow:0 4px 48px rgba(0,0,0,.07),0 0 0 1px var(--border);
+}
+[data-theme="dark"] .contact-form-wrap{
+  background:linear-gradient(145deg,var(--card) 0%,rgba(30,28,24,.6) 100%);
+  box-shadow:0 4px 48px rgba(0,0,0,.3),0 0 0 1px var(--border);
+}
+
+/* ── Footer CTA pre-label pill ── */
+.ft-cta-pre{
+  background:rgba(242,92,5,.07);
+  border:1px solid rgba(242,92,5,.18);
+  padding:.3rem .9rem;border-radius:999px;
+  backdrop-filter:blur(6px);
+}
+
+/* ── Footer headline gradient ── */
+.ft-cta-headline{
+  letter-spacing:-.05em;
+}
+.ft-cta-headline em{
+  background:linear-gradient(110deg,#F25C05 0%,#FF8C42 50%,#F25C05 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  animation:shimmerText 5s linear infinite;
+  display:block;
+}
+
+/* ── Footer channel rows ── */
+.ft-ch{
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  transition:all .28s var(--ease);
+}
+.ft-ch:hover{
+  transform:translateX(6px);
+  box-shadow:0 6px 28px rgba(242,92,5,.1);
+}
+
+/* ── Back-to-top enhanced ── */
+#btt{
+  background:var(--card);
+  border:1px solid var(--border);
+  box-shadow:0 4px 24px rgba(0,0,0,.1);
+  transition:background var(--t),box-shadow var(--t),border-color var(--t),transform .3s var(--spring);
+}
+#btt.show:hover{
+  background:var(--amber);border-color:var(--amber);
+  box-shadow:0 8px 36px rgba(242,92,5,.38);
+  transform:translateY(-3px);
+}
+#btt.show:hover #btt-icon,#btt.show:hover .btt-track,#btt.show:hover .btt-prog{
+  color:#fff;stroke:#fff;
+}
+
+/* ── Case tab active state refined ── */
+.c-tab.on{
+  box-shadow:0 2px 12px rgba(242,92,5,.25);
+}
+.c-tab{transition:all .26s var(--ease);}
+.c-tab:hover:not(.on){color:var(--ink);border-color:var(--ink20);}
+
+/* ── Case box border accent ── */
+.case-box{
+  position:relative;
+  background:linear-gradient(145deg,var(--bg3),var(--bg2)) !important;
+}
+
+/* ── Chip cards — glass enhanced ── */
+.chip{
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  transition:transform .45s var(--spring),box-shadow .4s,border-color var(--t);
+}
+.chip:hover{
+  box-shadow:0 16px 48px rgba(0,0,0,.14),0 0 0 1px var(--a30);
+}
+[data-theme="dark"] .chip:hover{
+  box-shadow:0 16px 48px rgba(0,0,0,.45),0 0 0 1px var(--a30);
+}
+
+/* ── Marquee items refined ── */
+.m-item{
+  font-size:.65rem;letter-spacing:.14em;
+  color:var(--ink50);
+}
+.m-item::before{width:5px;height:5px;opacity:.7;}
+
+/* ── Avail badge refined ── */
+.avail-badge{
+  box-shadow:0 0 0 1px rgba(242,92,5,.2),0 2px 16px rgba(242,92,5,.07);
+}
+
+/* ── Mobile menu — link hover underline ── */
+.mob a{
+  position:relative;
+  display:inline-block;
+}
+.mob a::after{
+  content:'';position:absolute;bottom:-.1em;left:0;
+  width:0;height:2px;
+  background:var(--amber);border-radius:999px;
+  transition:width .35s var(--ease);
+}
+.mob a:hover::after{width:100%;}
+.mob a:hover{color:var(--amber);}
+
+/* ── Skill tier badges refined ── */
+.sk-tier-1{box-shadow:0 2px 10px rgba(242,92,5,.25);}
+.sk-item{transition:all .22s var(--ease);}
+.sk-item:hover{transform:translateY(-2px) scale(1.04);}
+
+/* ── Tag hover ── */
+.tag:hover{background:var(--amber);color:#fff;border-color:var(--amber);transform:translateY(-1px);}
+
+/* ── Port body separator ── */
+.port-body{border-top:1px solid var(--border);}
+
+/* ── Footer nav grid ── */
+.ft-nav-wrap::before{
+  opacity:.8;
+  background:linear-gradient(90deg,transparent,var(--amber) 30%,rgba(242,92,5,.4) 70%,transparent);
+}
+
+/* ── Section label scan-in enhanced ── */
+.sec-label{letter-spacing:.22em;}
+
+/* ── c-arr hover ── */
+.c-arr:hover{
+  box-shadow:0 4px 16px rgba(242,92,5,.2);
+}
+
+/* ── Hero trust line ── */
+.hero-trust{
+  padding:.4rem .85rem;
+  background:rgba(242,92,5,.04);
+  border:1px solid rgba(242,92,5,.1);
+  border-radius:999px;
+  width:fit-content;
+  backdrop-filter:blur(6px);
+}
+
+/* ── pf filter buttons — active glow ── */
+.pf.on{
+  box-shadow:0 4px 18px rgba(242,92,5,.28);
+}
+
+/* ── FT col links — arrow on hover ── */
+.ft-link{transition:color var(--t),transform var(--t),letter-spacing var(--t);}
+.ft-link:hover{letter-spacing:.06em;}
+
+/* ── Case cotag ── */
+.case-cotag{letter-spacing:.16em;}
+
+/* ── Section title underline — amber pulse ── */
+.sec-title.has-line.line-on::after{
+  box-shadow:0 0 12px rgba(242,92,5,.25);
+}
+
+/* ── Reduce motion: disable grain ── */
+@media(prefers-reduced-motion:reduce){
+  body::after{display:none;}
+  .hero-amber,.m-num,.ft-cta-headline em{animation:none;}
+  .btn-fill::after{display:none;}
+}
+
 </style>
 <script>
 (function(){try{var s=localStorage.getItem('raqmetrics-theme');var p=window.matchMedia('(prefers-color-scheme:dark)').matches;document.documentElement.setAttribute('data-theme',s||(p?'dark':'light'));}catch(e){}})();
@@ -1459,7 +1860,6 @@ body::before{
       <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode" type="button">
         <svg id="themeIco" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
       </button>
-      <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener noreferrer" class="btn btn-fill nav-cta-btn" style="padding:.5rem 1.1rem;font-size:.65rem;">Let's Connect</a>
       <button class="ham" id="ham" type="button" aria-expanded="false" aria-controls="mobMenu" aria-label="Open navigation"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -2589,6 +2989,104 @@ function initParticles(){
   }
   draw();
 }
+
+/* ══════════════════════════════════════════
+   JS UI ENHANCEMENTS
+══════════════════════════════════════════ */
+
+/* ── Growth card spotlight (CSS var mouse tracking) ── */
+document.querySelectorAll('.g-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width*100).toFixed(1);
+    const y=((e.clientY-r.top)/r.height*100).toFixed(1);
+    card.style.setProperty('--mx',x+'%');
+    card.style.setProperty('--my',y+'%');
+  });
+});
+
+/* ── Mobile menu — stagger link entrance ── */
+(function(){
+  const ham=document.getElementById('ham');
+  const mobLinks=document.querySelectorAll('.mob a');
+  if(!ham)return;
+  ham.addEventListener('click',()=>{
+    const isOpen=document.getElementById('mobMenu')?.classList.contains('open');
+    if(isOpen){
+      mobLinks.forEach((a,i)=>{
+        a.style.opacity='0';
+        a.style.transform='translateY(18px)';
+        a.style.transition=`opacity .3s ${i*.06}s,transform .3s ${i*.06}s`;
+        requestAnimationFrame(()=>{
+          a.style.opacity='1';
+          a.style.transform='none';
+        });
+      });
+    }
+  });
+})();
+
+/* ── Chip float — pause on hover correctly ── */
+document.querySelectorAll('.chip').forEach(c=>{
+  c.addEventListener('mouseenter',()=>c.style.animationPlayState='paused');
+  c.addEventListener('mouseleave',()=>c.style.animationPlayState='running');
+});
+
+/* ── Skill items — individual stagger reset on filter change ── */
+(function(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      e.target.querySelectorAll('.sk-item').forEach((t,i)=>{
+        setTimeout(()=>{ t.style.opacity='1'; t.style.transform='none'; },i*45);
+      });
+      io.unobserve(e.target);
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.sk-items').forEach(el=>io.observe(el));
+})();
+
+/* ── Portfolio tags — stagger in when card enters viewport ── */
+(function(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      e.target.querySelectorAll('.pt').forEach((t,i)=>{
+        t.style.opacity='0';
+        t.style.transform='scale(.88)';
+        setTimeout(()=>{
+          t.style.transition='opacity .28s,transform .28s var(--spring)';
+          t.style.opacity='1';
+          t.style.transform='none';
+        },350+i*55);
+      });
+      io.unobserve(e.target);
+    });
+  },{threshold:.25});
+  document.querySelectorAll('.port-item').forEach(el=>io.observe(el));
+})();
+
+/* ── Testimonial cards — subtle entrance stagger ── */
+(function(){
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const cards=e.target.querySelectorAll('.testi-card');
+      cards.forEach((c,i)=>{
+        c.style.opacity='0';
+        c.style.transform='translateY(22px)';
+        setTimeout(()=>{
+          c.style.transition='opacity .6s var(--ease),transform .6s var(--ease)';
+          c.style.opacity='1';
+          c.style.transform='none';
+        },i*140);
+      });
+      io.unobserve(e.target);
+    });
+  },{threshold:.1});
+  document.querySelectorAll('.testi-grid').forEach(el=>io.observe(el));
+})();
+
 </script>
 </body>
 </html>
