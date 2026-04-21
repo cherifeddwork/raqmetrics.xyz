@@ -739,7 +739,12 @@ flex-shrink:0;
   border-bottom:1px solid var(--border);
 }
 @media(max-width:900px){.ft-nav-grid{grid-template-columns:1fr 1fr;gap:2.5rem;}}
-@media(max-width:520px){.ft-nav-grid{grid-template-columns:1fr;gap:2rem;padding-block:2.5rem;}}
+@media(max-width:520px){
+  .ft-nav-grid{grid-template-columns:1fr 1fr;gap:1.5rem 2rem;padding-block:2rem;}
+  .ft-brand-col{grid-column:1/-1;}
+  .ft-brand-desc{display:none;}
+  .ft-nav-wrap .ft-bottom-bar{padding-block:.85rem;}
+}
 
 /* Brand col */
 .ft-brand-col .footer-logo{margin-bottom:.9rem;}
@@ -821,7 +826,7 @@ flex-shrink:0;
   background:var(--bg);
   border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
-  padding-block:clamp(4rem,8vw,6rem);
+  padding-block:clamp(3rem,8vw,6rem);
 }
 .ft-cta-glow{
   position:absolute;inset:0;pointer-events:none;
@@ -838,7 +843,14 @@ flex-shrink:0;
   letter-spacing:-.05em;
 }
 
-@media(max-width:768px){}
+@media(max-width:768px){
+  .combined-grid{gap:2rem;}
+  .ft-cta-right-intro{margin-bottom:1.25rem;font-size:.82rem;}
+  .ft-cta-channels{gap:.4rem;}
+  .ft-ch{padding:.75rem .9rem;}
+  .ft-cta-micro{margin-top:.85rem;}
+  .ft-cta-pre{margin-bottom:1rem;}
+}
 
 .ft-cta-pre{
   display:inline-flex;align-items:center;gap:.5rem;
@@ -847,7 +859,7 @@ flex-shrink:0;
 }
 .ft-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--amber);animation:pulse 1.8s ease infinite;}
 .ft-cta-headline{
-  font-family:var(--f-d);font-size:clamp(2.6rem,5.5vw,4.5rem);font-weight:900;
+  font-family:var(--f-d);font-size:clamp(1.9rem,5.5vw,4.5rem);font-weight:900;
   letter-spacing:-.045em;color:var(--ink);line-height:1.0;
 }
 .ft-cta-headline em{color:var(--amber);font-style:italic;display:block;}
@@ -1357,8 +1369,8 @@ body::before{
 /* ===== TYPEWRITER SYSTEM ===== */
 .hero-tw-static{opacity:.55;white-space:nowrap;flex-shrink:0;font-style:normal;}
 .typewriter{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;overflow:hidden;min-width:0;max-width:100%;font-style:italic;}
-.typewriter__text{color:var(--amber);font-weight:600;}
-.typewriter__cursor{width:2px;height:1.2em;background:var(--amber);border-radius:1px;opacity:.7;flex-shrink:0;animation:tw-blink 1s infinite;}
+.typewriter__text{color:var(--ink);font-weight:500;opacity:.7;}
+.typewriter__cursor{width:2px;height:1.2em;background:var(--amber);border-radius:1px;opacity:.55;flex-shrink:0;animation:tw-blink 1s infinite;}
 @keyframes tw-blink{0%,50%,100%{opacity:1;}25%,75%{opacity:0;}}
 @media(max-width:640px){.hero-tw-line{letter-spacing:.05em;}.typewriter{gap:2px;}}
 
@@ -1371,7 +1383,7 @@ body::before{
 .case-slide.on strong{color:var(--amber);}
 .case-slide.on .case-box{background:var(--bg2);}
 
-.hero-proof{font-size:.82rem;color:var(--amber);font-family:var(--f-m);letter-spacing:.03em;max-width:500px;line-height:1.65;margin-bottom:1.6rem;opacity:0;animation:fadeUp .45s var(--ease) .42s forwards;}
+.hero-proof{font-size:.82rem;color:var(--ink50);font-family:var(--f-m);letter-spacing:.03em;max-width:500px;line-height:1.65;margin-bottom:1.6rem;opacity:0;animation:fadeUp .45s var(--ease) .42s forwards;}
 .hero-reassure{font-family:var(--f-m);font-size:.65rem;letter-spacing:.07em;color:var(--ink50);margin-top:.85rem;}
 
 /* ══════════════════════════════════════════
@@ -1889,8 +1901,6 @@ body::after{
       </p>
 
       <p class="hero-sub">I design and scale multi-channel acquisition systems across Meta, Google, and TikTok — focused on reducing CAC and improving revenue efficiency.</p>
-
-      <p class="hero-proof">Reduced CAC by 20%+ across multi-regional markets through full-funnel optimization and attribution systems.</p>
 
       <div class="hero-cta">
         <a href="https://www.linkedin.com/in/cherifeddinehaddad/" target="_blank" rel="noopener noreferrer" class="btn btn-fill">
