@@ -164,7 +164,8 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 .mob.open{display:flex;}
 .mob a{font-family:var(--f-d);font-size:2.5rem;font-weight:700;color:var(--ink);transition:color var(--t);}
 .mob a:hover{color:var(--amber);}
-@media(max-width:900px){.nav-links,.nav-cta-btn,.avail-badge{display:none;}.ham{display:flex;}}
+@media(max-width:900px){.nav-links,.nav-cta-btn,.nav-right .avail-badge{display:none;}.ham{display:flex;}}
+
 .nav-logo img,
 .footer-logo img,
 .loader-logo img {
@@ -2918,32 +2919,6 @@ document.querySelectorAll('.tilt-card').forEach(card=>{
   });
   card.addEventListener('mouseleave',()=>{ card.style.transform=''; });
 });
-
-/* — H1 scramble on load — */
-(function(){
-  const CHARS='ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#@%&';
-  function scrambleNode(node,dur){
-    const orig=node.textContent;
-    let frame=0;
-    const total=Math.round(dur/36);
-    const iv=setInterval(()=>{
-      node.textContent=orig.split('').map((ch,i)=>{
-        if(ch===' ')return ' ';
-        if(frame/total>i/orig.length)return ch;
-        return CHARS[Math.floor(Math.random()*CHARS.length)];
-      }).join('');
-      if(++frame>=total){node.textContent=orig;clearInterval(iv);}
-    },36);
-  }
-  const h1=document.getElementById('heroH1');
-  if(!h1)return;
-  setTimeout(()=>{
-    const walker=document.createTreeWalker(h1,NodeFilter.SHOW_TEXT);
-    const nodes=[];let n;
-    while((n=walker.nextNode()))if(n.textContent.trim())nodes.push(n);
-    nodes.forEach((node,i)=>setTimeout(()=>scrambleNode(node,700),i*150));
-  },1500);
-})();
 
 /* — Process track fill + step highlight — */
 (function(){
