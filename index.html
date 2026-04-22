@@ -164,8 +164,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--amber);outline-offs
 .mob.open{display:flex;}
 .mob a{font-family:var(--f-d);font-size:2.5rem;font-weight:700;color:var(--ink);transition:color var(--t);}
 .mob a:hover{color:var(--amber);}
-@media(max-width:900px){.nav-links,.nav-cta-btn,.nav-right .avail-badge{display:none;}.ham{display:flex;}}
-
+@media(max-width:900px){.nav-links,.nav-cta-btn,.avail-badge{display:none;}.ham{display:flex;}}
 .nav-logo img,
 .footer-logo img,
 .loader-logo img {
@@ -330,81 +329,72 @@ flex-shrink:0;
 @media(max-width:768px){
   .process-grid::before{display:none;}
   .process-track-fill{display:none;}
-  .process-grid{
-    display:flex;
-    flex-direction:column;
-    gap:0;
-    margin-top:2rem;
-    position:relative;
-  }
-
-  /* Vertical connector line */
-  .process-grid::after{
-    content:'';
-    position:absolute;
-    left:27px;top:28px;bottom:28px;
-    width:2px;
-    background:linear-gradient(to bottom,var(--amber),rgba(242,92,5,.08));
-    border-radius:999px;
-    z-index:0;
-  }
-
-  /* Each step — horizontal card layout */
-  .p-step{
-    display:flex;
-    flex-direction:row;
-    align-items:flex-start;
-    gap:1rem;
-    text-align:left;
-    padding:.1rem 0 2rem 0;
-    position:relative;
-    z-index:1;
-  }
-  .p-step:last-child{padding-bottom:.25rem;}
-
-  /* Number circle — stays fixed on left */
-  .p-step-num{
-    width:56px;height:56px;
-    flex-shrink:0;
-    margin-bottom:0;
-    font-size:.95rem;
-    background:var(--card);
-    border:2px solid var(--border);
-    box-shadow:0 2px 12px rgba(0,0,0,.07);
-    position:relative;z-index:2;
-  }
-
-  /* Step content block */
-  .p-step-body{
-    flex:1;
-    padding-top:.65rem;
-  }
-  .p-step h4{
-    font-size:1rem;
-    margin-bottom:.4rem;
-    color:var(--ink);
-  }
-  .p-step p{
-    font-size:.8rem;
-    color:var(--ink50);
-    line-height:1.75;
-    max-width:100%;
-  }
-
-  /* Active/on state on mobile */
-  .p-step.on .p-step-num{
-    background:var(--amber);
-    border-color:var(--amber);
-    color:#fff;
-    transform:none;
-    box-shadow:0 0 0 5px rgba(242,92,5,.14),0 4px 18px rgba(242,92,5,.28);
-  }
 }
 .p-step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 1.25rem;position:relative;z-index:1;}
 .p-step-num{width:56px;height:56px;border-radius:50%;background:var(--card);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--f-d);font-size:1.1rem;font-weight:900;color:var(--ink50);margin-bottom:1.25rem;transition:all .4s var(--spring);}
 .p-step:hover .p-step-num{background:var(--amber);color:#fff;border-color:var(--amber);transform:scale(1.12);}
 .p-step h4{font-family:var(--f-d);font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:.4rem;}
 .p-step p{font-size:.78rem;color:var(--ink50);line-height:1.7;}
+
+/* ══════════════════════════════════════════
+   PROCESS — mobile vertical timeline
+   (must come AFTER base .p-step rules)
+══════════════════════════════════════════ */
+@media(max-width:768px){
+  .process-grid{
+    display:flex;flex-direction:column;
+    gap:0;margin-top:2rem;
+  }
+  /* Vertical amber connector line */
+  .process-grid::after{
+    content:'';position:absolute;
+    left:27px;top:34px;bottom:34px;
+    width:2px;
+    background:linear-gradient(to bottom,var(--amber) 0%,rgba(242,92,5,.12) 100%);
+    border-radius:999px;z-index:0;
+  }
+  /* Each step becomes a horizontal row */
+  .p-step{
+    flex-direction:row!important;
+    align-items:flex-start!important;
+    text-align:left!important;
+    padding:0 0 2rem 0!important;
+    gap:1.1rem;
+  }
+  .p-step:last-child{padding-bottom:.5rem!important;}
+  /* Circle — anchored left, no bottom margin */
+  .p-step .p-step-num{
+    width:54px;height:54px;
+    flex-shrink:0;
+    margin-bottom:0;
+    font-size:.9rem;
+    background:var(--card);
+    border:1.5px solid var(--border);
+    box-shadow:0 2px 14px rgba(0,0,0,.07);
+    z-index:2;position:relative;
+  }
+  /* Text content */
+  .p-step .p-step-body{
+    flex:1;padding-top:.55rem;
+  }
+  .p-step h4{
+    font-size:1rem!important;
+    margin-bottom:.35rem;
+    text-align:left;
+  }
+  .p-step p{
+    font-size:.8rem!important;
+    line-height:1.75;
+    text-align:left;
+  }
+  /* Active step on mobile */
+  .p-step.on .p-step-num{
+    background:var(--amber);
+    color:#fff;border-color:var(--amber);
+    transform:none!important;
+    box-shadow:0 0 0 6px rgba(242,92,5,.13),0 4px 20px rgba(242,92,5,.3);
+  }
+}
 
 /* ══════════════════════════════════════════
    REVEAL SYSTEM
@@ -2919,6 +2909,32 @@ document.querySelectorAll('.tilt-card').forEach(card=>{
   });
   card.addEventListener('mouseleave',()=>{ card.style.transform=''; });
 });
+
+/* — H1 scramble on load — */
+(function(){
+  const CHARS='ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#@%&';
+  function scrambleNode(node,dur){
+    const orig=node.textContent;
+    let frame=0;
+    const total=Math.round(dur/36);
+    const iv=setInterval(()=>{
+      node.textContent=orig.split('').map((ch,i)=>{
+        if(ch===' ')return ' ';
+        if(frame/total>i/orig.length)return ch;
+        return CHARS[Math.floor(Math.random()*CHARS.length)];
+      }).join('');
+      if(++frame>=total){node.textContent=orig;clearInterval(iv);}
+    },36);
+  }
+  const h1=document.getElementById('heroH1');
+  if(!h1)return;
+  setTimeout(()=>{
+    const walker=document.createTreeWalker(h1,NodeFilter.SHOW_TEXT);
+    const nodes=[];let n;
+    while((n=walker.nextNode()))if(n.textContent.trim())nodes.push(n);
+    nodes.forEach((node,i)=>setTimeout(()=>scrambleNode(node,700),i*150));
+  },1500);
+})();
 
 /* — Process track fill + step highlight — */
 (function(){
