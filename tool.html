@@ -3,935 +3,1257 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme:light)"/>
-<meta name="theme-color" content="#0e0d0c" media="(prefers-color-scheme:dark)"/>
-<title>Raqmetrics — Performance Marketing Model</title>
-<meta name="description" content="Full-stack performance marketing operating system. Plan, launch, diagnose and optimise any campaign — before, during and after."/>
+<title>Raqmetrics — Pre-Launch Campaign Planner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Merriweather:ital,wght@0,300;0,400;0,700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Merriweather:wght@300;400;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
 <style>
-/* ══ TOKENS ══ */
 :root{
-  --bg:#ffffff;--bg2:#f7f6f3;--bg3:#f0ede8;
-  --ink:#111110;--ink70:rgba(17,17,16,.7);--ink50:rgba(17,17,16,.5);--ink20:rgba(17,17,16,.2);--ink08:rgba(17,17,16,.08);--ink04:rgba(17,17,16,.04);
-  --amber:#F25C05;--amber-h:#D94E00;--amber-l:#FFE3D1;
-  --a30:rgba(242,92,5,.3);--a20:rgba(242,92,5,.2);--a10:rgba(242,92,5,.1);--a06:rgba(242,92,5,.06);
-  --border:#e3e1dc;
-  --card:#ffffff;--card-shadow:0 2px 20px rgba(0,0,0,.06);
-  --nav-bg:rgba(255,255,255,.9);
-  --green:#2a9d4f;--green-l:rgba(42,157,79,.12);--green-b:rgba(42,157,79,.25);
-  --red:#d63031;--red-l:rgba(214,48,49,.1);--red-b:rgba(214,48,49,.22);
-  --blue:#2563eb;--blue-l:rgba(37,99,235,.1);--blue-b:rgba(37,99,235,.22);
-  --teal:#0d9488;--teal-l:rgba(13,148,136,.1);--teal-b:rgba(13,148,136,.22);
+  --bg:#ffffff;--bg2:#f7f6f3;--bg3:#f0ede8;--bg4:#e8e4dd;
+  --ink:#111110;--ink70:rgba(17,17,16,.7);--ink50:rgba(17,17,16,.5);--ink30:rgba(17,17,16,.3);--ink10:rgba(17,17,16,.1);--ink05:rgba(17,17,16,.05);
+  --amber:#F25C05;--amber-h:#D94E00;--amber-l:#FFF0E6;
+  --a30:rgba(242,92,5,.3);--a20:rgba(242,92,5,.2);--a12:rgba(242,92,5,.12);--a06:rgba(242,92,5,.06);
+  --border:#e3e1dc;--border2:#d4d0c8;
+  --card:#ffffff;--shadow:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.04);--shadow-lg:0 8px 40px rgba(0,0,0,.09);
+  --green:#1a7a3c;--green-l:rgba(26,122,60,.1);--green-b:rgba(26,122,60,.2);
+  --red:#c0392b;--red-l:rgba(192,57,43,.08);--red-b:rgba(192,57,43,.18);
+  --blue:#1e4db7;--blue-l:rgba(30,77,183,.08);--blue-b:rgba(30,77,183,.18);
   --f-d:'Playfair Display',Georgia,serif;
   --f-b:'Merriweather',Georgia,serif;
   --f-m:'DM Mono',monospace;
-  --ease:cubic-bezier(.4,0,.2,1);--spring:cubic-bezier(.34,1.56,.64,1);--t:.22s;
+  --r:10px;--t:.2s;--ease:cubic-bezier(.4,0,.2,1);
 }
 [data-theme="dark"]{
-  --bg:#0e0d0c;--bg2:#161512;--bg3:#1e1c18;
-  --ink:#f0ede8;--ink70:rgba(240,237,232,.7);--ink50:rgba(240,237,232,.5);--ink20:rgba(240,237,232,.2);--ink08:rgba(240,237,232,.08);--ink04:rgba(240,237,232,.04);
-  --border:#2a2722;--card:#1a1815;--card-shadow:0 2px 24px rgba(0,0,0,.4);
-  --nav-bg:rgba(14,13,12,.9);
-  --green-l:rgba(42,157,79,.15);--red-l:rgba(214,48,49,.14);--blue-l:rgba(37,99,235,.14);--teal-l:rgba(13,148,136,.14);
-  --amber-l:rgba(242,92,5,.18);
+  --bg:#0e0d0c;--bg2:#161512;--bg3:#1e1c18;--bg4:#252320;
+  --ink:#f0ede8;--ink70:rgba(240,237,232,.7);--ink50:rgba(240,237,232,.5);--ink30:rgba(240,237,232,.3);--ink10:rgba(240,237,232,.1);--ink05:rgba(240,237,232,.05);
+  --border:#2a2722;--border2:#363028;--card:#1a1815;
+  --shadow:0 1px 3px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.2);--shadow-lg:0 8px 40px rgba(0,0,0,.4);
+  --amber-l:rgba(242,92,5,.15);--green-l:rgba(26,122,60,.15);--red-l:rgba(192,57,43,.12);--blue-l:rgba(30,77,183,.12);
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-b);line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .3s,color .3s;min-height:100vh;display:flex;flex-direction:column;}
-a{text-decoration:none;color:inherit;}
-button{font-family:inherit;cursor:pointer;}
-:focus-visible{outline:2px solid var(--amber);outline-offset:3px;border-radius:4px;}
-input,select{font-family:var(--f-m);font-size:.78rem;color:var(--ink);background:var(--bg2);border:1.5px solid var(--border);border-radius:8px;padding:.45rem .75rem;outline:none;transition:border-color var(--t),background var(--t);}
-input:focus,select:focus{border-color:var(--amber);background:var(--bg);}
-input[type="range"]{padding:0;background:none;border:none;width:100%;cursor:pointer;accent-color:var(--amber);}
-select option{background:var(--bg2);}
-::-webkit-scrollbar{width:5px;height:5px;}
-::-webkit-scrollbar-track{background:var(--bg2);}
-::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
-::-webkit-scrollbar-thumb:hover{background:var(--a30);}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-b);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .3s,color .3s;min-height:100vh}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,select,textarea{font-family:var(--f-m);font-size:.8rem;color:var(--ink);background:var(--bg2);border:1.5px solid var(--border);border-radius:7px;padding:.5rem .75rem;outline:none;transition:border-color var(--t),background var(--t);width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--amber);background:var(--bg)}
+input[type=checkbox]{width:auto;accent-color:var(--amber)}
+input[type=range]{padding:0;border:none;background:none;accent-color:var(--amber)}
+select option{background:var(--bg2)}
+textarea{resize:vertical;min-height:72px;line-height:1.6}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+:focus-visible{outline:2px solid var(--amber);outline-offset:2px;border-radius:4px}
 
-/* ══ NAV ══ */
-.nav{position:fixed;top:0;left:0;right:0;z-index:700;padding-block:1.4rem;transition:background var(--t),box-shadow var(--t),padding var(--t),backdrop-filter var(--t);}
-.nav.solid{background:var(--nav-bg);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);box-shadow:0 1px 0 var(--border);padding-block:.85rem;}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;width:100%;max-width:1300px;margin-inline:auto;padding-inline:clamp(1.25rem,4vw,2.5rem);}
-.nav-logo{font-family:var(--f-d);font-size:1.25rem;font-weight:900;letter-spacing:-.04em;color:var(--ink);display:flex;align-items:center;gap:.15rem;}
-.nav-logo span{color:var(--amber);}
-.nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
-.nav-links a{font-family:var(--f-m);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink50);position:relative;transition:color var(--t);padding-block:.2rem;}
-.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--amber);transition:width var(--t) var(--ease);}
-.nav-links a:hover{color:var(--ink);}
-.nav-links a:hover::after,.nav-links a.act::after{width:100%;}
-.nav-links a.act{color:var(--amber);}
-.theme-btn{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);background:transparent;display:flex;align-items:center;justify-content:center;color:var(--ink50);transition:all var(--t);}
-.theme-btn:hover{border-color:var(--amber);color:var(--amber);}
-.avail-badge{display:flex;align-items:center;gap:.4rem;font-family:var(--f-m);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);background:var(--a10);border:1px solid var(--a30);padding:.28rem .7rem;border-radius:999px;}
-.avail-dot{width:5px;height:5px;border-radius:50%;background:var(--amber);animation:pulse 1.8s ease infinite;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.4;transform:scale(1.6);}}
-@media(max-width:900px){.nav-links,.avail-badge{display:none;}}
+/* ── NAV ── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:900;padding:.9rem 0;background:rgba(255,255,255,.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:background .3s}
+[data-theme=dark] .nav{background:rgba(14,13,12,.92)}
+.nav-i{display:flex;align-items:center;justify-content:space-between;max-width:1320px;margin:0 auto;padding:0 clamp(1rem,3vw,2rem)}
+.logo{font-family:var(--f-d);font-size:1.2rem;font-weight:900;letter-spacing:-.04em}
+.logo span{color:var(--amber)}
+.nav-right{display:flex;align-items:center;gap:.6rem}
+.theme-btn{width:32px;height:32px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--ink50);transition:all var(--t)}
+.theme-btn:hover{border-color:var(--amber);color:var(--amber)}
+.back-btn{font-family:var(--f-m);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .85rem;border-radius:999px;border:1.5px solid var(--border);color:var(--ink50);transition:all var(--t);background:none}
+.back-btn:hover{border-color:var(--ink);color:var(--ink)}
+.avail{display:flex;align-items:center;gap:.4rem;font-family:var(--f-m);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);background:var(--a12);border:1px solid var(--a30);padding:.25rem .7rem;border-radius:999px}
+.avail-dot{width:5px;height:5px;border-radius:50%;background:var(--amber);animation:pulse 1.8s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.6)}}
 
-/* ══ TOOL HERO ══ */
-.tool-hero{padding-top:7rem;padding-bottom:2.5rem;border-bottom:1px solid var(--border);background:var(--bg);}
-.tool-hero .wrap{max-width:1300px;margin-inline:auto;padding-inline:clamp(1.25rem,4vw,2.5rem);}
-.tool-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--f-m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--amber);background:var(--a06);border:1px solid var(--a20);padding:.28rem .9rem;border-radius:999px;margin-bottom:1rem;}
-.tool-eyebrow-dot{width:4px;height:4px;border-radius:50%;background:var(--amber);animation:pulse 2s ease infinite;}
-.tool-hero h1{font-family:var(--f-d);font-size:clamp(1.8rem,4vw,3.2rem);font-weight:900;letter-spacing:-.04em;line-height:1.05;color:var(--ink);margin-bottom:.6rem;}
-.tool-hero h1 em{color:var(--amber);font-style:italic;}
-.tool-hero p{font-size:.875rem;color:var(--ink50);max-width:520px;line-height:1.9;margin-bottom:0;}
-.tool-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.9rem;}
-.tool-tag{font-family:var(--f-m);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.22rem .65rem;border-radius:999px;background:var(--a10);color:var(--amber);border:1px solid var(--a20);}
+/* ── LAYOUT ── */
+.shell{display:flex;min-height:100vh;padding-top:57px}
+.sidebar{width:240px;flex-shrink:0;position:fixed;top:57px;left:0;bottom:0;overflow-y:auto;border-right:1px solid var(--border);background:var(--bg2);padding:1.5rem 0;z-index:800}
+.sidebar::-webkit-scrollbar{width:0}
+.main{flex:1;margin-left:240px;padding:2rem clamp(1rem,3vw,2.5rem);max-width:calc(1320px - 240px);min-height:calc(100vh - 57px)}
+@media(max-width:900px){.sidebar{display:none}.main{margin-left:0}}
 
-/* ══ TAB RAIL ══ */
-.tab-rail{position:sticky;top:0;z-index:600;background:var(--nav-bg);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border-bottom:1px solid var(--border);box-shadow:0 1px 0 var(--border);}
-.tab-rail-inner{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;max-width:1300px;margin-inline:auto;padding-inline:clamp(1rem,3vw,2rem);}
-.tab-rail-inner::-webkit-scrollbar{display:none;}
-.t-btn{display:flex;align-items:center;gap:.45rem;padding:.85rem 1rem;font-family:var(--f-m);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink50);border:none;background:none;border-bottom:2px solid transparent;transition:color var(--t),border-color var(--t);white-space:nowrap;flex-shrink:0;}
-.t-btn:hover{color:var(--ink);}
-.t-btn.on{color:var(--amber);border-bottom-color:var(--amber);}
-.t-num{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;background:var(--ink08);border-radius:4px;font-size:.58rem;color:var(--ink50);transition:all var(--t);}
-.t-btn.on .t-num{background:var(--a10);color:var(--amber);}
+/* ── SIDEBAR NAV ── */
+.sb-section{font-family:var(--f-m);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink30);padding:.65rem 1.4rem .35rem;margin-top:.5rem}
+.sb-btn{display:flex;align-items:center;gap:.7rem;width:100%;padding:.6rem 1.4rem;font-family:var(--f-m);font-size:.72rem;letter-spacing:.04em;color:var(--ink50);transition:all var(--t);position:relative;text-align:left;background:none;border:none;cursor:pointer}
+.sb-btn:hover{color:var(--ink);background:var(--ink05)}
+.sb-btn.on{color:var(--amber);background:var(--a06)}
+.sb-btn.on::before{content:'';position:absolute;left:0;top:4px;bottom:4px;width:2.5px;background:var(--amber);border-radius:0 2px 2px 0}
+.sb-num{font-family:var(--f-m);font-size:.58rem;width:20px;height:20px;border-radius:5px;background:var(--ink10);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all var(--t);color:var(--ink30)}
+.sb-btn.on .sb-num{background:var(--a12);color:var(--amber)}
+.sb-btn.done .sb-num{background:var(--green-l);color:var(--green)}
+.sb-check{margin-left:auto;font-size:.7rem;color:var(--green);opacity:0;transition:opacity var(--t)}
+.sb-btn.done .sb-check{opacity:1}
+.sb-progress{padding:1.4rem;border-top:1px solid var(--border);margin-top:auto}
+.sb-prog-label{display:flex;justify-content:space-between;font-family:var(--f-m);font-size:.62rem;color:var(--ink50);margin-bottom:.45rem}
+.prog-track{height:3px;background:var(--ink10);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--amber-h),var(--amber));border-radius:2px;transition:width .4s var(--ease)}
 
-/* ══ MAIN CONTENT ══ */
-.tool-body{flex:1;max-width:1300px;width:100%;margin-inline:auto;padding:2rem clamp(1.25rem,4vw,2.5rem);}
+/* ── PAGE HEADER ── */
+.page-hd{margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border)}
+.page-eyebrow{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--f-m);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--amber);background:var(--a06);border:1px solid var(--a20);padding:.22rem .75rem;border-radius:999px;margin-bottom:.75rem}
+.page-hd h2{font-family:var(--f-d);font-size:clamp(1.4rem,2.5vw,1.9rem);font-weight:900;letter-spacing:-.04em;line-height:1.1;margin-bottom:.35rem}
+.page-hd h2 em{color:var(--amber);font-style:italic}
+.page-hd p{font-size:.82rem;color:var(--ink50);line-height:1.85;max-width:580px}
 
-/* ══ SECTION HEADER ══ */
-.s-head{margin-bottom:1.75rem;padding-bottom:1.25rem;border-bottom:1px solid var(--border);}
-.s-head h2{font-family:var(--f-d);font-size:1.5rem;font-weight:900;letter-spacing:-.03em;color:var(--ink);display:flex;align-items:center;gap:.65rem;margin-bottom:.25rem;}
-.s-head h2 span.ico{font-size:1.2rem;}
-.s-head p{font-size:.8rem;color:var(--ink50);line-height:1.8;margin-left:1.9rem;}
+/* ── CARDS ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem;box-shadow:var(--shadow)}
+.card-inner{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1rem 1.1rem}
+.card-accent{border-left:3px solid var(--amber)}
 
-/* ══ CARD SYSTEM ══ */
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;box-shadow:var(--card-shadow);transition:border-color var(--t);}
-.card-sm{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;transition:border-color var(--t),background var(--t);}
-.card-sm:hover{border-color:var(--a20);}
+/* ── GRID ── */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+@media(max-width:1100px){.g4{grid-template-columns:1fr 1fr}}
+@media(max-width:750px){.g2,.g3{grid-template-columns:1fr}}
 
-/* ══ GRID UTILS ══ */
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
-.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;}
-.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
-@media(max-width:1000px){.g4{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:700px){.g2,.g3,.g4{grid-template-columns:1fr;}}
+/* ── FORM ── */
+.field{margin-bottom:1.1rem}
+.field:last-child{margin-bottom:0}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:640px){.field-row{grid-template-columns:1fr}}
+.label{display:block;font-family:var(--f-m);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink50);margin-bottom:.4rem}
+.label-note{font-size:.6rem;color:var(--ink30);margin-left:.4rem;text-transform:none;letter-spacing:0}
+.hint{font-family:var(--f-m);font-size:.62rem;color:var(--ink30);margin-top:.3rem}
 
-/* ══ INPUT ROW ══ */
-.i-row{display:flex;align-items:center;gap:.75rem;padding:.7rem 0;border-bottom:1px solid var(--border);}
-.i-row:last-child{border-bottom:none;}
-.i-lbl{flex:1;font-size:.8rem;color:var(--ink70);font-family:var(--f-b);}
-.i-val{width:148px;flex-shrink:0;}
-.i-unit{font-family:var(--f-m);font-size:.65rem;color:var(--ink50);width:40px;flex-shrink:0;}
+/* ── SECTION LABEL ── */
+.sec-lbl{font-family:var(--f-m);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink30);margin-bottom:.85rem;display:flex;align-items:center;gap:.55rem}
+.sec-lbl::after{content:'';flex:1;height:1px;background:var(--border)}
 
-/* ══ CALC DISPLAY ══ */
-.c-val{font-family:var(--f-m);font-size:.95rem;font-weight:500;color:var(--amber);width:148px;flex-shrink:0;}
+/* ── BADGE ── */
+.badge{display:inline-flex;align-items:center;padding:.18rem .65rem;border-radius:999px;font-family:var(--f-m);font-size:.6rem;letter-spacing:.06em;white-space:nowrap;gap:.3rem}
+.b-amber{background:var(--a12);color:var(--amber);border:1px solid var(--a20)}
+.b-green{background:var(--green-l);color:var(--green);border:1px solid var(--green-b)}
+.b-red{background:var(--red-l);color:var(--red);border:1px solid var(--red-b)}
+.b-blue{background:var(--blue-l);color:var(--blue);border:1px solid var(--blue-b)}
+.b-gray{background:var(--ink05);color:var(--ink50);border:1px solid var(--border)}
 
-/* ══ METRIC CARD ══ */
-.m-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;box-shadow:var(--card-shadow);position:relative;overflow:hidden;transition:border-color var(--t),transform var(--t);}
-.m-card:hover{transform:translateY(-2px);border-color:var(--a20);}
-.m-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;}
-.m-card.c-amber::after{background:var(--amber);}
-.m-card.c-green::after{background:var(--green);}
-.m-card.c-red::after{background:var(--red);}
-.m-card.c-blue::after{background:var(--blue);}
-.m-card.c-teal::after{background:var(--teal);}
-.m-lbl{font-family:var(--f-m);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink50);margin-bottom:.5rem;}
-.m-val{font-family:var(--f-d);font-size:1.7rem;font-weight:900;color:var(--ink);line-height:1.1;}
-.m-sub{font-family:var(--f-m);font-size:.65rem;color:var(--ink50);margin-top:.35rem;}
-.m-badge{position:absolute;top:1rem;right:1rem;}
+/* ── METRIC CARD ── */
+.m-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:1.1rem 1.25rem;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.m-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.m-card.c-amber::after{background:var(--amber)}.m-card.c-green::after{background:var(--green)}
+.m-card.c-blue::after{background:var(--blue)}.m-card.c-red::after{background:var(--red)}
+.m-lbl{font-family:var(--f-m);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink50);margin-bottom:.45rem}
+.m-val{font-family:var(--f-d);font-size:1.6rem;font-weight:900;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
+.m-sub{font-family:var(--f-m);font-size:.62rem;color:var(--ink50);margin-top:.3rem}
 
-/* ══ BADGE ══ */
-.badge{display:inline-flex;align-items:center;padding:.18rem .6rem;border-radius:999px;font-family:var(--f-m);font-size:.58rem;letter-spacing:.08em;font-weight:500;white-space:nowrap;}
-.b-amber{background:var(--a10);color:var(--amber);border:1px solid var(--a20);}
-.b-green{background:var(--green-l);color:var(--green);border:1px solid var(--green-b);}
-.b-red{background:var(--red-l);color:var(--red);border:1px solid var(--red-b);}
-.b-blue{background:var(--blue-l);color:var(--blue);border:1px solid var(--blue-b);}
-.b-teal{background:var(--teal-l);color:var(--teal);border:1px solid var(--teal-b);}
-.b-gray{background:var(--ink08);color:var(--ink50);border:1px solid var(--border);}
+/* ── CHANNEL TOGGLE ── */
+.ch-grid{display:flex;flex-wrap:wrap;gap:.5rem}
+.ch-btn{display:flex;align-items:center;gap:.55rem;padding:.5rem 1rem;border-radius:8px;border:1.5px solid var(--border);background:var(--bg2);color:var(--ink50);font-family:var(--f-m);font-size:.72rem;transition:all var(--t);cursor:pointer}
+.ch-btn:hover{border-color:var(--amber);color:var(--ink)}
+.ch-btn.on{border-color:var(--amber);background:var(--a06);color:var(--amber)}
+.ch-dot{width:8px;height:8px;border-radius:50%}
 
-/* ══ FLAG ROW ══ */
-.flag{display:flex;align-items:flex-start;gap:.75rem;padding:.9rem 1.1rem;border-radius:10px;border:1px solid;margin-bottom:.65rem;}
-.flag:last-child{margin-bottom:0;}
-.f-red{background:var(--red-l);border-color:var(--red-b);}
-.f-amber{background:rgba(242,92,5,.06);border-color:var(--a20);}
-.f-green{background:var(--green-l);border-color:var(--green-b);}
-.f-teal{background:var(--teal-l);border-color:var(--teal-b);}
-.f-ico{font-size:.85rem;width:18px;text-align:center;flex-shrink:0;margin-top:2px;}
-.f-title{font-family:var(--f-m);font-size:.72rem;letter-spacing:.06em;font-weight:500;margin-bottom:.2rem;}
-.f-desc{font-size:.78rem;color:var(--ink70);line-height:1.65;}
-.f-action{font-family:var(--f-m);font-size:.7rem;margin-top:.4rem;font-weight:500;}
+/* ── TAG MULTI SELECT ── */
+.tag-grid{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.25rem}
+.tag-opt{padding:.28rem .75rem;border-radius:999px;border:1.5px solid var(--border);background:var(--bg2);color:var(--ink50);font-family:var(--f-m);font-size:.68rem;cursor:pointer;transition:all var(--t)}
+.tag-opt:hover{border-color:var(--amber);color:var(--amber)}
+.tag-opt.on{border-color:var(--amber);background:var(--a06);color:var(--amber)}
 
-/* ══ TABLE ══ */
-table{width:100%;border-collapse:collapse;}
-thead th{font-family:var(--f-m);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink50);padding:.65rem 1rem;text-align:left;border-bottom:1px solid var(--border);background:var(--bg2);white-space:nowrap;}
-tbody tr{border-bottom:1px solid var(--border);transition:background var(--t);}
-tbody tr:last-child{border-bottom:none;}
-tbody td{padding:.7rem 1rem;font-size:.8rem;color:var(--ink);vertical-align:middle;}
-tbody tr:hover{background:var(--bg2);}
-.mono{font-family:var(--f-m);}
+/* ── SLIDER ROW ── */
+.sl-row{padding:.65rem 0;border-bottom:1px solid var(--border)}
+.sl-row:last-child{border-bottom:none}
+.sl-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:.3rem}
+.sl-lbl{font-size:.8rem;color:var(--ink70);display:flex;align-items:center;gap:.5rem}
+.sl-val{font-family:var(--f-m);font-size:.78rem;color:var(--amber);font-weight:500}
+.sl-sub{font-family:var(--f-m);font-size:.62rem;color:var(--ink30);margin-bottom:.35rem}
 
-/* ══ SLIDER ROW ══ */
-.s-row{padding:.7rem 0;border-bottom:1px solid var(--border);}
-.s-row:last-child{border-bottom:none;}
-.s-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem;}
-.s-hdr label{font-size:.8rem;color:var(--ink70);font-family:var(--f-b);}
-.s-hdr span{font-family:var(--f-m);font-size:.78rem;color:var(--amber);font-weight:500;}
-.s-note{font-family:var(--f-m);font-size:.62rem;color:var(--ink50);margin-bottom:.4rem;}
+/* ── NAMING CONVENTION ── */
+.token-rail{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.85rem}
+.token{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .7rem;border-radius:6px;font-family:var(--f-m);font-size:.68rem;cursor:pointer;transition:all var(--t);border:1.5px solid var(--border);background:var(--bg2);color:var(--ink50)}
+.token:hover{border-color:var(--amber);color:var(--amber)}
+.token.on{border-color:var(--amber);background:var(--a06);color:var(--amber)}
+.token-drag{cursor:grab;color:var(--ink30);font-size:.7rem}
+.preview-box{background:var(--bg3);border:1.5px solid var(--border);border-radius:8px;padding:.85rem 1rem;font-family:var(--f-m);font-size:.82rem;color:var(--amber);letter-spacing:.04em;word-break:break-all;position:relative}
+.copy-btn{position:absolute;top:.5rem;right:.5rem;padding:.22rem .6rem;border-radius:5px;font-family:var(--f-m);font-size:.6rem;letter-spacing:.08em;border:1px solid var(--border);background:var(--bg);color:var(--ink50);transition:all var(--t);cursor:pointer}
+.copy-btn:hover{border-color:var(--amber);color:var(--amber)}
+.copy-btn.copied{border-color:var(--green);color:var(--green);background:var(--green-l)}
+.name-row{display:flex;align-items:center;gap:.75rem;padding:.65rem .85rem;border-radius:8px;border:1px solid var(--border);background:var(--bg2);margin-bottom:.5rem}
+.name-row:last-child{margin-bottom:0}
+.name-level{font-family:var(--f-m);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink30);width:70px;flex-shrink:0}
+.name-str{font-family:var(--f-m);font-size:.78rem;color:var(--amber);flex:1;word-break:break-all}
 
-/* ══ ACTION CARD ══ */
-.a-card{display:flex;gap:1rem;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;box-shadow:var(--card-shadow);margin-bottom:.85rem;transition:border-color var(--t),transform var(--t);}
-.a-card:hover{border-color:var(--a20);transform:translateX(3px);}
-.a-card:last-child{margin-bottom:0;}
-.a-num{width:28px;height:28px;border-radius:50%;background:var(--a10);border:1px solid var(--a30);display:flex;align-items:center;justify-content:center;font-family:var(--f-d);font-size:.9rem;font-weight:900;color:var(--amber);flex-shrink:0;margin-top:1px;}
-.a-title{font-family:var(--f-d);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:.3rem;}
-.a-desc{font-size:.8rem;color:var(--ink70);line-height:1.75;}
-.a-meta{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.65rem;}
+/* ── CAMPAIGN TREE ── */
+.tree-campaign{border:1.5px solid var(--border);border-radius:10px;margin-bottom:.85rem;overflow:hidden}
+.tree-campaign:last-child{margin-bottom:0}
+.tree-c-hdr{display:flex;align-items:center;gap:.75rem;padding:.85rem 1.1rem;background:var(--bg3);border-bottom:1px solid var(--border)}
+.tree-c-icon{font-size:.9rem}
+.tree-c-name{font-family:var(--f-m);font-size:.78rem;color:var(--amber);font-weight:500;flex:1;word-break:break-all}
+.tree-adset{display:flex;align-items:flex-start;gap:.75rem;padding:.65rem 1.1rem .65rem 2.5rem;border-bottom:1px solid var(--border);background:var(--bg)}
+.tree-adset:last-child{border-bottom:none}
+.tree-a-name{font-family:var(--f-m);font-size:.72rem;color:var(--ink70);flex:1;word-break:break-all}
+.tree-ads{margin-top:.3rem;display:flex;flex-direction:column;gap:.25rem}
+.tree-ad{font-family:var(--f-m);font-size:.65rem;color:var(--ink50);padding:.2rem .5rem;background:var(--bg2);border-radius:4px;border:1px solid var(--border)}
 
-/* ══ SCORE BAR ══ */
-.score-bar{height:4px;background:var(--ink08);border-radius:2px;overflow:hidden;margin-top:4px;}
-.score-fill{height:100%;border-radius:2px;}
+/* ── CHECKLIST ── */
+.check-item{display:flex;align-items:flex-start;gap:.85rem;padding:.85rem 1rem;border-radius:8px;border:1px solid var(--border);background:var(--card);margin-bottom:.55rem;cursor:pointer;transition:all var(--t)}
+.check-item:hover{border-color:var(--a20)}
+.check-item.done{background:var(--green-l);border-color:var(--green-b)}
+.check-item.done .ci-title{color:var(--ink50);text-decoration:line-through}
+.check-box{width:20px;height:20px;border-radius:5px;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all var(--t);font-size:.7rem}
+.check-item.done .check-box{background:var(--green);border-color:var(--green);color:#fff}
+.ci-title{font-size:.82rem;font-weight:700;color:var(--ink);margin-bottom:.15rem;transition:all var(--t)}
+.ci-desc{font-size:.75rem;color:var(--ink50);line-height:1.6}
+.ci-tag{margin-top:.35rem}
 
-/* ══ CHART WRAP ══ */
-.chart-wrap{position:relative;width:100%;}
+/* ── UTM BUILDER ── */
+.utm-box{background:var(--bg3);border:1.5px solid var(--border);border-radius:8px;padding:.85rem 1rem;font-family:var(--f-m);font-size:.75rem;color:var(--ink70);word-break:break-all;line-height:1.8}
+.utm-param{color:var(--amber)}
+.utm-val{color:var(--blue)}
 
-/* ══ SECTION LABEL ══ */
-.sec-lbl{font-family:var(--f-m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink50);margin-bottom:.85rem;display:flex;align-items:center;gap:.6rem;}
-.sec-lbl::after{content:'';flex:1;height:1px;background:var(--border);}
+/* ── SUMMARY EXPORT ── */
+.export-section{margin-bottom:1.75rem}
+.export-section h3{font-family:var(--f-d);font-size:1.05rem;font-weight:700;margin-bottom:.85rem;letter-spacing:-.02em}
+.summary-row{display:flex;padding:.55rem 0;border-bottom:1px solid var(--border);align-items:baseline;gap:1rem}
+.summary-row:last-child{border-bottom:none}
+.sr-key{font-family:var(--f-m);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink50);width:160px;flex-shrink:0}
+.sr-val{font-size:.82rem;color:var(--ink);font-weight:500;flex:1}
 
-/* ══ DIVIDER ══ */
-hr{border:none;border-top:1px solid var(--border);margin:1.25rem 0;}
+/* ── CREATIVE BRIEF CARD ── */
+.cr-card{border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:.75rem}
+.cr-hdr{display:flex;align-items:center;gap:.65rem;padding:.75rem 1rem;background:var(--bg3);border-bottom:1px solid var(--border)}
+.cr-format{font-family:var(--f-m);font-size:.72rem;font-weight:500;color:var(--amber)}
+.cr-body{padding:.9rem 1rem;display:grid;grid-template-columns:1fr 1fr;gap:.75rem 1.5rem}
+@media(max-width:640px){.cr-body{grid-template-columns:1fr}}
+.cr-row{display:flex;flex-direction:column;gap:.2rem}
+.cr-lbl{font-family:var(--f-m);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink30)}
+.cr-val{font-size:.8rem;color:var(--ink70)}
 
-/* ══ INLINE EDIT CELL ══ */
-.editable{border-bottom:1.5px dashed var(--a30);cursor:text;transition:border-color var(--t);}
-.editable:hover{border-color:var(--amber);}
+/* ── BTN ── */
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--f-m);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.65rem 1.6rem;border-radius:999px;background:var(--amber);color:#fff;box-shadow:0 4px 18px var(--a30);transition:all var(--t);border:none;cursor:pointer}
+.btn-primary:hover{background:var(--amber-h);box-shadow:0 8px 28px var(--a30);transform:translateY(-2px)}
+.btn-ghost{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--f-m);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.65rem 1.6rem;border-radius:999px;border:1.5px solid var(--border);color:var(--ink50);transition:all var(--t);background:none;cursor:pointer}
+.btn-ghost:hover{border-color:var(--ink);color:var(--ink)}
+
+/* ── STEP NAV ── */
+.step-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+
+/* ── CHART WRAP ── */
+.chart-wrap{position:relative;width:100%}
+
+/* ── HERO BANNER (before start) ── */
+.hero-banner{min-height:calc(100vh - 57px);display:flex;align-items:center;justify-content:center;padding:3rem 1.5rem;text-align:center;background:radial-gradient(ellipse 80% 60% at 50% 40%,var(--a06) 0%,transparent 70%)}
+.hero-banner h1{font-family:var(--f-d);font-size:clamp(2.5rem,6vw,5rem);font-weight:900;letter-spacing:-.05em;line-height:.95;margin-bottom:1.1rem}
+.hero-banner h1 em{color:var(--amber);font-style:italic}
+.hero-banner p{font-size:.9rem;color:var(--ink50);max-width:480px;margin:0 auto 2rem;line-height:2}
+.module-pills{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:2.5rem}
+.module-pill{font-family:var(--f-m);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .9rem;border-radius:999px;background:var(--a06);border:1px solid var(--a20);color:var(--amber)}
+
+hr.divider{border:none;border-top:1px solid var(--border);margin:1.25rem 0}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="/" class="nav-logo">raq<span>metrics</span></a>
-    <ul class="nav-links">
-      <li><a href="/#work">Work</a></li>
-      <li><a href="/#expertise">Expertise</a></li>
-      <li><a href="/#about">About</a></li>
-      <li><a href="/tool.html" class="act">Model</a></li>
-      <li><a href="/#contact">Contact</a></li>
-    </ul>
-    <div style="display:flex;align-items:center;gap:.65rem;">
-      <div class="avail-badge"><span class="avail-dot"></span>Available</div>
+<nav class="nav">
+  <div class="nav-i">
+    <a href="/" class="logo">raq<span>metrics</span></a>
+    <div class="nav-right">
+      <div class="avail"><span class="avail-dot"></span>Pre-Launch Planner</div>
+      <a href="/" class="back-btn">← Back to Site</a>
       <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
-        <svg id="ico-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg id="ico-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg id="ico-s" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="ico-m" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="tool-hero">
-  <div class="wrap">
-    <div class="tool-eyebrow"><span class="tool-eyebrow-dot"></span>Performance Marketing Model</div>
-    <h1>The <em>full-stack</em> campaign<br/>operating system.</h1>
-    <p>Plan budgets, match benchmarks, input live data, diagnose issues, score creatives and get priority actions — before, during and after every launch.</p>
-    <div class="tool-meta">
-      <span class="tool-tag">9 Modules</span>
-      <span class="tool-tag">Live Calculations</span>
-      <span class="tool-tag">Rule-Based Diagnostics</span>
-      <span class="tool-tag">Creative Scoring</span>
-      <span class="tool-tag">Auto Insights</span>
-    </div>
-  </div>
-</section>
-
-<!-- TAB RAIL -->
-<div class="tab-rail">
-  <div class="tab-rail-inner" id="tabRail"></div>
-</div>
-
-<!-- APP ROOT -->
-<div class="tool-body">
-  <div id="root"></div>
-</div>
-
-<!-- FOOTER NOTE -->
-<div style="border-top:1px solid var(--border);padding:1.5rem clamp(1.25rem,4vw,2.5rem);text-align:center;">
-  <p style="font-family:var(--f-m);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink50);">
-    Raqmetrics — Performance Marketing Model · <a href="https://raqmetrics.com" style="color:var(--amber);">raqmetrics.com</a>
-  </p>
-</div>
+<div id="root"></div>
 
 <script>
-/* Nav scroll solid */
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('solid',window.scrollY>20),{passive:true});
-
-/* Theme toggle */
 const html=document.documentElement;
 const btn=document.getElementById('themeBtn');
-const sun=document.getElementById('ico-sun');
-const moon=document.getElementById('ico-moon');
-function applyTheme(t){
-  html.setAttribute('data-theme',t);
-  localStorage.setItem('rqm-theme',t);
-  sun.style.display=t==='dark'?'block':'none';
-  moon.style.display=t==='dark'?'none':'block';
-  if(window.__chartInstances) window.__chartInstances.forEach(c=>{ try{c.update();}catch(e){} });
-}
+function applyTheme(t){html.setAttribute('data-theme',t);localStorage.setItem('rqm-theme',t);document.getElementById('ico-s').style.display=t==='dark'?'block':'none';document.getElementById('ico-m').style.display=t==='dark'?'none':'block';}
 btn.addEventListener('click',()=>applyTheme(html.getAttribute('data-theme')==='dark'?'light':'dark'));
 applyTheme(localStorage.getItem('rqm-theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
 </script>
 
 <script data-presets="env,react" type="text/babel">
-const {useState,useMemo,useEffect,useRef}=React;
-window.__chartInstances=window.__chartInstances||[];
+const {useState,useMemo,useCallback,useEffect,useRef}=React;
 
-/* ── Benchmarks ── */
-const BM_DB=[
-  {industry:"Ecommerce",geo:"Global",funnel:"Ecom",    cpm:12.0,ctr:.015, cvr:.020, cpc:.80},
-  {industry:"Ecommerce",geo:"US",    funnel:"Ecom",    cpm:18.0,ctr:.016, cvr:.023, cpc:1.13},
-  {industry:"Ecommerce",geo:"ME",    funnel:"Ecom",    cpm:10.0,ctr:.014, cvr:.018, cpc:.71},
-  {industry:"Fashion",  geo:"Global",funnel:"Ecom",    cpm:10.5,ctr:.018, cvr:.015, cpc:.58},
-  {industry:"Fashion",  geo:"US",    funnel:"Ecom",    cpm:16.0,ctr:.019, cvr:.017, cpc:.84},
-  {industry:"Health",   geo:"Global",funnel:"Ecom",    cpm:15.0,ctr:.012, cvr:.018, cpc:1.25},
-  {industry:"Health",   geo:"Global",funnel:"Lead Gen",cpm:16.0,ctr:.009, cvr:.045, cpc:1.78},
-  {industry:"SaaS",     geo:"Global",funnel:"Lead Gen",cpm:18.0,ctr:.008, cvr:.050, cpc:2.25},
-  {industry:"SaaS",     geo:"US",    funnel:"Lead Gen",cpm:25.0,ctr:.009, cvr:.060, cpc:2.78},
-  {industry:"Finance",  geo:"Global",funnel:"Lead Gen",cpm:25.0,ctr:.006, cvr:.035, cpc:4.17},
-  {industry:"Finance",  geo:"US",    funnel:"Lead Gen",cpm:35.0,ctr:.0065,cvr:.040, cpc:5.38},
-  {industry:"Real Estate",geo:"Global",funnel:"Lead Gen",cpm:20.0,ctr:.007,cvr:.040,cpc:2.86},
-  {industry:"Real Estate",geo:"ME",  funnel:"Lead Gen",cpm:18.0,ctr:.0075,cvr:.042, cpc:2.40},
-  {industry:"Education",geo:"Global",funnel:"Lead Gen",cpm:12.0,ctr:.010, cvr:.060, cpc:1.20},
-  {industry:"App",      geo:"Global",funnel:"App",     cpm:8.0, ctr:.020, cvr:.080, cpc:.40},
-  {industry:"App",      geo:"US",    funnel:"App",     cpm:12.0,ctr:.022, cvr:.085, cpc:.55},
-  {industry:"Retail",   geo:"Global",funnel:"Ecom",    cpm:11.0,ctr:.016, cvr:.021, cpc:.69},
-  {industry:"Beauty",   geo:"Global",funnel:"Ecom",    cpm:13.0,ctr:.017, cvr:.019, cpc:.76},
-];
-
-const INIT_DATA=[
-  {id:1,date:"Apr 1",channel:"Meta",  campaign:"Prosp_A", adset:"Adset_A1",spend:500,impressions:55000,clicks:825, conversions:17,revenue:2550,freq:1.8},
-  {id:2,date:"Apr 1",channel:"Meta",  campaign:"Prosp_A", adset:"Adset_A2",spend:300,impressions:32000,clicks:416, conversions:7, revenue:1050,freq:2.1},
-  {id:3,date:"Apr 1",channel:"Meta",  campaign:"Retgt_B", adset:"Adset_B1",spend:200,impressions:18000,clicks:234, conversions:6, revenue:900, freq:2.6},
-  {id:4,date:"Apr 1",channel:"Google",campaign:"Search_C",adset:"Adset_C1",spend:600,impressions:42000,clicks:840, conversions:22,revenue:3300,freq:1.1},
-  {id:5,date:"Apr 1",channel:"Google",campaign:"Search_C",adset:"Adset_C2",spend:250,impressions:19000,clicks:380, conversions:8, revenue:1200,freq:1.0},
-  {id:6,date:"Apr 1",channel:"TikTok",campaign:"Test_D",  adset:"Adset_D1",spend:150,impressions:95000,clicks:1425,conversions:9, revenue:1350,freq:3.2},
-  {id:7,date:"Apr 2",channel:"Meta",  campaign:"Prosp_A", adset:"Adset_A1",spend:480,impressions:53000,clicks:742, conversions:15,revenue:2250,freq:1.9},
-  {id:8,date:"Apr 2",channel:"Meta",  campaign:"Retgt_B", adset:"Adset_B1",spend:220,impressions:19500,clicks:254, conversions:7, revenue:1050,freq:2.7},
-  {id:9,date:"Apr 2",channel:"Google",campaign:"Search_C",adset:"Adset_C1",spend:580,impressions:40000,clicks:800, conversions:21,revenue:3150,freq:1.0},
-  {id:10,date:"Apr 2",channel:"TikTok",campaign:"Test_D", adset:"Adset_D1",spend:140,impressions:88000,clicks:1320,conversions:7, revenue:1050,freq:3.4},
-];
-
-const INIT_CREATIVES=[
-  {id:"CR-001",format:"Video", angle:"Pain Point",  adset:"Adset_A1",spend7d:200,impr7d:25000,clicks7d:500,freq:1.8,prevCTR:.023},
-  {id:"CR-002",format:"Static",angle:"Offer",       adset:"Adset_A1",spend7d:150,impr7d:18000,clicks7d:252,freq:2.7,prevCTR:.018},
-  {id:"CR-003",format:"UGC",   angle:"Social Proof",adset:"Adset_A2",spend7d:180,impr7d:22000,clicks7d:396,freq:2.1,prevCTR:.019},
-  {id:"CR-004",format:"Video", angle:"Offer",       adset:"Adset_A2",spend7d:120,impr7d:15000,clicks7d:330,freq:1.4,prevCTR:.019},
-  {id:"CR-005",format:"Static",angle:"Pain Point",  adset:"Adset_B1",spend7d:80, impr7d:10000,clicks7d:130,freq:1.9,prevCTR:.014},
-  {id:"CR-006",format:"UGC",   angle:"Comparison",  adset:"Adset_B1",spend7d:60, impr7d:8000, clicks7d:96, freq:1.6,prevCTR:.013},
-];
+/* ── Benchmark DB ── */
+const BM={
+  'Ecommerce|Ecom|Meta':      {cpm:11,ctr:.016,cvr:.022,cpc:.69},
+  'Ecommerce|Ecom|Google':    {cpm:6, ctr:.045,cvr:.032,cpc:.13},
+  'Ecommerce|Ecom|TikTok':    {cpm:8, ctr:.018,cvr:.014,cpc:.44},
+  'Fashion|Ecom|Meta':        {cpm:10,ctr:.018,cvr:.016,cpc:.56},
+  'Fashion|Ecom|TikTok':      {cpm:7, ctr:.024,cvr:.013,cpc:.29},
+  'Health|Lead Gen|Meta':     {cpm:15,ctr:.009,cvr:.045,cpc:1.67},
+  'Health|Lead Gen|Google':   {cpm:9, ctr:.038,cvr:.055,cpc:.24},
+  'SaaS|Lead Gen|Meta':       {cpm:18,ctr:.008,cvr:.050,cpc:2.25},
+  'SaaS|Lead Gen|Google':     {cpm:12,ctr:.042,cvr:.065,cpc:.29},
+  'Finance|Lead Gen|Meta':    {cpm:24,ctr:.006,cvr:.035,cpc:4.0},
+  'Finance|Lead Gen|Google':  {cpm:18,ctr:.048,cvr:.042,cpc:.38},
+  'Real Estate|Lead Gen|Meta':{cpm:18,ctr:.007,cvr:.040,cpc:2.57},
+  'Education|Lead Gen|Meta':  {cpm:12,ctr:.010,cvr:.060,cpc:1.2},
+  'Education|Lead Gen|Google':{cpm:7, ctr:.040,cvr:.070,cpc:.175},
+  'App|App|Meta':             {cpm:8, ctr:.020,cvr:.080,cpc:.40},
+  'App|App|TikTok':           {cpm:6, ctr:.025,cvr:.070,cpc:.24},
+  'Retail|Ecom|Meta':         {cpm:10,ctr:.016,cvr:.021,cpc:.63},
+  'Beauty|Ecom|Meta':         {cpm:12,ctr:.017,cvr:.019,cpc:.71},
+  'Beauty|Ecom|TikTok':       {cpm:9, ctr:.022,cvr:.017,cpc:.41},
+};
+function getBM(industry,funnel,channel){
+  return BM[`${industry}|${funnel}|${channel}`]||BM[`${industry}|${funnel}|Meta`]||{cpm:12,ctr:.012,cvr:.020,cpc:1.0};
+}
 
 /* ── Formatters ── */
 const f$=(v,d=0)=>v==null||!isFinite(v)?'—':'$'+Number(v).toLocaleString('en',{minimumFractionDigits:d,maximumFractionDigits:d});
-const fpct=(v,d=2)=>v==null||!isFinite(v)?'—':(v*100).toFixed(d)+'%';
+const fpct=(v,d=1)=>v==null||!isFinite(v)?'—':(v*100).toFixed(d)+'%';
 const fx=(v,d=2)=>v==null||!isFinite(v)?'—':Number(v).toFixed(d)+'x';
-const fn=(v)=>v==null||!isFinite(v)?'—':Number(Math.round(v)).toLocaleString('en');
-
-/* ── Data helpers ── */
-function agg(rows){return rows.reduce((a,r)=>({spend:a.spend+r.spend,impr:a.impr+r.impressions,clicks:a.clicks+r.clicks,conv:a.conv+r.conversions,rev:a.rev+r.revenue}),{spend:0,impr:0,clicks:0,conv:0,rev:0});}
-function metrics(a){return{...a,cpm:a.impr>0?a.spend/a.impr*1000:null,ctr:a.impr>0?a.clicks/a.impr:null,cpc:a.clicks>0?a.spend/a.clicks:null,cvr:a.clicks>0?a.conv/a.clicks:null,cpa:a.conv>0?a.spend/a.conv:null,roas:a.spend>0?a.rev/a.spend:null};}
-function chMetrics(data,chs){return chs.map(ch=>({channel:ch,...metrics(agg(data.filter(r=>r.channel===ch)))}));}
-
-/* ── Chart theme helper ── */
-function chartTheme(){
-  const dark=document.documentElement.getAttribute('data-theme')==='dark';
-  return{grid:dark?'rgba(42,39,34,.6)':'rgba(227,225,220,.7)',tick:dark?'rgba(240,237,232,.4)':'rgba(17,17,16,.4)',bg:dark?'#1a1815':'#ffffff'};
-}
-
-/* ── Chart.js wrappers ── */
-function BarChart({id,labels,datasets,yFmt,height=200}){
-  const ref=useRef(null);const inst=useRef(null);
-  useEffect(()=>{
-    if(!ref.current)return;
-    if(inst.current){inst.current.destroy();}
-    const th=chartTheme();
-    inst.current=new window.Chart(ref.current,{
-      type:'bar',
-      data:{labels,datasets:datasets.map(d=>({...d,borderRadius:6,borderSkipped:false}))},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:datasets.length>1,labels:{color:th.tick,font:{family:"'DM Mono',monospace",size:11},boxWidth:10,boxHeight:8}},tooltip:{backgroundColor:th.bg,borderColor:'rgba(242,92,5,.3)',borderWidth:1,titleColor:th.tick,bodyColor:th.tick,bodyFont:{family:"'DM Mono',monospace",size:11},callbacks:{label:c=>yFmt?yFmt(c.parsed.y):c.parsed.y}}},scales:{x:{ticks:{color:th.tick,font:{family:"'DM Mono',monospace",size:10}},grid:{color:th.grid},border:{color:th.grid}},y:{ticks:{color:th.tick,font:{family:"'DM Mono',monospace",size:10},callback:v=>yFmt?yFmt(v):v},grid:{color:th.grid},border:{color:th.grid}}}}
-    });
-    window.__chartInstances.push(inst.current);
-    return()=>{if(inst.current){window.__chartInstances=window.__chartInstances.filter(c=>c!==inst.current);inst.current.destroy();}};
-  },[JSON.stringify({labels,datasets,id})]);
-  return <div className="chart-wrap" style={{height}}><canvas ref={ref}/></div>;
-}
-
-function LineChart({id,labels,datasets,height=200}){
-  const ref=useRef(null);const inst=useRef(null);
-  useEffect(()=>{
-    if(!ref.current)return;
-    if(inst.current){inst.current.destroy();}
-    const th=chartTheme();
-    inst.current=new window.Chart(ref.current,{
-      type:'line',data:{labels,datasets:datasets.map(d=>({...d,tension:.35,pointRadius:5,pointHoverRadius:7,pointBorderWidth:2}))},
-      options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:th.tick,font:{family:"'DM Mono',monospace",size:11},boxWidth:12,boxHeight:2}},tooltip:{backgroundColor:th.bg,borderColor:'rgba(242,92,5,.3)',borderWidth:1,titleColor:th.tick,bodyColor:th.tick,bodyFont:{family:"'DM Mono',monospace",size:11}}},scales:{x:{ticks:{color:th.tick,font:{family:"'DM Mono',monospace",size:10}},grid:{color:th.grid},border:{color:th.grid}},y:{ticks:{color:th.tick,font:{family:"'DM Mono',monospace",size:10}},grid:{color:th.grid},border:{color:th.grid}}}}
-    });
-    window.__chartInstances.push(inst.current);
-    return()=>{if(inst.current){window.__chartInstances=window.__chartInstances.filter(c=>c!==inst.current);inst.current.destroy();}};
-  },[JSON.stringify({labels,datasets,id})]);
-  return <div className="chart-wrap" style={{height}}><canvas ref={ref}/></div>;
-}
+const fn=(v,d=0)=>v==null||!isNaN(v)&&!isFinite(v)?'—':Number(v).toLocaleString('en',{maximumFractionDigits:d});
+const slug=(s)=>s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+const upper=(s)=>s.toUpperCase().replace(/[^A-Z0-9]+/g,'_');
 
 /* ── Shared UI ── */
-function SHead({icon,title,sub}){
-  return(<div className="s-head"><h2><span className="ico">{icon}</span>{title}</h2>{sub&&<p>{sub}</p>}</div>);
-}
-function MCard({label,value,sub,color='c-amber',badge,badgeColor='b-gray'}){
-  return(<div className={`m-card ${color}`}><div className="m-lbl">{label}</div><div className="m-val">{value}</div>{sub&&<div className="m-sub">{sub}</div>}{badge&&<div className="m-badge"><span className={`badge ${badgeColor}`}>{badge}</span></div>}</div>);
-}
-function Flag({type,icon,title,desc,action}){
-  const col={red:'var(--red)',amber:'var(--amber)',green:'var(--green)',teal:'var(--teal)'}[type]||'var(--ink)';
-  return(<div className={`flag f-${type}`}><div className="f-ico">{icon}</div><div><div className="f-title" style={{color:col}}>{title}</div>{desc&&<div className="f-desc">{desc}</div>}{action&&<div className="f-action" style={{color:col}}>→ {action}</div>}</div></div>);
+function Field({label,note,hint,children}){return(<div className="field"><label className="label">{label}{note&&<span className="label-note">{note}</span>}</label>{children}{hint&&<div className="hint">{hint}</div>}</div>);}
+function SLabel({children}){return <div className="sec-lbl">{children}</div>;}
+function Card({children,style,className=''}){return <div className={`card ${className}`} style={style}>{children}</div>;}
+function MCard({label,val,sub,color='c-amber'}){return(<div className={`m-card ${color}`}><div className="m-lbl">{label}</div><div className="m-val">{val}</div>{sub&&<div className="m-sub">{sub}</div>}</div>);}
+function Badge({children,type='b-gray'}){return <span className={`badge ${type}`}>{children}</span>;}
+function Divider(){return <hr className="divider"/>;}
+
+function CopyBtn({text}){
+  const [copied,setCopied]=useState(false);
+  function copy(){navigator.clipboard?.writeText(text).catch(()=>{});setCopied(true);setTimeout(()=>setCopied(false),1800);}
+  return <button className={`copy-btn${copied?' copied':''}`} onClick={copy}>{copied?'✓ Copied':'Copy'}</button>;
 }
 
-/* ═══ 01 CONTEXT ═══ */
-function ContextSheet({ctx,setCtx,bm}){
-  const set=(k,v)=>setCtx(p=>({...p,[k]:v}));
-  const tCAC=+(ctx.aov*ctx.grossMargin).toFixed(2);
-  const beROAS=ctx.grossMargin>0?+(1/ctx.grossMargin).toFixed(2):0;
-  const daily=+(ctx.monthlyBudget/30).toFixed(2);
-  const eImpr=bm&&bm.cpm>0?daily/(bm.cpm/1000):null;
-  const eClicks=eImpr&&bm?eImpr*bm.ctr:null;
-  const eConv=eClicks&&bm?eClicks*bm.cvr:null;
-  const eRev=eConv?eConv*ctx.aov:null;
-  return(<div>
-    <SHead icon="⚡" title="Master Context" sub="All inputs drive every calculation, benchmark match and diagnostic flag across the model. Start here."/>
-    <div className="g2">
-      <div className="card">
-        <div className="sec-lbl">Campaign Inputs</div>
-        {[
-          {k:'country',l:'Country',opts:['UAE','US','UK','Saudi Arabia','Germany','France','India','Australia','Canada','Brazil']},
-          {k:'industry',l:'Industry',opts:['Ecommerce','Fashion','Health','SaaS','Finance','Real Estate','Education','App','Retail','Beauty']},
-          {k:'funnelType',l:'Funnel Type',opts:['Ecom','Lead Gen','App']},
-          {k:'conversionType',l:'Conversion Type',opts:['Website','WhatsApp','Call']},
-          {k:'objective',l:'Objective',opts:['Scale','Efficiency','Testing']},
-        ].map(({k,l,opts})=>(
-          <div key={k} className="i-row"><span className="i-lbl">{l}</span>
-            <select className="i-val" value={ctx[k]} onChange={e=>set(k,e.target.value)}>{opts.map(o=><option key={o}>{o}</option>)}</select>
-          </div>
-        ))}
-        {[
-          {k:'aov',l:'Avg Order Value (AOV)',u:'$',step:.5},
-          {k:'grossMargin',l:'Gross Margin',u:'e.g. 0.40',step:.01},
-          {k:'salesCycleDays',l:'Sales Cycle',u:'days',step:1},
-          {k:'monthlyBudget',l:'Monthly Budget',u:'$',step:100},
-        ].map(({k,l,u,step})=>(
-          <div key={k} className="i-row"><span className="i-lbl">{l}</span>
-            <input className="i-val" type="number" step={step} value={ctx[k]} onChange={e=>set(k,+e.target.value)} style={{color:'var(--amber)'}}/>
-            <span className="i-unit">{u}</span>
-          </div>
-        ))}
-      </div>
-      <div style={{display:'flex',flexDirection:'column',gap:'1.25rem'}}>
-        <div className="card">
-          <div className="sec-lbl">Core Calculations</div>
-          {[
-            {l:'Target CAC',v:f$(tCAC,2),note:'AOV × Gross Margin — max you can pay per customer'},
-            {l:'Break-Even ROAS',v:fx(beROAS),note:'1 ÷ Gross Margin — minimum ROAS to cover COGS'},
-            {l:'Daily Budget',v:f$(daily,2),note:'Monthly ÷ 30'},
-          ].map(({l,v,note})=>(
-            <div key={l} className="i-row"><span className="i-lbl">{l}</span><span className="c-val">{v}</span><span style={{fontSize:'.7rem',color:'var(--ink50)',flex:1,lineHeight:1.4}}>{note}</span></div>
-          ))}
-        </div>
-        <div className="card">
-          <div className="sec-lbl">Benchmark Match {bm&&<span className="badge b-amber" style={{marginLeft:6}}>Matched</span>}</div>
-          {bm?(<>
-            <div className="mono" style={{fontSize:'.65rem',color:'var(--ink50)',marginBottom:'.75rem'}}>{ctx.industry} · {ctx.funnelType} · {bm.geo}</div>
-            {[{l:'Expected CPM',v:f$(bm.cpm,2)},{l:'Expected CTR',v:fpct(bm.ctr)},{l:'Expected CVR',v:fpct(bm.cvr)},{l:'Expected CPC',v:f$(bm.cpc,2)}].map(({l,v})=>(
-              <div key={l} className="i-row"><span className="i-lbl">{l}</span><span className="c-val">{v}</span></div>
-            ))}
-          </>):<p style={{fontSize:'.8rem',color:'var(--ink50)',paddingTop:'.5rem'}}>⚠ No match for <strong>{ctx.industry}</strong> + <strong>{ctx.funnelType}</strong>. Add a row in the Benchmarks tab.</p>}
-        </div>
-        <div className="card">
-          <div className="sec-lbl">Projected Performance</div>
-          <div className="g2" style={{gap:'.75rem'}}>
-            {[{l:'Daily Impressions',v:fn(eImpr)},{l:'Daily Clicks',v:fn(eClicks)},{l:'Daily Conversions',v:eConv?eConv.toFixed(1):'—'},{l:'Daily Revenue',v:f$(eRev)},{l:'Monthly Conversions',v:fn(eConv?eConv*30:null)},{l:'Monthly Revenue',v:f$(eRev?eRev*30:null)}].map(({l,v})=>(
-              <div key={l} className="card-sm"><div style={{fontSize:'.62rem',color:'var(--ink50)',marginBottom:'.35rem',fontFamily:"var(--f-m)",letterSpacing:'.06em',textTransform:'uppercase'}}>{l}</div><div style={{fontFamily:'var(--f-d)',fontWeight:900,fontSize:'1.2rem',color:v==='—'?'var(--ink20)':'var(--amber)'}}>{v}</div></div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+function PageHeader({eyebrow,title,sub}){
+  return(<div className="page-hd">
+    <div className="page-eyebrow">{eyebrow}</div>
+    <h2 dangerouslySetInnerHTML={{__html:title}}/>
+    {sub&&<p>{sub}</p>}
   </div>);
 }
 
-/* ═══ 02 BENCHMARKS ═══ */
-function BenchmarksSheet({ctx}){
-  const [q,setQ]=useState('');
-  const active=BM_DB.find(b=>b.industry===ctx.industry&&b.funnel===ctx.funnelType);
-  const rows=q?BM_DB.filter(b=>b.industry.toLowerCase().includes(q.toLowerCase())||b.funnel.toLowerCase().includes(q.toLowerCase())):BM_DB;
-  return(<div>
-    <SHead icon="📊" title="Benchmark Engine" sub="Reference CPM · CTR · CVR · CPC by industry, geo and funnel. Active match is highlighted."/>
-    <div style={{display:'flex',gap:'.75rem',marginBottom:'1.25rem',flexWrap:'wrap',alignItems:'center'}}>
-      <input placeholder="Filter by industry or funnel…" value={q} onChange={e=>setQ(e.target.value)} style={{width:260}}/>
-      {active&&<span className="badge b-amber">Active: {active.industry} · {active.funnel}</span>}
-      <span style={{fontSize:'.7rem',color:'var(--ink50)',marginLeft:'auto',fontFamily:'var(--f-m)'}}>{rows.length} entries</span>
-    </div>
-    <div className="card" style={{padding:0,overflow:'hidden'}}>
-      <table>
-        <thead><tr>{['Industry','Geo','Funnel','CPM','CTR','CVR','CPC'].map(h=><th key={h}>{h}</th>)}</tr></thead>
-        <tbody>{rows.map((b,i)=>{
-          const on=active&&b.industry===active.industry&&b.funnel===active.funnel&&b.geo===active.geo;
-          return(<tr key={i} style={on?{background:'var(--a06)'}:{}}>
-            <td style={{fontWeight:on?700:400,color:on?'var(--amber)':'var(--ink)',fontFamily:on?'var(--f-d)':'inherit'}}>{b.industry}</td>
-            <td><span className="badge b-gray">{b.geo}</span></td>
-            <td style={{color:'var(--ink70)'}}>{b.funnel}</td>
-            <td className="mono">{f$(b.cpm,2)}</td><td className="mono">{fpct(b.ctr)}</td>
-            <td className="mono">{fpct(b.cvr)}</td><td className="mono">{f$(b.cpc,2)}</td>
-          </tr>);
-        })}</tbody>
-      </table>
-    </div>
+function StepNav({onBack,onNext,backLabel='← Previous',nextLabel='Next →',nextDisabled=false}){
+  return(<div className="step-nav">
+    <button className="btn-ghost" onClick={onBack}>{backLabel}</button>
+    <button className="btn-primary" onClick={onNext} disabled={nextDisabled} style={{opacity:nextDisabled?.5:1}}>{nextLabel}</button>
   </div>);
 }
 
-/* ═══ 03 BUDGET ═══ */
-function BudgetSheet({ctx}){
-  const [meta,setMeta]=useState(60);const [google,setGoogle]=useState(30);const [tiktok,setTiktok]=useState(10);
-  const [prosp,setProsp]=useState(70);const [retgt,setRetgt]=useState(20);const [test,setTest]=useState(10);
-  const daily=+(ctx.monthlyBudget/30).toFixed(2);
-  const nc=daily<100?1:daily<500?3:5;
-  const chSum=meta+google+tiktok;const fuSum=prosp+retgt+test;
-  return(<div>
-    <SHead icon="💰" title="Budget Allocation" sub="Drag sliders to adjust channel and funnel splits. Campaign structure auto-scales to your daily budget."/>
-    <div className="g2">
-      <div className="card">
-        <div className="sec-lbl">Channel Split</div>
-        <div style={{display:'flex',alignItems:'center',gap:'.75rem',marginBottom:'1rem'}}>
-          <span style={{fontSize:'.8rem',color:'var(--ink70)'}}>Daily budget:</span>
-          <span style={{fontFamily:'var(--f-d)',fontWeight:900,fontSize:'1.15rem',color:'var(--amber)'}}>{f$(daily,2)}</span>
-          <span className={`badge ${Math.abs(chSum-100)<=.5?'b-green':'b-red'}`} style={{marginLeft:'auto'}}>{Math.abs(chSum-100)<=.5?'✓ Valid':`Sum = ${chSum}%`}</span>
-        </div>
-        {[{l:'Meta',v:meta,set:setMeta,col:'#1877F2'},{l:'Google',v:google,set:setGoogle,col:'#34A853'},{l:'TikTok',v:tiktok,set:setTiktok,col:'#FF0050'}].map(({l,v,set,col})=>(
-          <div key={l} className="s-row">
-            <div className="s-hdr"><label style={{display:'flex',alignItems:'center',gap:'.45rem'}}><span style={{width:8,height:8,borderRadius:'50%',background:col,display:'inline-block'}}></span>{l}</label><span>{v}% — {f$(+(daily*v/100).toFixed(2),2)}/day</span></div>
-            <input type="range" min="0" max="100" step="1" value={v} onChange={e=>{const n=+e.target.value;l==='Meta'?setMeta(n):l==='Google'?setGoogle(n):setTiktok(n);}}/>
-          </div>
-        ))}
-        <hr/>
-        <div className="sec-lbl">Monthly by Channel</div>
-        <div className="g3">
-          {[{l:'Meta',v:meta,col:'#1877F2'},{l:'Google',v:google,col:'#34A853'},{l:'TikTok',v:tiktok,col:'#FF0050'}].map(({l,v,col})=>(
-            <div key={l} className="card-sm" style={{textAlign:'center',borderTop:`2px solid ${col}`}}>
-              <div style={{fontSize:'.62rem',color:'var(--ink50)',marginBottom:'.3rem',fontFamily:'var(--f-m)',letterSpacing:'.08em',textTransform:'uppercase'}}>{l}</div>
-              <div style={{fontFamily:'var(--f-d)',fontWeight:900,fontSize:'1.05rem'}}>{f$(+(ctx.monthlyBudget*v/100).toFixed(0))}</div>
-              <div style={{fontSize:'.62rem',color:'var(--ink50)',fontFamily:'var(--f-m)'}}>{v}%</div>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div style={{display:'flex',flexDirection:'column',gap:'1.25rem'}}>
-        <div className="card">
-          <div className="sec-lbl">Funnel Split</div>
-          <div style={{marginBottom:'.85rem'}}><span className={`badge ${Math.abs(fuSum-100)<=.5?'b-green':'b-red'}`}>{Math.abs(fuSum-100)<=.5?'✓ Valid':`Sum = ${fuSum}%`}</span></div>
-          {[
-            {l:'Prospecting',v:prosp,set:setProsp,note:'New audience acquisition',col:'var(--amber)'},
-            {l:'Retargeting', v:retgt,set:setRetgt,note:'Warm audience re-engagement',col:'var(--blue)'},
-            {l:'Testing',     v:test, set:setTest, note:'Creatives & audience experiments',col:'var(--green)'},
-          ].map(({l,v,set,note,col})=>(
-            <div key={l} className="s-row">
-              <div className="s-hdr"><label style={{color:col}}>{l}</label><span>{v}% — {f$(+(daily*v/100).toFixed(2),2)}/day</span></div>
-              <div className="s-note">{note}</div>
-              <input type="range" min="0" max="100" step="1" value={v} onChange={e=>set(+e.target.value)}/>
-            </div>
-          ))}
-        </div>
-        <div className="card">
-          <div className="sec-lbl">Campaign Structure</div>
-          <div className="g2" style={{gap:'.75rem'}}>
-            {[
-              {l:'Campaigns',v:nc,note:daily<100?'Budget <$100/day':daily<500?'Budget $100–500/day':'Budget $500+/day'},
-              {l:'Adsets / Campaign',v:'2–5',note:'By audience segment'},
-              {l:'Creatives / Adset',v:'3–6',note:'Minimum 3 to enable A/B testing'},
-              {l:'Min Total Creatives',v:nc*9,note:`${nc} × 3 adsets × 3 creatives`},
-            ].map(({l,v,note})=>(
-              <div key={l} className="card-sm">
-                <div style={{fontSize:'.62rem',color:'var(--ink50)',marginBottom:'.3rem',fontFamily:'var(--f-m)',letterSpacing:'.08em',textTransform:'uppercase'}}>{l}</div>
-                <div style={{fontFamily:'var(--f-d)',fontWeight:900,fontSize:'1.5rem',color:'var(--amber)'}}>{v}</div>
-                <div style={{fontSize:'.65rem',color:'var(--ink50)',fontFamily:'var(--f-m)'}}>{note}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>);
-}
-
-/* ═══ 04 DATA ═══ */
-function DataSheet({data,setData}){
-  const [edit,setEdit]=useState(null);
-  const iCols=[{k:'date',l:'Date',w:80},{k:'channel',l:'Channel',w:80},{k:'campaign',l:'Campaign',w:100},{k:'adset',l:'Adset',w:95},{k:'spend',l:'Spend',w:72},{k:'impressions',l:'Impr',w:80},{k:'clicks',l:'Clicks',w:65},{k:'conversions',l:'Conv',w:60},{k:'revenue',l:'Revenue',w:82},{k:'freq',l:'Freq',w:55}];
-  const numCols=['spend','impressions','clicks','conversions','revenue','freq'];
-  const cCols=[{l:'CPM',fn:r=>f$(r.impressions>0?r.spend/r.impressions*1000:null,2)},{l:'CTR',fn:r=>fpct(r.impressions>0?r.clicks/r.impressions:null)},{l:'CPC',fn:r=>f$(r.clicks>0?r.spend/r.clicks:null,2)},{l:'CVR',fn:r=>fpct(r.clicks>0?r.conversions/r.clicks:null)},{l:'CPA',fn:r=>f$(r.conversions>0?r.spend/r.conversions:null,2)},{l:'ROAS',fn:r=>fx(r.spend>0?r.revenue/r.spend:null)}];
-  return(<div>
-    <SHead icon="📋" title="Performance Data" sub="Input columns A–J are editable (click any highlighted value). Metric columns K–P auto-calculate from raw data."/>
-    <div style={{overflowX:'auto'}}>
-      <table style={{minWidth:1050}}>
-        <thead><tr>
-          {iCols.map(c=><th key={c.k} style={{minWidth:c.w}}>{c.l}</th>)}
-          {cCols.map(c=><th key={c.l} style={{background:'var(--a06)',color:'var(--amber)'}}>{c.l}</th>)}
-        </tr></thead>
-        <tbody>{data.map(row=>(
-          <tr key={row.id}>{iCols.map(c=>{
-            const isNum=numCols.includes(c.k);
-            const isEdit=edit?.id===row.id&&edit?.k===c.k;
-            const disp=c.k==='spend'||c.k==='revenue'?f$(row[c.k]):c.k==='freq'?Number(row[c.k]).toFixed(1):row[c.k];
-            return(<td key={c.k} style={{padding:'.65rem 1rem'}}>
-              {isEdit?(<input defaultValue={row[c.k]} style={{width:c.w-8,color:'var(--amber)'}}
-                onBlur={e=>{const v=isNum?(+e.target.value||0):e.target.value;setData(d=>d.map(r=>r.id===row.id?{...r,[c.k]:v}:r));setEdit(null);}}
-                onKeyDown={e=>e.key==='Enter'&&e.target.blur()} autoFocus/>
-              ):(<span onClick={()=>setEdit({id:row.id,k:c.k})} className={isNum?'editable':''} style={{color:isNum?'var(--amber)':'var(--ink)'}}>{disp}</span>)}
-            </td>);
-          })}
-          {cCols.map(c=><td key={c.l} className="mono" style={{background:'var(--a06)',color:'var(--ink70)',fontSize:'.75rem'}}>{c.fn(row)}</td>)}
-          </tr>
-        ))}</tbody>
-      </table>
-    </div>
-    <p style={{marginTop:'.75rem',fontSize:'.7rem',color:'var(--ink50)',fontFamily:'var(--f-m)'}}>Click any amber value to edit inline. Press Enter or click away to save.</p>
-  </div>);
-}
-
-/* ═══ 05 METRICS ═══ */
-function MetricsSheet({data}){
-  const chs=['Meta','Google','TikTok'];
-  const byCh=chMetrics(data,chs);
-  const total=metrics(agg(data));
-  const byCamp=[...new Set(data.map(r=>r.campaign))].map(cp=>{const rows=data.filter(r=>r.campaign===cp);return{campaign:cp,channel:rows[0]?.channel,...metrics(agg(rows))};});
-  return(<div>
-    <SHead icon="📈" title="Metrics Engine" sub="Aggregated performance by channel and campaign. All calculations pull live from the Data tab."/>
-    <div className="g4" style={{marginBottom:'1.5rem'}}>
-      {[{l:'Total Spend',v:f$(total.spend),c:'c-amber'},{l:'Total Revenue',v:f$(total.rev),c:'c-green'},{l:'Conversions',v:fn(total.conv),c:'c-blue'},{l:'Blended ROAS',v:fx(total.roas),c:'c-amber'},{l:'Blended CPA',v:f$(total.cpa,2),c:'c-red'},{l:'Blended CTR',v:fpct(total.ctr),c:'c-teal'},{l:'Blended CVR',v:fpct(total.cvr),c:'c-green'},{l:'Blended CPM',v:f$(total.cpm,2),c:'c-blue'}].map(({l,v,c})=><MCard key={l} label={l} value={v} color={c}/>)}
-    </div>
-    <div className="g2" style={{gap:'1.5rem',marginBottom:'1.5rem'}}>
-      <div className="card"><div className="sec-lbl" style={{marginBottom:'1rem'}}>Spend vs Revenue by Channel</div>
-        <BarChart id="ch-spend" labels={byCh.map(r=>r.channel)} datasets={[{label:'Spend',data:byCh.map(r=>r.spend),backgroundColor:'rgba(37,99,235,.7)'},{label:'Revenue',data:byCh.map(r=>r.rev),backgroundColor:'rgba(242,92,5,.75)'}]} yFmt={v=>'$'+v.toLocaleString()}/>
-      </div>
-      <div className="card"><div className="sec-lbl" style={{marginBottom:'1rem'}}>CPA by Channel</div>
-        <BarChart id="ch-cpa" labels={byCh.map(r=>r.channel)} datasets={[{label:'CPA ($)',data:byCh.map(r=>r.cpa?+r.cpa.toFixed(2):0),backgroundColor:byCh.map(r=>(r.cpa||0)<60?'rgba(42,157,79,.7)':'rgba(214,48,49,.7)')}]} yFmt={v=>'$'+v}/>
-      </div>
-    </div>
-    <div className="card" style={{padding:0,overflow:'hidden',marginBottom:'1.25rem'}}>
-      <table>
-        <thead><tr>{['Channel','Spend','Impr','Clicks','Conv','Revenue','CPM','CTR','CPC','CVR','CPA','ROAS'].map(h=><th key={h}>{h}</th>)}</tr></thead>
-        <tbody>
-          {byCh.map(r=><tr key={r.channel}>
-            <td style={{fontWeight:700,fontFamily:'var(--f-d)'}}>{r.channel}</td>
-            <td className="mono">{f$(r.spend)}</td><td className="mono">{fn(r.impr)}</td>
-            <td className="mono">{fn(r.clicks)}</td><td className="mono">{fn(r.conv)}</td>
-            <td className="mono">{f$(r.rev)}</td><td className="mono">{f$(r.cpm,2)}</td>
-            <td className="mono">{fpct(r.ctr)}</td><td className="mono">{f$(r.cpc,2)}</td>
-            <td className="mono">{fpct(r.cvr)}</td><td className="mono">{f$(r.cpa,2)}</td>
-            <td className="mono" style={{color:'var(--amber)',fontWeight:600}}>{fx(r.roas)}</td>
-          </tr>)}
-          <tr style={{background:'var(--bg2)',fontWeight:700}}>
-            <td style={{fontFamily:'var(--f-d)'}}>Total</td>
-            <td className="mono">{f$(total.spend)}</td><td className="mono">{fn(total.impr)}</td>
-            <td className="mono">{fn(total.clicks)}</td><td className="mono">{fn(total.conv)}</td>
-            <td className="mono">{f$(total.rev)}</td><td className="mono">{f$(total.cpm,2)}</td>
-            <td className="mono">{fpct(total.ctr)}</td><td className="mono">{f$(total.cpc,2)}</td>
-            <td className="mono">{fpct(total.cvr)}</td><td className="mono">{f$(total.cpa,2)}</td>
-            <td className="mono" style={{color:'var(--amber)'}}>{fx(total.roas)}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div className="card" style={{padding:0,overflow:'hidden'}}>
-      <div style={{padding:'1rem 1.25rem .5rem',fontFamily:'var(--f-m)',fontSize:'.6rem',letterSpacing:'.14em',textTransform:'uppercase',color:'var(--ink50)'}}>Campaign Breakdown</div>
-      <table>
-        <thead><tr>{['Campaign','Channel','Spend','Conv','Revenue','CPA','ROAS','CTR','CVR'].map(h=><th key={h}>{h}</th>)}</tr></thead>
-        <tbody>{byCamp.map(r=><tr key={r.campaign}>
-          <td className="mono" style={{fontWeight:600,fontSize:'.75rem'}}>{r.campaign}</td>
-          <td><span className={`badge ${r.channel==='Meta'?'b-blue':r.channel==='Google'?'b-green':'b-red'}`}>{r.channel}</span></td>
-          <td className="mono">{f$(r.spend)}</td><td className="mono">{r.conv}</td>
-          <td className="mono">{f$(r.rev)}</td><td className="mono">{f$(r.cpa,2)}</td>
-          <td className="mono" style={{color:'var(--amber)',fontWeight:600}}>{fx(r.roas)}</td>
-          <td className="mono">{fpct(r.ctr)}</td><td className="mono">{fpct(r.cvr)}</td>
-        </tr>)}</tbody>
-      </table>
-    </div>
-  </div>);
-}
-
-/* ═══ 06 DIAGNOSTICS ═══ */
-function DiagnosticsSheet({data,ctx,bm}){
-  const tCAC=+(ctx.aov*ctx.grossMargin).toFixed(2);
-  const beROAS=ctx.grossMargin>0?+(1/ctx.grossMargin).toFixed(2):0;
-  const b=bm||{ctr:.015,cvr:.02,cpm:12};
-  const byCh=chMetrics(data,['Meta','Google','TikTok']);
-  function diag(m){
-    const fl=[];
-    if(m.ctr!=null){if(m.ctr<b.ctr*.7) fl.push({type:'red',icon:'▼',title:'Creative Problem',desc:`CTR ${fpct(m.ctr)} is ${((1-m.ctr/b.ctr)*100).toFixed(0)}% below benchmark (${fpct(b.ctr)})`,action:'Refresh creatives — test new angles and opening hooks urgently'});
-    else if(m.ctr>=b.ctr) fl.push({type:'green',icon:'▲',title:'CTR Strong',desc:`CTR ${fpct(m.ctr)} at or above benchmark`});
-    else fl.push({type:'amber',icon:'◐',title:'CTR Below Benchmark',desc:`CTR ${fpct(m.ctr)} — not critical but monitor closely`});}
-    if(m.ctr!=null&&m.cvr!=null&&m.ctr>=b.ctr&&m.cvr<b.cvr*.7) fl.push({type:'red',icon:'▼',title:'Landing Page / Offer Problem',desc:`Healthy CTR but CVR ${fpct(m.cvr)} is ${((1-m.cvr/b.cvr)*100).toFixed(0)}% below benchmark`,action:'A/B test LP, improve above-fold offer, check load speed'});
-    else if(m.cvr!=null&&m.cvr>=b.cvr) fl.push({type:'green',icon:'▲',title:'CVR Strong',desc:`CVR ${fpct(m.cvr)} at or above benchmark`});
-    else if(m.cvr!=null) fl.push({type:'amber',icon:'◐',title:'CVR Watch',desc:`CVR ${fpct(m.cvr)} — slightly below benchmark`});
-    if(m.cpm!=null){if(m.cpm>b.cpm*1.3) fl.push({type:'red',icon:'▲',title:'Audience / Auction Issue',desc:`CPM ${f$(m.cpm,2)} is ${((m.cpm/b.cpm-1)*100).toFixed(0)}% above benchmark (${f$(b.cpm,2)})`,action:'Broaden audience, add exclusions or revise bidding strategy'});
-    else if(m.cpm<=b.cpm) fl.push({type:'green',icon:'✓',title:'CPM Healthy',desc:`CPM ${f$(m.cpm,2)} is within benchmark range`});
-    else fl.push({type:'amber',icon:'◐',title:'CPM Slightly Elevated',desc:`CPM ${f$(m.cpm,2)} — elevated but not yet critical`});}
-    if(m.cpa!=null){if(m.cpa<=tCAC) fl.push({type:'green',icon:'✓',title:'CPA On Target',desc:`CPA ${f$(m.cpa,2)} ≤ Target CAC ${f$(tCAC,2)}`});
-    else if(m.cpa<=tCAC*1.2) fl.push({type:'amber',icon:'◐',title:'CPA Slightly Over',desc:`CPA ${f$(m.cpa,2)} — within 20% grace zone. Watch 24–48 hrs.`});
-    else fl.push({type:'red',icon:'▲',title:'CPA Too High',desc:`CPA ${f$(m.cpa,2)} exceeds Target CAC ${f$(tCAC,2)}`,action:'Pause weakest adsets, tighten targeting immediately'});}
-    if(m.roas!=null){if(m.roas>=beROAS*1.2) fl.push({type:'teal',icon:'🚀',title:'Scaling Opportunity',desc:`ROAS ${fx(m.roas)} — ${((m.roas/beROAS-1)*100).toFixed(0)}% above break-even (${fx(beROAS)})`,action:'Increase budget 15–20%, monitor daily for 3 days'});
-    else if(m.roas>=beROAS) fl.push({type:'green',icon:'✓',title:'Above Break-Even',desc:`ROAS ${fx(m.roas)} — profitable but not yet in scaling territory`});
-    else fl.push({type:'red',icon:'▼',title:'Below Break-Even',desc:`ROAS ${fx(m.roas)} is below break-even of ${fx(beROAS)}`,action:'Pause or reduce budget until performance stabilises'});}
-    return fl;
-  }
-  return(<div>
-    <SHead icon="🔍" title="Diagnostic Engine" sub="Rule-based flags auto-calculated against benchmarks and targets from your Context. Refreshes on every data change."/>
-    <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(300px,1fr))',gap:'1.25rem',marginBottom:'1.5rem'}}>
-      {byCh.map(m=><div key={m.channel} className="card">
-        <div style={{display:'flex',alignItems:'center',gap:'.65rem',marginBottom:'1rem',paddingBottom:'.85rem',borderBottom:'1px solid var(--border)'}}>
-          <span style={{fontFamily:'var(--f-d)',fontWeight:900,fontSize:'1.05rem'}}>{m.channel}</span>
-          <span className="mono" style={{fontSize:'.65rem',color:'var(--ink50)'}}>{f$(m.spend)} · {fx(m.roas)}</span>
-        </div>
-        {diag(m).map((f,i)=><Flag key={i} {...f}/>)}
-      </div>)}
-    </div>
-    <div className="card">
-      <div className="sec-lbl">Active Benchmark Reference</div>
-      <div className="g4">
-        {[{l:'Target CAC',v:f$(tCAC,2)},{l:'Break-Even ROAS',v:fx(beROAS)},{l:'CTR Benchmark',v:fpct(b.ctr)},{l:'CVR Benchmark',v:fpct(b.cvr)},{l:'CPM Benchmark',v:f$(b.cpm,2)},{l:'Industry',v:ctx.industry},{l:'Funnel',v:ctx.funnelType},{l:'Objective',v:ctx.objective}].map(({l,v})=>(
-          <div key={l} className="card-sm"><div style={{fontSize:'.62rem',color:'var(--ink50)',marginBottom:'.3rem',fontFamily:'var(--f-m)',letterSpacing:'.08em',textTransform:'uppercase'}}>{l}</div><div style={{fontFamily:'var(--f-d)',fontWeight:700,fontSize:'1rem',color:'var(--amber)'}}>{v}</div></div>
-        ))}
-      </div>
-    </div>
-  </div>);
-}
-
-/* ═══ 07 CREATIVES ═══ */
-function CreativesSheet({creatives,bm}){
-  const bmCTR=bm?.ctr||.015;
-  const ctr=c=>c.impr7d>0?c.clicks7d/c.impr7d:0;
-  const delta=c=>c.impr7d>0&&c.prevCTR>0?(ctr(c)-c.prevCTR)/c.prevCTR:0;
-  const fat=c=>c.freq>2.5&&delta(c)<-.1;
-  const score=c=>{const s1=Math.min(ctr(c)/bmCTR,2)/2*40;const s2=c.freq<2.5?40:Math.max(0,(3-c.freq)*20);return Math.round(s1+s2+(c.spend7d>0?20:0));};
-  const aCounts=Object.fromEntries([...new Set(creatives.map(c=>c.adset))].map(a=>[a,creatives.filter(c=>c.adset===a).length]));
-  const nFat=creatives.filter(fat).length;const nUnder=Object.values(aCounts).filter(v=>v<3).length;
-  return(<div>
-    <SHead icon="🎨" title="Creative Engine" sub="Track performance, detect fatigue, flag under-diversified adsets and score each creative 0–100."/>
-    <div className="g3" style={{marginBottom:'1.5rem'}}>
-      {[{l:'Active Creatives',v:creatives.length,c:'var(--ink)',accent:'var(--amber)'},{l:'Fatigue Detected',v:nFat,c:nFat>0?'var(--red)':'var(--green)',accent:nFat>0?'var(--red)':'var(--green)'},{l:'Under-Diversified Adsets',v:nUnder,c:nUnder>0?'var(--amber)':'var(--green)',accent:nUnder>0?'var(--amber)':'var(--green)'}].map(({l,v,c,accent})=>(
-        <div key={l} className="card" style={{textAlign:'center',borderTop:`2px solid ${accent}`}}>
-          <div style={{fontFamily:'var(--f-m)',fontSize:'.62rem',letterSpacing:'.12em',textTransform:'uppercase',color:'var(--ink50)',marginBottom:'.5rem'}}>{l}</div>
-          <div style={{fontFamily:'var(--f-d)',fontWeight:900,fontSize:'2.5rem',color:c}}>{v}</div>
-        </div>
-      ))}
-    </div>
-    <div className="card" style={{padding:0,overflow:'hidden',marginBottom:'1rem'}}>
-      <table>
-        <thead><tr>{['ID','Format','Angle','Adset','Spend 7d','Impr 7d','CTR','Freq','CTR Δ','Fatigue','Diversity','Score /100'].map(h=><th key={h}>{h}</th>)}</tr></thead>
-        <tbody>{creatives.map(c=>{
-          const ct=ctr(c);const d=delta(c);const f=fat(c);const s=score(c);const under=aCounts[c.adset]<3;
-          return(<tr key={c.id}>
-            <td className="mono" style={{fontWeight:600,fontSize:'.75rem',color:'var(--ink70)'}}>{c.id}</td>
-            <td><span className={`badge ${c.format==='Video'?'b-blue':c.format==='UGC'?'b-teal':'b-gray'}`}>{c.format}</span></td>
-            <td style={{fontSize:'.78rem',color:'var(--ink70)'}}>{c.angle}</td>
-            <td className="mono" style={{fontSize:'.7rem',color:'var(--ink50)'}}>{c.adset}</td>
-            <td className="mono">{f$(c.spend7d)}</td><td className="mono">{fn(c.impr7d)}</td>
-            <td className="mono" style={{color:ct>=bmCTR?'var(--green)':ct>=bmCTR*.7?'var(--amber)':'var(--red)'}}>{fpct(ct)}</td>
-            <td className="mono" style={{color:c.freq>2.5?'var(--red)':c.freq>2?'var(--amber)':'var(--green)'}}>{c.freq.toFixed(1)}</td>
-            <td className="mono" style={{color:d<-.1?'var(--red)':d<0?'var(--amber)':'var(--green)'}}>{(d*100).toFixed(1)}%</td>
-            <td>{f?<span className="badge b-red">Fatigue</span>:<span className="badge b-green">Healthy</span>}</td>
-            <td>{under?<span className="badge b-amber">&lt;3</span>:<span className="badge b-green">OK</span>}</td>
-            <td><div style={{display:'flex',alignItems:'center',gap:'.6rem'}}><span className="mono" style={{fontWeight:700,fontSize:'.85rem',width:26,color:s>=80?'var(--green)':s>=60?'var(--amber)':'var(--red)'}}>{s}</span><div style={{flex:1,minWidth:55}}><div className="score-bar"><div className="score-fill" style={{width:s+'%',background:s>=80?'var(--green)':s>=60?'var(--amber)':'var(--red)'}}/></div></div></div></td>
-          </tr>);
-        })}</tbody>
-      </table>
-    </div>
-    <div className="card-sm" style={{fontSize:'.72rem',color:'var(--ink50)',fontFamily:'var(--f-m)'}}>
-      Score: <strong style={{color:'var(--green)'}}>80–100</strong> Excellent &nbsp;·&nbsp; <strong style={{color:'var(--amber)'}}>60–79</strong> Good &nbsp;·&nbsp; <strong style={{color:'var(--red)'}}>40–59</strong> Needs Attention &nbsp;·&nbsp; <strong style={{color:'var(--red)'}}>0–39</strong> Pause & Refresh
-    </div>
-  </div>);
-}
-
-/* ═══ 08 INSIGHTS ═══ */
-function InsightsSheet({data,ctx,bm,creatives}){
-  const tCAC=+(ctx.aov*ctx.grossMargin).toFixed(2);
-  const beROAS=ctx.grossMargin>0?+(1/ctx.grossMargin).toFixed(2):0;
-  const b=bm||{ctr:.015,cvr:.02,cpm:12};
-  const byCh=chMetrics(data,['Meta','Google','TikTok']);
-  const meta=byCh.find(r=>r.channel==='Meta');const google=byCh.find(r=>r.channel==='Google');
-  const fatC=creatives.filter(c=>c.freq>2.5&&c.impr7d>0&&(c.clicks7d/c.impr7d-c.prevCTR)/c.prevCTR<-.1);
-  const ins=[];
-  if(meta?.cpa&&google?.cpa){
-    if(meta.cpa<google.cpa*.7) ins.push({cat:'Budget',pri:'HIGH',action:'Shift 20% budget from Google → Meta',desc:`Meta CPA ${f$(meta.cpa,2)} is ${((1-meta.cpa/google.cpa)*100).toFixed(0)}% lower than Google CPA ${f$(google.cpa,2)}. Move spend this week.`,outcome:'Lower blended CPA',time:'This week'});
-    else if(google.cpa<meta.cpa*.7) ins.push({cat:'Budget',pri:'HIGH',action:'Shift 20% budget from Meta → Google',desc:`Google CPA ${f$(google.cpa,2)} is ${((1-google.cpa/meta.cpa)*100).toFixed(0)}% lower. Reallocate for better efficiency.`,outcome:'Improved blended CPA',time:'This week'});
-    else ins.push({cat:'Budget',pri:'LOW',action:'Maintain current channel split',desc:'Channel CPAs are within 30% — allocation is well balanced. Review again in 7 days.',outcome:'Stable performance',time:'Ongoing'});
-  }
-  byCh.forEach(m=>{if((m.roas||0)>=beROAS*1.2&&(m.cpa||999)<=tCAC) ins.push({cat:'Scale',pri:'HIGH',action:`Scale ${m.channel} budget +15–20%`,desc:`ROAS ${fx(m.roas)} — ${((m.roas/beROAS-1)*100).toFixed(0)}% above break-even. CPA ${f$(m.cpa,2)} on target. Ready to scale.`,outcome:'15–20% more conversions at same CPA',time:'Now'});});
-  byCh.forEach(m=>{if((m.cpa||0)>tCAC*1.2&&(m.ctr||1)<b.ctr*.7) ins.push({cat:'Pause',pri:'HIGH',action:`Pause weakest ${m.channel} adsets`,desc:`${m.channel} has high CPA ${f$(m.cpa,2)} AND low CTR ${fpct(m.ctr)} — compound problem.`,outcome:'Stop wasted spend immediately',time:'Immediate'});});
-  if(fatC.length) ins.push({cat:'Creative',pri:'HIGH',action:`Produce 3–5 new creatives urgently`,desc:`${fatC.length} creative(s) fatigued: ${fatC.map(c=>c.id).join(', ')}. Frequency >2.5 with declining CTR.`,outcome:'Restore CTR to benchmark within 7 days',time:'48 hours'});
-  byCh.forEach(m=>{if((m.ctr||0)>=b.ctr&&(m.cvr||1)<b.cvr*.7) ins.push({cat:'LP',pri:'MED',action:`Fix ${m.channel} landing page or offer`,desc:`Good CTR ${fpct(m.ctr)} but CVR ${fpct(m.cvr)} is ${((1-m.cvr/b.cvr)*100).toFixed(0)}% below benchmark. Traffic is fine — LP is the blocker.`,outcome:'CVR improvement within 2 weeks',time:'This sprint'});});
-  byCh.forEach(m=>{if((m.cpm||0)>b.cpm*1.3) ins.push({cat:'Audience',pri:'MED',action:`Expand ${m.channel} audience`,desc:`CPM ${f$(m.cpm,2)} is ${((m.cpm/b.cpm-1)*100).toFixed(0)}% above benchmark — audience too narrow.`,outcome:'CPM reduction 10–20%',time:'This week'});});
-  if(!ins.length) ins.push({cat:'Status',pri:'LOW',action:'All metrics within range',desc:'No critical issues detected. Continue monitoring daily.',outcome:'Stable',time:'Ongoing'});
-  const sorted=[...ins].sort((a,bb)=>({HIGH:0,MED:1,LOW:2}[a.pri]-({HIGH:0,MED:1,LOW:2}[bb.pri])));
-  return(<div>
-    <SHead icon="💡" title="Insights Engine" sub="Auto-generated and prioritised recommendations driven by live data, benchmarks and targets."/>
-    <div style={{display:'flex',gap:'.5rem',flexWrap:'wrap',marginBottom:'1.5rem',alignItems:'center'}}>
-      {[['HIGH','b-red'],['MED','b-amber'],['LOW','b-gray']].map(([p,bc])=><span key={p} className={`badge ${bc}`} style={{padding:'.25rem .75rem',fontSize:'.65rem'}}>{p}: {sorted.filter(i=>i.pri===p).length}</span>)}
-      <span style={{fontSize:'.7rem',color:'var(--ink50)',marginLeft:'.5rem',fontFamily:'var(--f-m)'}}>{sorted.length} insights</span>
-    </div>
-    {sorted.map((ins,i)=>(
-      <div key={i} className="a-card">
-        <div className="a-num">{i+1}</div>
-        <div>
-          <div style={{display:'flex',gap:'.45rem',flexWrap:'wrap',marginBottom:'.5rem'}}>
-            <span className={`badge ${ins.pri==='HIGH'?'b-red':ins.pri==='MED'?'b-amber':'b-gray'}`}>{ins.pri}</span>
-            <span className={`badge ${ins.cat==='Budget'?'b-blue':ins.cat==='Scale'?'b-teal':ins.cat==='Pause'?'b-red':'b-gray'}`}>{ins.cat}</span>
-          </div>
-          <div className="a-title">{ins.action}</div>
-          <div className="a-desc">{ins.desc}</div>
-          <div className="a-meta">
-            <span className="badge b-gray">Expected: {ins.outcome}</span>
-            <span className="badge b-amber">Timeline: {ins.time}</span>
-          </div>
-        </div>
-      </div>
-    ))}
-  </div>);
-}
-
-/* ═══ 09 DASHBOARD ═══ */
-function DashboardSheet({data,ctx,bm,creatives}){
-  const tCAC=+(ctx.aov*ctx.grossMargin).toFixed(2);
-  const beROAS=ctx.grossMargin>0?+(1/ctx.grossMargin).toFixed(2):0;
-  const b=bm||{ctr:.015,cvr:.02,cpm:12};
-  const total=metrics(agg(data));const daily=+(ctx.monthlyBudget/30).toFixed(2);
-  const byCh=chMetrics(data,['Meta','Google','TikTok']);
-  const ranked=[...byCh].sort((a,bb)=>(bb.roas||0)-(a.roas||0));
-  const spendOK=total.spend<=daily*1.1;
-  const cpaOK=total.cpa!=null&&total.cpa<=tCAC;const cpaMed=total.cpa!=null&&total.cpa<=tCAC*1.2;
-  const roasScale=total.roas!=null&&total.roas>=beROAS*1.2;const roasOK=total.roas!=null&&total.roas>=beROAS;
-  const dates=[...new Set(data.map(r=>r.date))].sort();
-  const tCPA=dates.map(d=>{const m=metrics(agg(data.filter(r=>r.date===d)));return m.cpa?+m.cpa.toFixed(2):null;});
-  const tROAS=dates.map(d=>{const m=metrics(agg(data.filter(r=>r.date===d)));return m.roas?+m.roas.toFixed(2):null;});
-  const fatC=creatives.filter(c=>c.freq>2.5&&c.impr7d>0&&(c.clicks7d/c.impr7d-c.prevCTR)/c.prevCTR<-.1);
-  const issues=[];
-  byCh.forEach(m=>{
-    if((m.ctr||1)<b.ctr*.7) issues.push({sev:'HIGH',ch:m.channel,txt:`Creative problem — CTR ${fpct(m.ctr)} vs benchmark ${fpct(b.ctr)}`});
-    if((m.ctr||0)>=b.ctr&&(m.cvr||1)<b.cvr*.7) issues.push({sev:'HIGH',ch:m.channel,txt:`LP issue — CTR good but CVR ${fpct(m.cvr)} below benchmark`});
-    if((m.cpm||0)>b.cpm*1.3) issues.push({sev:'MED',ch:m.channel,txt:`CPM ${f$(m.cpm,2)} — audience/auction issue`});
-    if((m.cpa||0)>tCAC*1.2) issues.push({sev:'HIGH',ch:m.channel,txt:`CPA ${f$(m.cpa,2)} exceeds Target CAC ${f$(tCAC,2)}`});
-  });
-  if(fatC.length) issues.push({sev:'HIGH',ch:'Creatives',txt:`${fatC.length} creative(s) fatigued — refresh urgently`});
-  if(!issues.length) issues.push({sev:'LOW',ch:'All',txt:'No critical issues — system is healthy'});
-  const actions=[];
-  byCh.forEach(m=>{if((m.roas||0)>=beROAS*1.2&&(m.cpa||999)<=tCAC) actions.push({pri:'HIGH',txt:`Scale ${m.channel} budget +15–20%`,time:'Now'});});
-  if(fatC.length) actions.push({pri:'HIGH',txt:'Launch 3–5 new creatives for fatigued adsets',time:'48 hrs'});
-  byCh.forEach(m=>{if((m.cpa||0)>tCAC*1.2&&(m.ctr||1)<b.ctr*.7) actions.push({pri:'HIGH',txt:`Pause weak ${m.channel} adsets + refresh creative`,time:'Immediate'});});
-  if(!actions.length) actions.push({pri:'MED',txt:'No critical actions — continue monitoring',time:'Ongoing'});
-  return(<div>
-    <SHead icon="🖥" title="Executive Dashboard" sub="Decision-focused command view. All KPIs, issues and actions in one place."/>
-    <div className="g4" style={{marginBottom:'1.5rem'}}>
-      <MCard label="Daily Spend" value={f$(total.spend,2)} sub={`Budget: ${f$(daily,2)}`} color={spendOK?'c-green':'c-amber'} badge={spendOK?'On Budget':'Over Budget'} badgeColor={spendOK?'b-green':'b-amber'}/>
-      <MCard label="CPA vs Target CAC" value={f$(total.cpa,2)} sub={`Target: ${f$(tCAC,2)}`} color={cpaOK?'c-green':cpaMed?'c-amber':'c-red'} badge={!total.cpa?'No data':cpaOK?'On Target':cpaMed?'Watch':'Above Target'} badgeColor={cpaOK?'b-green':cpaMed?'b-amber':'b-red'}/>
-      <MCard label="ROAS vs Break-Even" value={fx(total.roas)} sub={`Break-even: ${fx(beROAS)}`} color={roasScale?'c-teal':roasOK?'c-green':'c-red'} badge={!total.roas?'No data':roasScale?'Scale Now':roasOK?'Profitable':'Below Break-Even'} badgeColor={roasScale?'b-teal':roasOK?'b-green':'b-red'}/>
-      <MCard label="Total Revenue" value={f$(total.rev)} sub={`${fn(total.conv)} conversions`} color="c-amber"/>
-    </div>
-    <div className="g2" style={{gap:'1.5rem',marginBottom:'1.5rem'}}>
-      <div className="card"><div className="sec-lbl" style={{marginBottom:'1rem'}}>CPA & ROAS Trend</div>
-        <LineChart id="dash-trend" labels={dates} height={180} datasets={[
-          {label:'CPA ($)',data:tCPA,borderColor:'var(--red)',backgroundColor:'rgba(214,48,49,.08)',fill:true,pointBackgroundColor:'var(--red)',pointBorderColor:'#fff'},
-          {label:'ROAS',data:tROAS,borderColor:'var(--amber)',backgroundColor:'rgba(242,92,5,.07)',fill:true,pointBackgroundColor:'var(--amber)',pointBorderColor:'#fff'},
-        ]}/>
-      </div>
-      <div className="card"><div className="sec-lbl" style={{marginBottom:'1rem'}}>Channel ROAS Leaderboard</div>
-        <BarChart id="dash-roas" labels={ranked.map(r=>r.channel)} height={180}
-          datasets={[{label:'ROAS',data:ranked.map(r=>r.roas?+r.roas.toFixed(2):0),backgroundColor:ranked.map(r=>(r.roas||0)>=beROAS*1.2?'rgba(242,92,5,.8)':(r.roas||0)>=beROAS?'rgba(42,157,79,.7)':'rgba(214,48,49,.7)')}]}
-          yFmt={v=>v+'x'}/>
-      </div>
-    </div>
-    <div className="g2" style={{gap:'1.5rem'}}>
-      <div className="card">
-        <div className="sec-lbl" style={{marginBottom:'1rem'}}>Top Issues</div>
-        {issues.slice(0,5).map((iss,i)=>(
-          <div key={i} className={`flag f-${iss.sev==='HIGH'?'red':iss.sev==='MED'?'amber':'green'}`} style={{marginBottom:'.6rem'}}>
-            <div className="f-ico" style={{fontWeight:700,fontFamily:'var(--f-d)',fontSize:'.9rem',color:iss.sev==='HIGH'?'var(--red)':iss.sev==='MED'?'var(--amber)':'var(--green)'}}>{i+1}</div>
-            <div>
-              <div style={{display:'flex',gap:'.4rem',marginBottom:'.25rem',flexWrap:'wrap'}}>
-                <span className={`badge ${iss.sev==='HIGH'?'b-red':iss.sev==='MED'?'b-amber':'b-green'}`}>{iss.sev}</span>
-                <span style={{fontFamily:'var(--f-m)',fontSize:'.62rem',color:'var(--ink50)'}}>{iss.ch}</span>
-              </div>
-              <div style={{fontSize:'.8rem'}}>{iss.txt}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-      <div className="card">
-        <div className="sec-lbl" style={{marginBottom:'1rem'}}>Priority Actions</div>
-        {actions.slice(0,5).map((a,i)=>(
-          <div key={i} className="a-card" style={{padding:'1rem 1.1rem',marginBottom:'.65rem'}}>
-            <div className="a-num" style={{width:24,height:24,fontSize:'.78rem'}}>{i+1}</div>
-            <div><div className="a-title" style={{fontSize:'.9rem',marginBottom:'.4rem'}}>{a.txt}</div>
-              <div className="a-meta"><span className={`badge ${a.pri==='HIGH'?'b-red':'b-amber'}`}>{a.pri}</span><span className="badge b-amber">{a.time}</span></div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>);
-}
-
-/* ═══ ROOT ═══ */
-const TABS=[
-  {n:'Context',icon:'⚡'},{n:'Benchmarks',icon:'📊'},{n:'Budget',icon:'💰'},
-  {n:'Data',icon:'📋'},{n:'Metrics',icon:'📈'},{n:'Diagnostics',icon:'🔍'},
-  {n:'Creatives',icon:'🎨'},{n:'Insights',icon:'💡'},{n:'Dashboard',icon:'🖥'},
+const CHANNELS=[
+  {id:'Meta',   label:'Meta Ads',   color:'#1877F2',icon:'📘'},
+  {id:'Google', label:'Google Ads', color:'#34A853',icon:'🔍'},
+  {id:'TikTok', label:'TikTok Ads', color:'#FF0050',icon:'🎵'},
+  {id:'Snapchat',label:'Snapchat',  color:'#FFFC00',icon:'👻'},
+  {id:'LinkedIn',label:'LinkedIn',  color:'#0A66C2',icon:'💼'},
+  {id:'Pinterest',label:'Pinterest',color:'#E60023',icon:'📌'},
 ];
 
-function App(){
-  const [tab,setTab]=useState(8);
-  const [ctx,setCtx]=useState({country:'UAE',industry:'Ecommerce',funnelType:'Ecom',aov:150,grossMargin:.40,salesCycleDays:1,conversionType:'Website',monthlyBudget:10000,objective:'Scale'});
-  const [data,setData]=useState(INIT_DATA);
-  const [creatives]=useState(INIT_CREATIVES);
-  const bm=useMemo(()=>BM_DB.find(b=>b.industry===ctx.industry&&b.funnel===ctx.funnelType)||BM_DB.find(b=>b.industry===ctx.industry)||null,[ctx.industry,ctx.funnelType]);
-
-  /* sync tab buttons to DOM rail */
-  useEffect(()=>{
-    const rail=document.getElementById('tabRail');
-    if(!rail)return;
-    rail.innerHTML='';
-    TABS.forEach((t,i)=>{
-      const btn=document.createElement('button');
-      btn.className='t-btn'+(i===tab?' on':'');
-      btn.innerHTML=`<span class="t-num">${String(i+1).padStart(2,'0')}</span>${t.icon} ${t.n}`;
-      btn.addEventListener('click',()=>setTab(i));
-      rail.appendChild(btn);
-    });
-  },[tab]);
-
-  function renderTab(){
-    switch(tab){
-      case 0:return<ContextSheet ctx={ctx} setCtx={setCtx} bm={bm}/>;
-      case 1:return<BenchmarksSheet ctx={ctx}/>;
-      case 2:return<BudgetSheet ctx={ctx}/>;
-      case 3:return<DataSheet data={data} setData={setData}/>;
-      case 4:return<MetricsSheet data={data}/>;
-      case 5:return<DiagnosticsSheet data={data} ctx={ctx} bm={bm}/>;
-      case 6:return<CreativesSheet creatives={creatives} bm={bm}/>;
-      case 7:return<InsightsSheet data={data} ctx={ctx} bm={bm} creatives={creatives}/>;
-      case 8:return<DashboardSheet data={data} ctx={ctx} bm={bm} creatives={creatives}/>;
-      default:return null;
-    }
-  }
-
-  return <>{renderTab()}</>;
+/* ═══════════════════════════════════════
+   01 — BRIEF
+═══════════════════════════════════════ */
+function BriefSheet({data,setData,onNext}){
+  const set=(k,v)=>setData(p=>({...p,[k]:v}));
+  const goals=['Brand Awareness','Lead Generation','Online Sales','App Installs','Store Traffic','Retargeting','Customer Retention'];
+  const kpiOpts=['ROAS','CPA','CPL','CAC','CTR','CVR','Revenue','Conversions','Installs','ACOS','MER','Impressions'];
+  const toggleKPI=(k)=>setData(p=>({...p,kpis:p.kpis?.includes(k)?p.kpis.filter(x=>x!==k):[...(p.kpis||[]),k]}));
+  return(<div>
+    <PageHeader eyebrow="Module 01 · Brief" title="Campaign <em>Brief</em>" sub="Define the foundation. Every downstream calculation, benchmark and naming convention is built from these inputs."/>
+    <div className="g2" style={{gap:'1.25rem'}}>
+      <div>
+        <Card style={{marginBottom:'1.25rem'}}>
+          <SLabel>Brand & Market</SLabel>
+          <div className="field-row">
+            <Field label="Brand / Client Name"><input value={data.brand||''} onChange={e=>set('brand',e.target.value)} placeholder="e.g. Acme Co."/></Field>
+            <Field label="Country / Market"><select value={data.country||'UAE'} onChange={e=>set('country',e.target.value)}>
+              {['UAE','Saudi Arabia','Egypt','Kuwait','Qatar','Bahrain','Jordan','US','UK','Germany','France','Australia','India','Canada','Brazil','Morocco','Tunisia'].map(c=><option key={c}>{c}</option>)}
+            </select></Field>
+          </div>
+          <div className="field-row">
+            <Field label="Industry"><select value={data.industry||'Ecommerce'} onChange={e=>set('industry',e.target.value)}>
+              {['Ecommerce','Fashion','Beauty','Health & Wellness','SaaS','Finance','Real Estate','Education','App','Retail','Food & Beverage','Travel','Automotive','B2B'].map(c=><option key={c}>{c}</option>)}
+            </select></Field>
+            <Field label="Product / Service Type"><input value={data.product||''} onChange={e=>set('product',e.target.value)} placeholder="e.g. Skincare subscription"/></Field>
+          </div>
+        </Card>
+        <Card style={{marginBottom:'1.25rem'}}>
+          <SLabel>Campaign Objective</SLabel>
+          <div className="field-row">
+            <Field label="Funnel Type"><select value={data.funnelType||'Ecom'} onChange={e=>set('funnelType',e.target.value)}>
+              {['Ecom','Lead Gen','App','Awareness','Traffic'].map(c=><option key={c}>{c}</option>)}
+            </select></Field>
+            <Field label="Platform Objective"><select value={data.objective||'Conversions'} onChange={e=>set('objective',e.target.value)}>
+              {['Conversions','Traffic','Leads','App Installs','Awareness','Reach','Video Views','Catalogue Sales','Messages'].map(c=><option key={c}>{c}</option>)}
+            </select></Field>
+          </div>
+          <Field label="Business Goal" note="plain language">
+            <input value={data.businessGoal||''} onChange={e=>set('businessGoal',e.target.value)} placeholder="e.g. Generate 300 leads at CPA ≤ $20 within 30 days"/>
+          </Field>
+          <Field label="Campaign Period">
+            <div className="field-row">
+              <input type="date" value={data.startDate||''} onChange={e=>set('startDate',e.target.value)}/>
+              <input type="date" value={data.endDate||''} onChange={e=>set('endDate',e.target.value)}/>
+            </div>
+          </Field>
+        </Card>
+      </div>
+      <div>
+        <Card style={{marginBottom:'1.25rem'}}>
+          <SLabel>Channels</SLabel>
+          <div className="ch-grid">
+            {CHANNELS.map(ch=>{
+              const on=(data.channels||[]).includes(ch.id);
+              return(<button key={ch.id} className={`ch-btn${on?' on':''}`} onClick={()=>{
+                setData(p=>({...p,channels:on?p.channels.filter(x=>x!==ch.id):[...(p.channels||[]),ch.id]}));
+              }}><span className="ch-dot" style={{background:ch.color}}/>{ch.label}</button>);
+            })}
+          </div>
+        </Card>
+        <Card style={{marginBottom:'1.25rem'}}>
+          <SLabel>Key Metrics to Track</SLabel>
+          <div className="tag-grid">
+            {kpiOpts.map(k=><button key={k} className={`tag-opt${(data.kpis||[]).includes(k)?' on':''}`} onClick={()=>toggleKPI(k)}>{k}</button>)}
+          </div>
+        </Card>
+        <Card>
+          <SLabel>Business Context</SLabel>
+          <div className="field-row" style={{marginBottom:'.85rem'}}>
+            <Field label="AOV / Deal Size" hint="Average order value or deal size"><input type="number" value={data.aov||''} onChange={e=>set('aov',+e.target.value)} placeholder="150"/></Field>
+            <Field label="Gross Margin %" hint="e.g. 0.40 = 40%"><input type="number" step=".01" value={data.grossMargin||''} onChange={e=>set('grossMargin',+e.target.value)} placeholder="0.40"/></Field>
+          </div>
+          <Field label="Notes / Context">
+            <textarea value={data.notes||''} onChange={e=>set('notes',e.target.value)} placeholder="Seasonality, promotions, landing page URL, competitor context…"/>
+          </Field>
+        </Card>
+      </div>
+    </div>
+    <StepNav onBack={()=>{}} backLabel="" onNext={onNext} nextLabel="Audience →"/>
+  </div>);
 }
 
+/* ═══════════════════════════════════════
+   02 — AUDIENCE
+═══════════════════════════════════════ */
+function AudienceSheet({data,setData,onNext,onBack}){
+  const set=(k,v)=>setData(p=>({...p,[k]:v}));
+  const interests=['Fitness','Fashion','Technology','Travel','Food','Finance','Parenting','Gaming','Beauty','Real Estate','Automotive','Education','Health','Sports'];
+  const toggleTag=(k,tag)=>setData(p=>({...p,[k]:(p[k]||[]).includes(tag)?(p[k]||[]).filter(x=>x!==tag):[...(p[k]||[]),tag]}));
+  const stages=[{id:'COLD',label:'Cold (Prospecting)',desc:'New audiences — no prior interaction'},{id:'WARM',label:'Warm (Engagement)',desc:'Visited page, watched video, engaged with content'},{id:'HOT',label:'Hot (Retargeting)',desc:'Add to cart, initiated checkout, past purchasers'}];
+  return(<div>
+    <PageHeader eyebrow="Module 02 · Audience" title="Target <em>Audience</em>" sub="Define who you're targeting at each funnel stage. This feeds the campaign structure and naming convention."/>
+    <div className="g2">
+      <div>
+        <Card style={{marginBottom:'1.25rem'}}>
+          <SLabel>Demographics</SLabel>
+          <div className="field-row">
+            <Field label="Age Range Min"><input type="number" value={data.ageMin||18} onChange={e=>set('ageMin',+e.target.value)} min="13" max="65"/></Field>
+            <Field label="Age Range Max"><input type="number" value={data.ageMax||45} onChange={e=>set('ageMax',+e.target.value)} min="13" max="65"/></Field>
+          </div>
+          <Field label="Gender"><select value={data.gender||'All'} onChange={e=>set('gender',e.target.value)}>
+            {['All','Male','Female'].map(g=><option key={g}>{g}</option>)}
+          </select></Field>
+          <Field label="Language"><input value={data.language||''} onChange={e=>set('language',e.target.value)} placeholder="e.g. Arabic, English"/></Field>
+        </Card>
+        <Card>
+          <SLabel>Geo Targeting</SLabel>
+          <Field label="Specific Cities / Regions" hint="Leave blank to target full country from Brief">
+            <input value={data.geoDetail||''} onChange={e=>set('geoDetail',e.target.value)} placeholder="e.g. Dubai, Abu Dhabi, Riyadh"/>
+          </Field>
+          <Field label="Radius Targeting" hint="Optional — for store traffic objectives">
+            <input value={data.radius||''} onChange={e=>set('radius',e.target.value)} placeholder="e.g. 15km around Dubai Mall"/>
+          </Field>
+          <Field label="Exclusions">
+            <input value={data.geoExclude||''} onChange={e=>set('geoExclude',e.target.value)} placeholder="e.g. Exclude Northern Emirates"/>
+          </Field>
+        </Card>
+      </div>
+      <div>
+        <Card style={{marginBottom:'1.25rem'}}>
+          <SLabel>Interests & Behaviours</SLabel>
+          <div className="tag-grid" style={{marginBottom:'.85rem'}}>
+            {interests.map(i=><button key={i} className={`tag-opt${(data.interests||[]).includes(i)?' on':''}`} onClick={()=>toggleTag('interests',i)}>{i}</button>)}
+          </div>
+          <Field label="Custom Interests / Keywords" hint="Specific Facebook/Google interest targets">
+            <textarea value={data.customInterests||''} onChange={e=>set('customInterests',e.target.value)} placeholder="e.g. Luxury fashion, Online shopping, High-income households…"/>
+          </Field>
+        </Card>
+        <Card>
+          <SLabel>Funnel Stages</SLabel>
+          {stages.map(st=>{
+            const on=(data.stages||['COLD','WARM','HOT']).includes(st.id);
+            return(<div key={st.id} className={`check-item${on?' done':''}`} onClick={()=>toggleTag('stages',st.id)}>
+              <div className="check-box">{on?'✓':''}</div>
+              <div><div className="ci-title">{st.label}</div><div className="ci-desc">{st.desc}</div></div>
+            </div>);
+          })}
+          <Field label="Custom Audiences / Lookalikes" hint="Pixel audiences, CRM lists, video viewers">
+            <textarea value={data.customAudiences||''} onChange={e=>set('customAudiences',e.target.value)} placeholder="e.g. 180-day website visitors LAL, CRM list — past buyers…"/>
+          </Field>
+        </Card>
+      </div>
+    </div>
+    <StepNav onBack={onBack} backLabel="← Brief" onNext={onNext} nextLabel="Budget →"/>
+  </div>);
+}
+
+/* ═══════════════════════════════════════
+   03 — BUDGET
+═══════════════════════════════════════ */
+function BudgetSheet({data,setData,onNext,onBack}){
+  const set=(k,v)=>setData(p=>({...p,[k]:v}));
+  const monthly=data.monthlyBudget||5000;
+  const days=data.flightDays||(()=>{if(data.startDate&&data.endDate){const d=Math.ceil((new Date(data.endDate)-new Date(data.startDate))/(1000*60*60*24));return d>0?d:30;}return 30;})();
+  const total=+(monthly*(days/30)).toFixed(0);
+  const daily=+(total/days).toFixed(2);
+  const chs=data.channels||['Meta','Google'];
+  const chSplits=data.chSplits||Object.fromEntries(chs.map((c,i)=>[c,Math.round(100/chs.length)]));
+  const fuSplit={COLD:data.coldPct||70,WARM:data.warmPct||20,HOT:data.hotPct||10};
+  const chSum=Object.values(chSplits).reduce((a,b)=>a+b,0);
+  const fuSum=fuSplit.COLD+fuSplit.WARM+fuSplit.HOT;
+  const setChSplit=(ch,v)=>setData(p=>({...p,chSplits:{...(p.chSplits||{}),from:undefined,[ch]:v}}));
+  const chColors={'Meta':'#1877F2','Google':'#34A853','TikTok':'#FF0050','Snapchat':'#FFFC00','LinkedIn':'#0A66C2','Pinterest':'#E60023'};
+  return(<div>
+    <PageHeader eyebrow="Module 03 · Budget" title="Budget <em>Allocation</em>" sub="Set your total investment, split it across channels and funnel stages. All projections update live."/>
+    <div className="g2">
+      <div>
+        <Card style={{marginBottom:'1.25rem'}}>
+          <SLabel>Total Investment</SLabel>
+          <div className="field-row">
+            <Field label="Monthly Budget (USD)"><input type="number" step="100" value={monthly} onChange={e=>set('monthlyBudget',+e.target.value)}/></Field>
+            <Field label="Flight Duration (days)" hint="Auto-filled from Brief dates"><input type="number" value={days} onChange={e=>set('flightDays',+e.target.value)}/></Field>
+          </div>
+          <div className="g3" style={{marginTop:'.85rem'}}>
+            {[{l:'Total Budget',v:f$(total),c:'c-amber'},{l:'Daily Budget',v:f$(daily,2),c:'c-blue'},{l:'Flight Days',v:days+' days',c:'c-green'}].map(({l,v,c})=><MCard key={l} label={l} val={v} color={c}/>)}
+          </div>
+        </Card>
+        <Card>
+          <SLabel>Funnel Split</SLabel>
+          <div style={{marginBottom:'.75rem'}}><Badge type={Math.abs(fuSum-100)<1?'b-green':'b-red'}>{Math.abs(fuSum-100)<1?'✓ Valid':'Sum = '+fuSum+'%'}</Badge></div>
+          {[{k:'coldPct',l:'Cold / Prospecting',note:'New audiences',def:70},{k:'warmPct',l:'Warm / Engagement',note:'Re-engagement',def:20},{k:'hotPct',l:'Hot / Retargeting',note:'Cart, visitors, past buyers',def:10}].map(({k,l,note,def})=>{
+            const v=data[k]||def;
+            return(<div key={k} className="sl-row">
+              <div className="sl-hdr"><label className="sl-lbl">{l}</label><span className="sl-val">{v}% — {f$(+(daily*v/100).toFixed(2),2)}/day</span></div>
+              <div className="sl-sub">{note}</div>
+              <input type="range" min="0" max="100" step="1" value={v} onChange={e=>set(k,+e.target.value)}/>
+            </div>);
+          })}
+        </Card>
+      </div>
+      <div>
+        <Card style={{marginBottom:'1.25rem'}}>
+          <SLabel>Channel Split</SLabel>
+          <div style={{marginBottom:'.75rem'}}><Badge type={Math.abs(chSum-100)<1?'b-green':'b-red'}>{Math.abs(chSum-100)<1?'✓ Valid':'Sum = '+chSum+'%'}</Badge></div>
+          {chs.length===0?<p style={{fontSize:'.8rem',color:'var(--ink50)'}}>← Add channels in the Brief tab</p>:chs.map(ch=>{
+            const v=chSplits[ch]||Math.round(100/chs.length);
+            return(<div key={ch} className="sl-row">
+              <div className="sl-hdr"><label className="sl-lbl"><span className="ch-dot" style={{width:8,height:8,borderRadius:'50%',background:chColors[ch]||'#888',display:'inline-block',marginRight:6}}/>{ch}</label><span className="sl-val">{v}% — {f$(+(daily*v/100).toFixed(2),2)}/day</span></div>
+              <input type="range" min="0" max="100" step="1" value={v} onChange={e=>setChSplit(ch,+e.target.value)}/>
+            </div>);
+          })}
+        </Card>
+        <Card>
+          <SLabel>Monthly Channel Breakdown</SLabel>
+          {chs.map(ch=>{
+            const v=chSplits[ch]||Math.round(100/chs.length);
+            return(<div key={ch} style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'.55rem 0',borderBottom:'1px solid var(--border)'}}>
+              <span style={{display:'flex',alignItems:'center',gap:'.55rem',fontSize:'.82rem'}}><span style={{width:8,height:8,borderRadius:'50%',background:chColors[ch]||'#888',display:'inline-block'}}/>{ch}</span>
+              <div style={{textAlign:'right'}}>
+                <div style={{fontFamily:'var(--f-d)',fontWeight:900,fontSize:'1.05rem',color:'var(--amber)'}}>{f$(+(monthly*v/100).toFixed(0))}</div>
+                <div style={{fontFamily:'var(--f-m)',fontSize:'.62rem',color:'var(--ink50)'}}>{v}% of budget</div>
+              </div>
+            </div>);
+          })}
+          <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',padding:'.65rem 0 0',fontWeight:700}}>
+            <span style={{fontFamily:'var(--f-m)',fontSize:'.65rem',letterSpacing:'.1em',textTransform:'uppercase',color:'var(--ink50)'}}>Total</span>
+            <span style={{fontFamily:'var(--f-d)',fontWeight:900,fontSize:'1.2rem'}}>{f$(monthly)}</span>
+          </div>
+        </Card>
+      </div>
+    </div>
+    <StepNav onBack={onBack} backLabel="← Audience" onNext={onNext} nextLabel="Benchmarks →"/>
+  </div>);
+}
+
+/* ═══════════════════════════════════════
+   04 — BENCHMARKS
+═══════════════════════════════════════ */
+function BenchmarksSheet({data,onNext,onBack}){
+  const chs=data.channels||['Meta'];
+  const aov=data.aov||100;const gm=data.grossMargin||.40;
+  const tCAC=+(aov*gm).toFixed(2);
+  const beROAS=gm>0?+(1/gm).toFixed(2):0;
+  const monthly=data.monthlyBudget||5000;
+  const days=data.flightDays||30;
+  const total=+(monthly*(days/30)).toFixed(0);
+  const daily=+(total/days).toFixed(2);
+  const chSplits=data.chSplits||{};
+  const chColors={'Meta':'#1877F2','Google':'#34A853','TikTok':'#FF0050','Snapchat':'#FFFC00','LinkedIn':'#0A66C2','Pinterest':'#E60023'};
+
+  const chProj=chs.map(ch=>{
+    const bm=getBM(data.industry||'Ecommerce',data.funnelType||'Ecom',ch);
+    const pct=(chSplits[ch]||Math.round(100/chs.length))/100;
+    const chDaily=daily*pct;
+    const impr=chDaily/(bm.cpm/1000);
+    const clicks=impr*bm.ctr;
+    const conv=clicks*bm.cvr;
+    const rev=conv*aov;
+    const cpa=conv>0?chDaily/conv:null;
+    const roas=chDaily>0?rev/chDaily:null;
+    return{ch,bm,chDaily,impr,clicks,conv,rev,cpa,roas};
+  });
+
+  const totConv=chProj.reduce((a,r)=>a+r.conv,0);
+  const totRev=chProj.reduce((a,r)=>a+r.rev,0);
+  const totROAS=total>0?totRev/total:0;
+  const blendedCPA=totConv>0?total/totConv:null;
+
+  return(<div>
+    <PageHeader eyebrow="Module 04 · Benchmarks" title="Expected <em>Performance</em>" sub="Industry-matched benchmarks by channel. These are projections to plan around — not guarantees."/>
+    <div className="g4" style={{marginBottom:'1.5rem'}}>
+      {[
+        {l:'Target CAC',v:f$(tCAC,2),c:'c-amber',sub:'Max cost per acquisition'},
+        {l:'Break-Even ROAS',v:fx(beROAS),c:'c-blue',sub:'Minimum to cover COGS'},
+        {l:'Est. Total Conv.',v:fn(Math.round(totConv*days)),c:'c-green',sub:'Over full flight'},
+        {l:'Est. Total Revenue',v:f$(totRev*days),c:'c-amber',sub:'Over full flight'},
+        {l:'Blended ROAS',v:fx(totROAS),c:totROAS>=beROAS?'c-green':'c-red',sub:'Revenue ÷ Spend'},
+        {l:'Blended CPA',v:f$(blendedCPA,2),c:blendedCPA&&blendedCPA<=tCAC?'c-green':'c-red',sub:'Cost per conversion'},
+        {l:'Daily Impressions',v:fn(Math.round(chProj.reduce((a,r)=>a+r.impr,0))),c:'c-blue',sub:'Across all channels'},
+        {l:'Daily Clicks',v:fn(Math.round(chProj.reduce((a,r)=>a+r.clicks,0))),c:'c-amber',sub:'Across all channels'},
+      ].map(({l,v,c,sub})=><MCard key={l} label={l} val={v} sub={sub} color={c}/>)}
+    </div>
+    <div className="g2" style={{gap:'1.25rem'}}>
+      {chProj.map(({ch,bm,chDaily,impr,clicks,conv,rev,cpa,roas})=>(
+        <Card key={ch}>
+          <div style={{display:'flex',alignItems:'center',gap:'.65rem',marginBottom:'1rem',paddingBottom:'.85rem',borderBottom:'1px solid var(--border)'}}>
+            <span style={{width:10,height:10,borderRadius:'50%',background:chColors[ch]||'#888',display:'inline-block'}}/>
+            <span style={{fontFamily:'var(--f-d)',fontWeight:900,fontSize:'1.1rem'}}>{ch}</span>
+            <Badge type="b-gray" style={{marginLeft:'auto'}}>{f$(chDaily,2)}/day</Badge>
+          </div>
+          <div className="g2" style={{gap:'.65rem'}}>
+            {[{l:'CPM',v:f$(bm.cpm,2)},{l:'CTR',v:fpct(bm.ctr)},{l:'CVR',v:fpct(bm.cvr)},{l:'CPC',v:f$(bm.cpc,2)},{l:'Daily Conv.',v:conv.toFixed(1)},{l:'Daily Rev.',v:f$(rev)},{l:'Est. CPA',v:f$(cpa,2)},{l:'Est. ROAS',v:fx(roas)}].map(({l,v})=>(
+              <div key={l} className="card-inner" style={{padding:'.65rem .85rem'}}>
+                <div style={{fontFamily:'var(--f-m)',fontSize:'.58rem',letterSpacing:'.1em',textTransform:'uppercase',color:'var(--ink50)',marginBottom:'.3rem'}}>{l}</div>
+                <div style={{fontFamily:'var(--f-d)',fontWeight:900,fontSize:'1rem',color:'var(--amber)'}}>{v}</div>
+              </div>
+            ))}
+          </div>
+          {cpa&&cpa<=tCAC?<div style={{marginTop:'.85rem'}}><Badge type="b-green">✓ CPA within Target CAC</Badge></div>:cpa?<div style={{marginTop:'.85rem'}}><Badge type="b-red">CPA exceeds Target CAC — review budget or margin</Badge></div>:null}
+        </Card>
+      ))}
+    </div>
+    <div className="card" style={{marginTop:'1.25rem',borderLeft:'3px solid var(--amber)',padding:'1rem 1.25rem'}}>
+      <div style={{fontFamily:'var(--f-m)',fontSize:'.65rem',letterSpacing:'.1em',textTransform:'uppercase',color:'var(--amber)',marginBottom:'.5rem'}}>Benchmark Source</div>
+      <p style={{fontSize:'.8rem',color:'var(--ink70)',lineHeight:1.75}}>Benchmarks are based on {data.industry||'Ecommerce'} · {data.funnelType||'Ecom'} averages across MENA and Global markets. Actual performance will vary by creative quality, landing page, offer strength and audience match. Use these to plan and sanity-check — not as guarantees.</p>
+    </div>
+    <StepNav onBack={onBack} backLabel="← Budget" onNext={onNext} nextLabel="Structure →"/>
+  </div>);
+}
+
+/* ═══════════════════════════════════════
+   05 — STRUCTURE
+═══════════════════════════════════════ */
+function StructureSheet({data,setData,onNext,onBack}){
+  const set=(k,v)=>setData(p=>({...p,[k]:v}));
+  const monthly=data.monthlyBudget||5000;const days=data.flightDays||30;
+  const total=+(monthly*(days/30)).toFixed(0);const daily=+(total/days).toFixed(2);
+  const chs=data.channels||['Meta'];
+  const nc=data.numCampaigns||(daily<150?1:daily<500?2:daily<1500?3:5);
+  const nas=data.adsetsPerCampaign||3;const nads=data.adsPerAdset||4;
+  const stages=(data.stages||['COLD','WARM','HOT']);
+  const stageLabels={'COLD':'Cold','WARM':'Warm','HOT':'Hot'};
+
+  const recCampaigns=daily<100?'1 campaign':daily<400?'2–3 campaigns':daily<1200?'3–4 campaigns':'4–6 campaigns';
+
+  return(<div>
+    <PageHeader eyebrow="Module 05 · Structure" title="Campaign <em>Architecture</em>" sub="Set the number of campaigns, adsets and ads. The naming convention in the next step is built from this exact structure."/>
+    <div className="g2">
+      <div>
+        <Card style={{marginBottom:'1.25rem'}}>
+          <SLabel>Structure Inputs</SLabel>
+          <div className="field-row">
+            <Field label="Campaigns per Channel" hint={`Budget suggests: ${recCampaigns}`}><input type="number" min="1" max="10" value={nc} onChange={e=>set('numCampaigns',+e.target.value)}/></Field>
+            <Field label="Adsets per Campaign" hint="Audience segments per campaign"><input type="number" min="1" max="10" value={nas} onChange={e=>set('adsetsPerCampaign',+e.target.value)}/></Field>
+          </div>
+          <div className="field-row">
+            <Field label="Ads per Adset" hint="Creatives per adset"><input type="number" min="1" max="10" value={nads} onChange={e=>set('adsPerAdset',+e.target.value)}/></Field>
+            <Field label="Total Channels">{<div style={{fontFamily:'var(--f-d)',fontWeight:900,fontSize:'1.5rem',color:'var(--amber)',marginTop:'.35rem'}}>{chs.length}</div>}</Field>
+          </div>
+          <Divider/>
+          <div className="g4" style={{gap:'.65rem'}}>
+            {[
+              {l:'Total Campaigns',v:nc*chs.length},
+              {l:'Total Adsets',v:nc*chs.length*nas},
+              {l:'Total Ads',v:nc*chs.length*nas*nads},
+              {l:'Min. Creatives Needed',v:nc*chs.length*nas*nads},
+            ].map(({l,v})=><div key={l} className="card-inner" style={{textAlign:'center',padding:'.75rem .85rem'}}>
+              <div style={{fontFamily:'var(--f-m)',fontSize:'.58rem',letterSpacing:'.1em',textTransform:'uppercase',color:'var(--ink50)',marginBottom:'.3rem'}}>{l}</div>
+              <div style={{fontFamily:'var(--f-d)',fontWeight:900,fontSize:'1.4rem',color:'var(--amber)'}}>{v}</div>
+            </div>)}
+          </div>
+        </Card>
+        <Card>
+          <SLabel>Budget per Unit</SLabel>
+          {[{l:'Per Channel (daily)',v:f$(+(daily/chs.length).toFixed(2),2)},{l:'Per Campaign (daily)',v:f$(+(daily/chs.length/nc).toFixed(2),2)},{l:'Per Adset (daily)',v:f$(+(daily/chs.length/nc/nas).toFixed(2),2)}].map(({l,v})=>(
+            <div key={l} style={{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'.6rem 0',borderBottom:'1px solid var(--border)'}}>
+              <span style={{fontSize:'.82rem',color:'var(--ink70)'}}>{l}</span>
+              <span style={{fontFamily:'var(--f-d)',fontWeight:700,fontSize:'.95rem',color:'var(--amber)'}}>{v}</span>
+            </div>
+          ))}
+        </Card>
+      </div>
+      <div>
+        <Card>
+          <SLabel>Structure Preview</SLabel>
+          <p style={{fontSize:'.75rem',color:'var(--ink50)',marginBottom:'1rem',lineHeight:1.7}}>Showing first channel ({chs[0]||'Meta'}) · {nc} campaign{nc>1?'s':''} · {nas} adsets · {nads} ads</p>
+          {Array.from({length:Math.min(nc,3)}).map((_,ci)=>{
+            const stage=stages[ci%stages.length];
+            return(<div key={ci} className="tree-campaign">
+              <div className="tree-c-hdr">
+                <span className="tree-c-icon">📁</span>
+                <span className="tree-c-name">[{chs[0]||'Meta'}] [{stageLabels[stage]||stage}] Campaign {ci+1}</span>
+                <Badge type="b-amber">{f$(+(daily/chs.length/nc).toFixed(2),2)}/day</Badge>
+              </div>
+              {Array.from({length:Math.min(nas,3)}).map((_,ai)=>(
+                <div key={ai} className="tree-adset">
+                  <span style={{color:'var(--ink30)',fontSize:'.7rem',marginRight:'.25rem'}}>└</span>
+                  <div style={{flex:1}}>
+                    <div className="tree-a-name">Adset {ai+1} — Audience Segment {ai+1}</div>
+                    <div className="tree-ads">
+                      {Array.from({length:Math.min(nads,3)}).map((_,adi)=>(
+                        <div key={adi} className="tree-ad">Ad {adi+1} · Creative variant</div>
+                      ))}
+                      {nads>3&&<div className="tree-ad" style={{color:'var(--ink30)'}}>+{nads-3} more ads…</div>}
+                    </div>
+                  </div>
+                </div>
+              ))}
+              {nas>3&&<div style={{padding:'.45rem 1.1rem .45rem 2.5rem',fontSize:'.72rem',color:'var(--ink30)',fontFamily:'var(--f-m)'}}>+{nas-3} more adsets…</div>}
+            </div>);
+          })}
+          {nc>3&&<p style={{fontSize:'.72rem',color:'var(--ink30)',fontFamily:'var(--f-m)',textAlign:'center',padding:'.5rem'}}>+{nc-3} more campaigns not shown</p>}
+        </Card>
+      </div>
+    </div>
+    <StepNav onBack={onBack} backLabel="← Benchmarks" onNext={onNext} nextLabel="Naming →"/>
+  </div>);
+}
+
+/* ═══════════════════════════════════════
+   06 — NAMING CONVENTION
+═══════════════════════════════════════ */
+const ALL_TOKENS=[
+  {id:'BRAND',label:'Brand',example:d=>upper(d.brand||'BRAND').slice(0,8)},
+  {id:'COUNTRY',label:'Country',example:d=>upper(d.country||'UAE').slice(0,3)},
+  {id:'CHANNEL',label:'Channel',example:_=>'META'},
+  {id:'OBJECTIVE',label:'Objective',example:d=>upper(d.objective||'CONV').slice(0,6)},
+  {id:'FUNNEL',label:'Funnel Stage',example:_=>'COLD'},
+  {id:'AUDIENCE',label:'Audience',example:_=>'INT'},
+  {id:'FORMAT',label:'Ad Format',example:_=>'VID'},
+  {id:'ANGLE',label:'Creative Angle',example:_=>'PAIN'},
+  {id:'AGE',label:'Age Range',example:d=>`${d.ageMin||18}-${d.ageMax||45}`},
+  {id:'GENDER',label:'Gender',example:d=>d.gender==='All'?'ALL':d.gender==='Male'?'M':'F'},
+  {id:'DATE',label:'Date',example:_=>{const d=new Date();return`${d.getFullYear()}Q${Math.ceil((d.getMonth()+1)/3)}`;}},
+  {id:'VERSION',label:'Version',example:_=>'V1'},
+  {id:'PLACEMENT',label:'Placement',example:_=>'FEED'},
+];
+
+function NamingSheet({data,setData,onNext,onBack}){
+  const set=(k,v)=>setData(p=>({...p,[k]:v}));
+  const cToks=data.campTokens||['BRAND','COUNTRY','CHANNEL','OBJECTIVE','FUNNEL','DATE'];
+  const aToks=data.adsetTokens||['FUNNEL','AUDIENCE','AGE','GENDER'];
+  const adToks=data.adTokens||['FORMAT','ANGLE','VERSION'];
+  const sep=data.separator||'_';
+  const chs=data.channels||['Meta'];
+  const stages=data.stages||['COLD','WARM','HOT'];
+  const nc=data.numCampaigns||2;const nas=data.adsetsPerCampaign||3;const nads=data.adsPerAdset||4;
+
+  function buildName(toks,overrides={}){
+    return toks.map(tid=>{
+      const tok=ALL_TOKENS.find(t=>t.id===tid);
+      return overrides[tid]||tok?.example(data)||tid;
+    }).join(sep);
+  }
+
+  function toggleTok(key,tid){
+    setData(p=>{
+      const arr=p[key]||[];
+      return{...p,[key]:arr.includes(tid)?arr.filter(x=>x!==tid):[...arr,tid]};
+    });
+  }
+
+  const campPreview=buildName(cToks,{CHANNEL:'META',FUNNEL:'COLD'});
+  const adsetPreview=buildName(aToks,{FUNNEL:'COLD',AUDIENCE:'INT25-45'});
+  const adPreview=buildName(adToks,{FORMAT:'VID',ANGLE:'PAIN',VERSION:'V1'});
+
+  const audiences=['INT25-45','LAL180D','RETGT-CART','RETGT-VIEW','CRM-LIST','INT18-34-F','BROAD'];
+  const formats=['VID','STATIC','UGC','CAROUSEL','REEL','STORY'];
+  const angles=['PAIN','OFFER','SOCIAL','COMP','FEAT','BENE','UGCR'];
+
+  const exampleNames=[];
+  chs.slice(0,2).forEach(ch=>{
+    stages.slice(0,2).forEach(stage=>{
+      exampleNames.push({
+        level:'Campaign',ch,stage,
+        name:buildName(cToks,{CHANNEL:upper(ch),FUNNEL:stage,BRAND:upper(data.brand||'BRAND').slice(0,8),COUNTRY:upper(data.country||'UAE').slice(0,3),OBJECTIVE:upper(data.objective||'CONV').slice(0,6),DATE:'2025Q2'}),
+      });
+      audiences.slice(0,2).forEach(aud=>{
+        exampleNames.push({
+          level:'Adset',ch,stage,aud,
+          name:buildName(aToks,{FUNNEL:stage,AUDIENCE:aud,AGE:`${data.ageMin||18}-${data.ageMax||45}`,GENDER:data.gender==='Male'?'M':data.gender==='Female'?'F':'ALL'}),
+        });
+        formats.slice(0,1).forEach(fmt=>{
+          angles.slice(0,1).forEach((ang,vi)=>{
+            exampleNames.push({
+              level:'Ad',ch,stage,aud,fmt,ang,
+              name:buildName(adToks,{FORMAT:fmt,ANGLE:ang,VERSION:`V${vi+1}`,PLACEMENT:'FEED'}),
+            });
+          });
+        });
+      });
+    });
+  });
+
+  return(<div>
+    <PageHeader eyebrow="Module 06 · Naming Convention" title="Naming <em>Convention</em>" sub="Select token fields and order to auto-generate consistent names for every campaign, adset and ad. Copy any name instantly."/>
+    <div className="g2" style={{marginBottom:'1.25rem'}}>
+      <Card>
+        <SLabel>Convention Builder</SLabel>
+        <div className="field" style={{marginBottom:'.85rem'}}>
+          <label className="label">Separator</label>
+          <div style={{display:'flex',gap:'.4rem'}}>
+            {['_','-','|','/'].map(s=><button key={s} className={`tag-opt${sep===s?' on':''}`} onClick={()=>set('separator',s)} style={{padding:'.25rem .75rem',fontFamily:'var(--f-m)'}}>{s}</button>)}
+          </div>
+        </div>
+        {[
+          {key:'campTokens',label:'Campaign Name Tokens',toks:cToks,preview:campPreview},
+          {key:'adsetTokens',label:'Adset Name Tokens',toks:aToks,preview:adsetPreview},
+          {key:'adTokens',label:'Ad Name Tokens',toks:adToks,preview:adPreview},
+        ].map(({key,label,toks,preview})=>(
+          <div key={key} style={{marginBottom:'1.1rem'}}>
+            <label className="label">{label}</label>
+            <div className="token-rail">
+              {ALL_TOKENS.map(tok=><button key={tok.id} className={`token${toks.includes(tok.id)?' on':''}`} onClick={()=>toggleTok(key,tok.id)}>{toks.includes(tok.id)?<span className="token-drag">✦</span>:null}{tok.label}</button>)}
+            </div>
+            <div className="preview-box">{preview||'—'}<CopyBtn text={preview}/></div>
+          </div>
+        ))}
+      </Card>
+      <div>
+        <Card>
+          <SLabel>Generated Name Examples</SLabel>
+          <p style={{fontSize:'.75rem',color:'var(--ink50)',marginBottom:'1rem',lineHeight:1.7}}>Auto-generated from your campaign structure. All {nc*chs.length} campaigns × {nas} adsets × {nads} ads follow this pattern.</p>
+          {exampleNames.map((n,i)=>(
+            <div key={i} className="name-row">
+              <span className="name-level" style={{color:n.level==='Campaign'?'var(--amber)':n.level==='Adset'?'var(--blue)':'var(--ink30)',paddingLeft:n.level==='Adset'?'0.75rem':n.level==='Ad'?'1.5rem':'0'}}>{n.level}</span>
+              <span className="name-str">{n.name}</span>
+              <CopyBtn text={n.name}/>
+            </div>
+          ))}
+        </Card>
+      </div>
+    </div>
+    <StepNav onBack={onBack} backLabel="← Structure" onNext={onNext} nextLabel="Creative Brief →"/>
+  </div>);
+}
+
+/* ═══════════════════════════════════════
+   07 — CREATIVE BRIEF
+═══════════════════════════════════════ */
+function CreativeSheet({data,setData,onNext,onBack}){
+  const set=(k,v)=>setData(p=>({...p,[k]:v}));
+  const chs=data.channels||['Meta'];
+  const nc=data.numCampaigns||2;const nas=data.adsetsPerCampaign||3;const nads=data.adsPerAdset||4;
+  const totalAds=nc*chs.length*nas*nads;
+  const formats=data.creativeFormats||['Video','Static'];
+  const angles=data.creativeAngles||['Pain Point','Offer','Social Proof'];
+  const toggleFmt=(f)=>setData(p=>({...p,creativeFormats:(p.creativeFormats||[]).includes(f)?(p.creativeFormats||[]).filter(x=>x!==f):[...(p.creativeFormats||[]),f]}));
+  const toggleAngle=(a)=>setData(p=>({...p,creativeAngles:(p.creativeAngles||[]).includes(a)?(p.creativeAngles||[]).filter(x=>x!==a):[...(p.creativeAngles||[]),a]}));
+  const allFormats=['Video (15s)','Video (30s+)','Static Image','UGC','Carousel','Reel / Short-form','Story','Collection'];
+  const allAngles=['Pain Point','Offer / Discount','Social Proof','Comparison','Features','Benefits','Testimonial','Before/After','How-it-works','Urgency / FOMO','Celebrity / Creator','Education'];
+  const specsByFormat={
+    'Video (15s)':{ratio:'9:16, 4:5, 1:1',duration:'≤ 15s',size:'<250MB',formats:'MP4, MOV'},
+    'Video (30s+)':{ratio:'9:16, 16:9, 4:5',duration:'16s–60s',size:'<250MB',formats:'MP4, MOV'},
+    'Static Image':{ratio:'1:1, 4:5, 9:16',size:'<30MB',formats:'JPG, PNG',res:'1080×1080 min'},
+    'UGC':{ratio:'9:16',duration:'15–60s',style:'Raw, authentic feel',hook:'First 3 seconds critical'},
+    'Carousel':{ratio:'1:1',cards:'2–10 cards',size:'<30MB/card',formats:'JPG, PNG, MP4'},
+    'Reel / Short-form':{ratio:'9:16',duration:'7–90s',size:'<250MB',formats:'MP4, MOV'},
+    'Story':{ratio:'9:16',safe_zone:'Top & bottom 14%',duration:'≤ 15s',formats:'JPG, PNG, MP4'},
+    'Collection':{ratio:'1:1',note:'Requires catalogue',cta:'Shop Now / View Collection',formats:'JPG, PNG'},
+  };
+  const cta=data.cta||'Shop Now';
+  return(<div>
+    <PageHeader eyebrow="Module 07 · Creative Brief" title="Creative <em>Brief</em>" sub="Define the formats, angles, CTA and specs needed. This becomes your briefing document for the creative team."/>
+    <div className="g2">
+      <div>
+        <Card style={{marginBottom:'1.25rem'}}>
+          <SLabel>Ad Formats</SLabel>
+          <div className="tag-grid">{allFormats.map(f=><button key={f} className={`tag-opt${formats.includes(f)?' on':''}`} onClick={()=>toggleFmt(f)}>{f}</button>)}</div>
+        </Card>
+        <Card style={{marginBottom:'1.25rem'}}>
+          <SLabel>Creative Angles / Messaging Pillars</SLabel>
+          <div className="tag-grid">{allAngles.map(a=><button key={a} className={`tag-opt${angles.includes(a)?' on':''}`} onClick={()=>toggleAngle(a)}>{a}</button>)}</div>
+        </Card>
+        <Card>
+          <SLabel>CTA & Copy Direction</SLabel>
+          <Field label="Primary CTA"><select value={cta} onChange={e=>set('cta',e.target.value)}>
+            {['Shop Now','Learn More','Sign Up','Get Started','Book Now','Download','Contact Us','Get Quote','Apply Now','Subscribe'].map(c=><option key={c}>{c}</option>)}
+          </select></Field>
+          <Field label="Key Message / USP"><textarea value={data.usp||''} onChange={e=>set('usp',e.target.value)} placeholder="What's the single most compelling thing about this product/offer?"/></Field>
+          <Field label="Offer / Promotion" note="if any"><input value={data.offer||''} onChange={e=>set('offer',e.target.value)} placeholder="e.g. 20% off first order, Free shipping, Limited slots"/></Field>
+          <Field label="Do Not Do / Brand Guardrails"><textarea value={data.dontDo||''} onChange={e=>set('dontDo',e.target.value)} style={{minHeight:56}} placeholder="e.g. No competitor mentions, avoid price anchoring…"/></Field>
+        </Card>
+      </div>
+      <div>
+        <Card style={{marginBottom:'1.25rem'}}>
+          <SLabel>Creative Count Summary</SLabel>
+          <div className="g2" style={{gap:'.65rem',marginBottom:'1rem'}}>
+            {[{l:'Total Ads Needed',v:totalAds,c:'c-amber'},{l:'Unique Formats Selected',v:formats.length,c:'c-blue'},{l:'Angles / Pillars',v:angles.length,c:'c-green'},{l:'Per Format (approx.)',v:Math.ceil(totalAds/Math.max(formats.length,1)),c:'c-amber'}].map(({l,v,c})=><MCard key={l} label={l} val={v} color={c}/>)}
+          </div>
+          {formats.length===0&&<p style={{fontSize:'.8rem',color:'var(--red)'}}>← Select at least one format</p>}
+        </Card>
+        <div>
+          {formats.map(fmt=>{
+            const spec=specsByFormat[fmt]||{};
+            return(<div key={fmt} className="cr-card" style={{marginBottom:'.75rem'}}>
+              <div className="cr-hdr"><span style={{fontSize:'1rem'}}>{fmt.includes('Video')||fmt.includes('Reel')?'🎬':fmt==='UGC'?'📱':fmt==='Carousel'||fmt==='Collection'?'🗂':'🖼'}</span><span className="cr-format">{fmt}</span></div>
+              <div className="cr-body">
+                {Object.entries(spec).map(([k,v])=>(
+                  <div key={k} className="cr-row"><span className="cr-lbl">{k.replace('_',' ')}</span><span className="cr-val">{v}</span></div>
+                ))}
+              </div>
+            </div>);
+          })}
+        </div>
+      </div>
+    </div>
+    <StepNav onBack={onBack} backLabel="← Naming" onNext={onNext} nextLabel="Tracking →"/>
+  </div>);
+}
+
+/* ═══════════════════════════════════════
+   08 — TRACKING
+═══════════════════════════════════════ */
+function TrackingSheet({data,setData,onNext,onBack}){
+  const set=(k,v)=>setData(p=>({...p,[k]:v}));
+  const chs=data.channels||['Meta'];
+  const brand=slug(data.brand||'brand');const campaign=slug(data.businessGoal||'campaign').slice(0,20);
+  const url=data.landingPage||'https://yoursite.com/page';
+
+  function buildUTM(ch,med){
+    const params=[
+      ['utm_source',ch.toLowerCase()],
+      ['utm_medium',med||'paid'],
+      ['utm_campaign',campaign||'campaign'],
+      ['utm_content','{{ad.name}}'],
+      ['utm_term','{{adset.name}}'],
+    ];
+    return url+'?'+params.map(([k,v])=>`${k}=${encodeURIComponent(v)}`).join('&');
+  }
+
+  const chMedium={'Meta':'paid_social','Google':'cpc','TikTok':'paid_social','Snapchat':'paid_social','LinkedIn':'paid_social','Pinterest':'paid_social'};
+  const pixelChecks=[
+    {id:'pixel_installed',title:'Pixel / Tag installed on all pages',desc:'Meta Pixel, Google Tag, TikTok Pixel — verified in Tag Manager or source code',ch:null},
+    {id:'conv_event',title:'Conversion event firing correctly',desc:'Purchase, Lead, Complete Registration event tested and verified',ch:null},
+    {id:'test_events',title:'Test events verified in platform',desc:'Meta Events Manager → Test Events · Google Tag Assistant → Tag fired',ch:null},
+    {id:'gtm_live',title:'Google Tag Manager published',desc:'Workspace changes published and live on the production site',ch:null},
+    {id:'ga4_linked',title:'GA4 linked to ad platform',desc:'Google Ads ↔ GA4 linked · Meta ↔ GA4 via native integration or third-party',ch:null},
+    {id:'meta_pixel',title:'Meta Pixel deduplication active',desc:'Server-side events (CAPI) configured to prevent duplicate conversion signals',ch:'Meta'},
+    {id:'utm_consistent',title:'UTM structure consistent across all ads',desc:'All ad URLs use the same UTM convention — no manual typos',ch:null},
+    {id:'url_params_test',title:'URL parameters working on landing page',desc:'Visited the UTM URL — params appear in GA4 → Reports → Acquisition',ch:null},
+  ];
+  const [checked,setChecked]=useState(data.trackingChecked||{});
+  function toggle(id){const n={...checked,[id]:!checked[id]};setChecked(n);set('trackingChecked',n);}
+  const done=Object.values(checked).filter(Boolean).length;
+
+  return(<div>
+    <PageHeader eyebrow="Module 08 · Tracking" title="UTMs & <em>Tracking</em>" sub="Auto-built UTM links per channel and a pixel verification checklist. Nothing launches without clean tracking."/>
+    <div className="g2">
+      <div>
+        <Card style={{marginBottom:'1.25rem'}}>
+          <SLabel>UTM Settings</SLabel>
+          <Field label="Landing Page URL"><input value={data.landingPage||''} onChange={e=>set('landingPage',e.target.value)} placeholder="https://yoursite.com/landing-page"/></Field>
+          <Field label="Campaign Slug" hint="Auto-generated from your business goal — edit if needed"><input value={data.utmCampaign||campaign} onChange={e=>set('utmCampaign',e.target.value)}/></Field>
+        </Card>
+        <Card>
+          <SLabel>Generated UTM Links</SLabel>
+          {chs.map(ch=>(
+            <div key={ch} style={{marginBottom:'1rem'}}>
+              <div style={{fontFamily:'var(--f-m)',fontSize:'.65rem',letterSpacing:'.1em',textTransform:'uppercase',color:'var(--ink50)',marginBottom:'.4rem'}}>{ch}</div>
+              <div className="utm-box" style={{fontSize:'.72rem'}}>
+                <span className="utm-param">utm_source</span>=<span className="utm-val">{ch.toLowerCase()}</span>&nbsp;
+                <span className="utm-param">utm_medium</span>=<span className="utm-val">{chMedium[ch]||'paid'}</span>&nbsp;
+                <span className="utm-param">utm_campaign</span>=<span className="utm-val">{data.utmCampaign||campaign}</span>&nbsp;
+                <span className="utm-param">utm_content</span>=<span className="utm-val">&#123;&#123;ad.name&#125;&#125;</span>&nbsp;
+                <span className="utm-param">utm_term</span>=<span className="utm-val">&#123;&#123;adset.name&#125;&#125;</span>
+              </div>
+              <div style={{marginTop:'.4rem',display:'flex',justifyContent:'flex-end'}}><CopyBtn text={buildUTM(ch,chMedium[ch])}/></div>
+            </div>
+          ))}
+        </Card>
+      </div>
+      <Card>
+        <div style={{display:'flex',alignItems:'center',justifyContent:'space-between',marginBottom:'1rem'}}>
+          <div className="sec-lbl" style={{margin:0}}>Tracking Checklist</div>
+          <Badge type={done===pixelChecks.length?'b-green':'b-amber'}>{done}/{pixelChecks.length} complete</Badge>
+        </div>
+        {pixelChecks.map(item=>(
+          <div key={item.id} className={`check-item${checked[item.id]?' done':''}`} onClick={()=>toggle(item.id)}>
+            <div className="check-box">{checked[item.id]?'✓':''}</div>
+            <div>
+              <div className="ci-title">{item.title}</div>
+              <div className="ci-desc">{item.desc}</div>
+              {item.ch&&<div className="ci-tag"><Badge type="b-blue">{item.ch} only</Badge></div>}
+            </div>
+          </div>
+        ))}
+      </Card>
+    </div>
+    <StepNav onBack={onBack} backLabel="← Creative" onNext={onNext} nextLabel="Checklist →"/>
+  </div>);
+}
+
+/* ═══════════════════════════════════════
+   09 — LAUNCH CHECKLIST
+═══════════════════════════════════════ */
+function ChecklistSheet({data,setData,onNext,onBack}){
+  const set=(k,v)=>setData(p=>({...p,[k]:v}));
+  const chs=data.channels||['Meta'];
+  const allItems=[
+    {id:'brief_approved',cat:'Pre-Launch',title:'Campaign brief approved by client / stakeholder',desc:'Goal, budget, timeline, KPIs, exclusions all confirmed in writing'},
+    {id:'lp_live',cat:'Pre-Launch',title:'Landing page is live and tested',desc:'Page loads correctly, CTA works, mobile-responsive, speed > 80 on PageSpeed Insights'},
+    {id:'lp_pixel',cat:'Pre-Launch',title:'Pixel fires on landing page and thank-you page',desc:'Verified via browser extension — no duplicate fires'},
+    {id:'audience_ready',cat:'Pre-Launch',title:'Custom audiences uploaded and warmed',desc:'CRM lists processed, lookalike seeds have ≥ 1,000 matched users'},
+    {id:'creatives_approved',cat:'Pre-Launch',title:'All creatives approved and spec-compliant',desc:'File sizes, ratios, text overlay limits, no prohibited content'},
+    {id:'budget_set',cat:'Campaign Setup',title:'Campaign budgets set correctly',desc:'Daily or lifetime budget confirmed — not default or placeholder values'},
+    {id:'naming_applied',cat:'Campaign Setup',title:'Naming convention applied to all campaigns',desc:'All campaigns, adsets and ads follow the naming structure'},
+    {id:'utm_applied',cat:'Campaign Setup',title:'UTM parameters applied to all ad URLs',desc:'Every ad link includes source, medium, campaign, content and term'},
+    {id:'conversion_event',cat:'Campaign Setup',title:'Correct conversion event selected per campaign',desc:'Purchase for Ecom, Lead for Lead Gen, Install for App — verified'},
+    {id:'bid_strategy',cat:'Campaign Setup',title:'Bid strategy confirmed',desc:'Lowest cost vs target cost vs bid cap — aligned to objective and budget phase'},
+    {id:'placements_reviewed',cat:'Campaign Setup',title:'Placements reviewed and configured',desc:'Automatic placements or manual selection confirmed. Story/Reels creatives provided if needed'},
+    {id:'schedule_set',cat:'Campaign Setup',title:'Start date / end date confirmed',desc:'Campaign scheduled correctly — not running immediately unless intended'},
+    {id:'double_check_spend',cat:'Pre-Go-Live',title:'Spend cap confirmed — no runaway risk',desc:'Account spending limit set. Daily budget sanity-checked against total monthly plan'},
+    {id:'preview_links',cat:'Pre-Go-Live',title:'Ad preview links shared and approved',desc:'All ad copies reviewed — correct headlines, copy, images, CTA, destination URL'},
+    {id:'team_notified',cat:'Pre-Go-Live',title:'Team / client notified of go-live date',desc:'Reporting schedule agreed — daily check-ins for first 72 hours'},
+    {id:'first_48_monitor',cat:'Post-Launch',title:'72-hour monitoring plan in place',desc:'Who monitors? At what frequency? What are the KPI thresholds to act?'},
+    {id:'reporting_template',cat:'Post-Launch',title:'Reporting template or dashboard set up',desc:'Weekly report format agreed with client or internal stakeholder'},
+  ];
+  const cats=[...new Set(allItems.map(i=>i.cat))];
+  const checked=data.launchChecked||{};
+  function toggle(id){const n={...checked,[id]:!checked[id]};setData(p=>({...p,launchChecked:n}));}
+  const done=Object.values(checked).filter(Boolean).length;
+  const pct=Math.round(done/allItems.length*100);
+
+  return(<div>
+    <PageHeader eyebrow="Module 09 · Launch Checklist" title="Launch <em>Readiness</em>" sub="Every item must be green before going live. Share this with your team or client as the final sign-off document."/>
+    <div style={{display:'flex',align:'center',gap:'1rem',marginBottom:'1.5rem',flexWrap:'wrap',alignItems:'center'}}>
+      <div style={{flex:1,minWidth:200}}>
+        <div style={{display:'flex',justifyContent:'space-between',marginBottom:'.4rem'}}>
+          <span style={{fontFamily:'var(--f-m)',fontSize:'.7rem',color:'var(--ink50)'}}>Overall readiness</span>
+          <span style={{fontFamily:'var(--f-d)',fontWeight:900,fontSize:'1.1rem',color:pct===100?'var(--green)':pct>60?'var(--amber)':'var(--red)'}}>{pct}%</span>
+        </div>
+        <div className="prog-track" style={{height:6}}>
+          <div className="prog-fill" style={{width:pct+'%',background:pct===100?'var(--green)':pct>60?'var(--amber)':'var(--red)'}}/>
+        </div>
+      </div>
+      <Badge type={pct===100?'b-green':pct>70?'b-amber':'b-red'} style={{padding:'.35rem 1rem',fontSize:'.72rem'}}>{done}/{allItems.length} items complete {pct===100?'— Ready to Launch 🚀':''}</Badge>
+    </div>
+    {cats.map(cat=>(
+      <div key={cat} style={{marginBottom:'1.5rem'}}>
+        <SLabel>{cat}</SLabel>
+        {allItems.filter(i=>i.cat===cat).map(item=>(
+          <div key={item.id} className={`check-item${checked[item.id]?' done':''}`} onClick={()=>toggle(item.id)}>
+            <div className="check-box">{checked[item.id]?'✓':''}</div>
+            <div style={{flex:1}}>
+              <div className="ci-title">{item.title}</div>
+              <div className="ci-desc">{item.desc}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    ))}
+    <StepNav onBack={onBack} backLabel="← Tracking" onNext={onNext} nextLabel="View Summary →"/>
+  </div>);
+}
+
+/* ═══════════════════════════════════════
+   10 — SUMMARY
+═══════════════════════════════════════ */
+function SummarySheet({data,onBack}){
+  const [printing,setPrinting]=useState(false);
+  const chs=data.channels||['Meta'];
+  const monthly=data.monthlyBudget||5000;const days=data.flightDays||30;
+  const total=+(monthly*(days/30)).toFixed(0);const daily=+(total/days).toFixed(2);
+  const aov=data.aov||100;const gm=data.grossMargin||.40;
+  const tCAC=+(aov*gm).toFixed(2);const beROAS=gm>0?+(1/gm).toFixed(2):0;
+  const nc=data.numCampaigns||2;const nas=data.adsetsPerCampaign||3;const nads=data.adsPerAdset||4;
+  const chSplits=data.chSplits||{};
+  const allItemsDone=Object.values(data.launchChecked||{}).filter(Boolean).length;
+  const totalCheckItems=17;
+  const pct=Math.round(allItemsDone/totalCheckItems*100);
+
+  function print(){window.print();}
+
+  const sep=data.separator||'_';
+  const ALL_TOKENS_MAP=Object.fromEntries(ALL_TOKENS.map(t=>[t.id,t]));
+  function buildName(toks,overrides={}){return(toks||[]).map(tid=>{const tok=ALL_TOKENS_MAP[tid];return overrides[tid]||tok?.example(data)||tid;}).join(sep);}
+  const campPrev=buildName(data.campTokens||['BRAND','COUNTRY','CHANNEL','OBJECTIVE','FUNNEL','DATE'],{CHANNEL:'META',FUNNEL:'COLD'});
+  const adsetPrev=buildName(data.adsetTokens||['FUNNEL','AUDIENCE','AGE','GENDER'],{AUDIENCE:'INT25-45'});
+  const adPrev=buildName(data.adTokens||['FORMAT','ANGLE','VERSION'],{FORMAT:'VID',ANGLE:'PAIN',VERSION:'V1'});
+
+  return(<div>
+    <PageHeader eyebrow="Module 10 · Summary" title="Campaign <em>Plan</em>" sub="Your complete pre-launch plan. Print or copy this to share with your team or client."/>
+    <div style={{display:'flex',gap:'.65rem',marginBottom:'1.5rem',flexWrap:'wrap'}}>
+      <Badge type={pct===100?'b-green':pct>70?'b-amber':'b-red'}>{pct}% Launch Ready</Badge>
+      <Badge type="b-blue">{chs.join(' · ')}</Badge>
+      <Badge type="b-amber">{f$(total)} total budget</Badge>
+      <Badge type="b-gray">{days} days</Badge>
+      <button className="btn-primary" style={{marginLeft:'auto'}} onClick={print}>Print / Save PDF</button>
+    </div>
+    <div className="g2" style={{gap:'1.25rem',marginBottom:'1.25rem'}}>
+      <div>
+        <Card className="card-accent" style={{marginBottom:'1.25rem'}}>
+          <h3 style={{fontFamily:'var(--f-d)',fontSize:'1.05rem',fontWeight:900,marginBottom:'.85rem',letterSpacing:'-.02em'}}>Campaign Brief</h3>
+          {[
+            {k:'Brand',v:data.brand||'—'},{k:'Market',v:data.country||'—'},{k:'Industry',v:data.industry||'—'},
+            {k:'Product',v:data.product||'—'},{k:'Objective',v:data.objective||'—'},{k:'Funnel Type',v:data.funnelType||'—'},
+            {k:'Business Goal',v:data.businessGoal||'—'},{k:'Channels',v:chs.join(', ')},{k:'Key KPIs',v:(data.kpis||[]).join(', ')||'—'},
+          ].map(({k,v})=><div key={k} className="summary-row"><span className="sr-key">{k}</span><span className="sr-val">{v}</span></div>)}
+        </Card>
+        <Card className="card-accent" style={{marginBottom:'1.25rem'}}>
+          <h3 style={{fontFamily:'var(--f-d)',fontSize:'1.05rem',fontWeight:900,marginBottom:'.85rem',letterSpacing:'-.02em'}}>Budget Plan</h3>
+          {[
+            {k:'Monthly Budget',v:f$(monthly)},{k:'Total Budget',v:f$(total)},{k:'Flight Period',v:`${days} days`},
+            {k:'Daily Budget',v:f$(daily,2)},{k:'Target CAC',v:f$(tCAC,2)},{k:'Break-Even ROAS',v:fx(beROAS)},
+          ].map(({k,v})=><div key={k} className="summary-row"><span className="sr-key">{k}</span><span className="sr-val" style={{fontFamily:'var(--f-m)',color:'var(--amber)'}}>{v}</span></div>)}
+          {chs.map(ch=>{const pct=(chSplits[ch]||Math.round(100/chs.length));return(<div key={ch} className="summary-row"><span className="sr-key">{ch} Budget</span><span className="sr-val" style={{fontFamily:'var(--f-m)'}}>{f$(+(monthly*pct/100).toFixed(0))} ({pct}%)</span></div>);})}
+        </Card>
+        <Card className="card-accent">
+          <h3 style={{fontFamily:'var(--f-d)',fontSize:'1.05rem',fontWeight:900,marginBottom:'.85rem',letterSpacing:'-.02em'}}>Audience</h3>
+          {[
+            {k:'Age',v:`${data.ageMin||18}–${data.ageMax||45}`},{k:'Gender',v:data.gender||'All'},
+            {k:'Language',v:data.language||'—'},{k:'Geo Detail',v:data.geoDetail||data.country||'—'},
+            {k:'Interests',v:(data.interests||[]).join(', ')||'—'},{k:'Funnel Stages',v:(data.stages||['COLD','WARM','HOT']).join(', ')},
+          ].map(({k,v})=><div key={k} className="summary-row"><span className="sr-key">{k}</span><span className="sr-val">{v}</span></div>)}
+        </Card>
+      </div>
+      <div>
+        <Card className="card-accent" style={{marginBottom:'1.25rem'}}>
+          <h3 style={{fontFamily:'var(--f-d)',fontSize:'1.05rem',fontWeight:900,marginBottom:'.85rem',letterSpacing:'-.02em'}}>Campaign Structure</h3>
+          {[
+            {k:'Channels',v:chs.length},{k:'Campaigns / Channel',v:nc},{k:'Adsets / Campaign',v:nas},
+            {k:'Ads / Adset',v:nads},{k:'Total Campaigns',v:nc*chs.length},{k:'Total Adsets',v:nc*chs.length*nas},
+            {k:'Total Ads',v:nc*chs.length*nas*nads},{k:'Creatives Needed',v:nc*chs.length*nas*nads},
+          ].map(({k,v})=><div key={k} className="summary-row"><span className="sr-key">{k}</span><span className="sr-val" style={{fontFamily:'var(--f-m)',color:'var(--amber)',fontWeight:700}}>{v}</span></div>)}
+        </Card>
+        <Card className="card-accent" style={{marginBottom:'1.25rem'}}>
+          <h3 style={{fontFamily:'var(--f-d)',fontSize:'1.05rem',fontWeight:900,marginBottom:'.85rem',letterSpacing:'-.02em'}}>Naming Convention</h3>
+          {[{l:'Campaign',v:campPrev},{l:'Adset',v:adsetPrev},{l:'Ad',v:adPrev}].map(({l,v})=>(
+            <div key={l} style={{marginBottom:'.75rem'}}>
+              <div style={{fontFamily:'var(--f-m)',fontSize:'.6rem',letterSpacing:'.1em',textTransform:'uppercase',color:'var(--ink50)',marginBottom:'.3rem'}}>{l} Pattern</div>
+              <div className="preview-box" style={{fontSize:'.75rem',paddingRight:'4.5rem'}}>{v||'—'}<CopyBtn text={v}/></div>
+            </div>
+          ))}
+        </Card>
+        <Card className="card-accent">
+          <h3 style={{fontFamily:'var(--f-d)',fontSize:'1.05rem',fontWeight:900,marginBottom:'.85rem',letterSpacing:'-.02em'}}>Creative Brief</h3>
+          {[
+            {k:'Formats',v:(data.creativeFormats||[]).join(', ')||'—'},{k:'Angles',v:(data.creativeAngles||[]).join(', ')||'—'},
+            {k:'Primary CTA',v:data.cta||'—'},{k:'Key USP',v:data.usp||'—'},{k:'Offer',v:data.offer||'—'},
+          ].map(({k,v})=><div key={k} className="summary-row"><span className="sr-key">{k}</span><span className="sr-val">{v}</span></div>)}
+          <Divider/>
+          <div className="summary-row"><span className="sr-key">Launch Readiness</span>
+            <span style={{fontFamily:'var(--f-m)',fontWeight:700,color:pct===100?'var(--green)':pct>70?'var(--amber)':'var(--red)'}}>{pct}% ({allItemsDone}/{totalCheckItems} items)</span>
+          </div>
+          <div className="summary-row"><span className="sr-key">Tracking URL</span><span className="sr-val" style={{fontSize:'.75rem',wordBreak:'break-all',color:'var(--blue)'}}>{data.landingPage||'—'}</span></div>
+        </Card>
+      </div>
+    </div>
+    <div style={{textAlign:'center',padding:'1rem 0',color:'var(--ink50)',fontFamily:'var(--f-m)',fontSize:'.65rem',letterSpacing:'.1em',textTransform:'uppercase'}}>
+      Built with Raqmetrics Pre-Launch Planner · raqmetrics.com
+    </div>
+    <StepNav onBack={onBack} backLabel="← Checklist" onNext={()=>{}} nextLabel=""/>
+  </div>);
+}
+
+/* ═══════════════════════════════════════
+   HERO / LANDING
+═══════════════════════════════════════ */
+function Hero({onStart}){
+  return(<div className="hero-banner">
+    <div style={{maxWidth:640}}>
+      <div className="page-eyebrow" style={{justifyContent:'center',marginBottom:'1.2rem'}}>Pre-Launch Campaign Planner</div>
+      <h1>Build every campaign<br/><em>before</em> you spend a dollar.</h1>
+      <p>A structured 9-module planning system — from brief to naming convention to launch checklist. Everything in one place, before your first dollar goes live.</p>
+      <div className="module-pills">
+        {['01 Brief','02 Audience','03 Budget','04 Benchmarks','05 Structure','06 Naming Convention','07 Creative Brief','08 Tracking','09 Launch Checklist'].map(m=><span key={m} className="module-pill">{m}</span>)}
+      </div>
+      <button className="btn-primary" onClick={onStart} style={{fontSize:'.85rem',padding:'.85rem 2.5rem'}}>Start Planning →</button>
+    </div>
+  </div>);
+}
+
+/* ═══════════════════════════════════════
+   ROOT APP
+═══════════════════════════════════════ */
+const STEPS=[
+  {id:'brief',    label:'Brief',      icon:'📋'},
+  {id:'audience', label:'Audience',   icon:'👥'},
+  {id:'budget',   label:'Budget',     icon:'💰'},
+  {id:'benchmarks',label:'Benchmarks',icon:'📊'},
+  {id:'structure',label:'Structure',  icon:'🏗'},
+  {id:'naming',   label:'Naming',     icon:'🏷'},
+  {id:'creative', label:'Creatives',  icon:'🎨'},
+  {id:'tracking', label:'Tracking',   icon:'📡'},
+  {id:'checklist',label:'Checklist',  icon:'✅'},
+  {id:'summary',  label:'Summary',    icon:'📄'},
+];
+
+function isDone(id,data){
+  switch(id){
+    case 'brief':return!!(data.brand&&data.businessGoal&&(data.channels||[]).length>0);
+    case 'audience':return!!(data.ageMin&&data.ageMax);
+    case 'budget':return!!(data.monthlyBudget&&data.monthlyBudget>0);
+    case 'benchmarks':return true;
+    case 'structure':return!!(data.numCampaigns&&data.adsetsPerCampaign&&data.adsPerAdset);
+    case 'naming':return!!(data.campTokens&&data.campTokens.length>0);
+    case 'creative':return!!(data.creativeFormats&&data.creativeFormats.length>0);
+    case 'tracking':return!!(data.landingPage);
+    case 'checklist':return Object.values(data.launchChecked||{}).filter(Boolean).length>10;
+    case 'summary':return false;
+    default:return false;
+  }
+}
+
+function App(){
+  const [started,setStarted]=useState(false);
+  const [step,setStep]=useState(0);
+  const [data,setData]=useState({channels:['Meta','Google'],stages:['COLD','WARM','HOT'],kpis:['ROAS','CPA','CTR'],country:'UAE',industry:'Ecommerce',funnelType:'Ecom',objective:'Conversions',gender:'All',ageMin:18,ageMax:45,monthlyBudget:5000,grossMargin:.40,aov:150,numCampaigns:2,adsetsPerCampaign:3,adsPerAdset:4,coldPct:70,warmPct:20,hotPct:10,creativeFormats:['Video (15s)','Static Image'],creativeAngles:['Pain Point','Offer / Discount','Social Proof'],cta:'Shop Now'});
+  const done=STEPS.filter(s=>isDone(s.id,data)).length;
+  const pct=Math.round(done/STEPS.length*100);
+  const go=(n)=>{setStep(n);window.scrollTo({top:0,behavior:'smooth'})};
+  if(!started) return <Hero onStart={()=>setStarted(true)}/>;
+  return(<div className="shell">
+    <aside className="sidebar">
+      {STEPS.map((s,i)=>{
+        const d=isDone(s.id,data);
+        return(<button key={s.id} className={`sb-btn${step===i?' on':''}${d?' done':''}`} onClick={()=>go(i)}>
+          <span className="sb-num">{i+1}</span>{s.icon} {s.label}<span className="sb-check">✓</span>
+        </button>);
+      })}
+      <div style={{flex:1}}/>
+      <div className="sb-progress">
+        <div className="sb-prog-label"><span>Progress</span><span>{pct}%</span></div>
+        <div className="prog-track"><div className="prog-fill" style={{width:pct+'%'}}/></div>
+      </div>
+    </aside>
+    <main className="main">
+      {step===0&&<BriefSheet data={data} setData={setData} onNext={()=>go(1)}/>}
+      {step===1&&<AudienceSheet data={data} setData={setData} onNext={()=>go(2)} onBack={()=>go(0)}/>}
+      {step===2&&<BudgetSheet data={data} setData={setData} onNext={()=>go(3)} onBack={()=>go(1)}/>}
+      {step===3&&<BenchmarksSheet data={data} onNext={()=>go(4)} onBack={()=>go(2)}/>}
+      {step===4&&<StructureSheet data={data} setData={setData} onNext={()=>go(5)} onBack={()=>go(3)}/>}
+      {step===5&&<NamingSheet data={data} setData={setData} onNext={()=>go(6)} onBack={()=>go(4)}/>}
+      {step===6&&<CreativeSheet data={data} setData={setData} onNext={()=>go(7)} onBack={()=>go(5)}/>}
+      {step===7&&<TrackingSheet data={data} setData={setData} onNext={()=>go(8)} onBack={()=>go(6)}/>}
+      {step===8&&<ChecklistSheet data={data} setData={setData} onNext={()=>go(9)} onBack={()=>go(7)}/>}
+      {step===9&&<SummarySheet data={data} onBack={()=>go(8)}/>}
+    </main>
+  </div>);
+}
 ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
 </script>
 </body>
