@@ -391,7 +391,7 @@ flex-shrink:0;
   .p-step.on .p-step-num{
     background:var(--amber);
     color:#fff;border-color:var(--amber);
-    transform:none!important;
+    transform:none;
     box-shadow:0 0 0 6px rgba(242,92,5,.13),0 4px 20px rgba(242,92,5,.3);
   }
 }
@@ -399,7 +399,7 @@ flex-shrink:0;
 /* ══════════════════════════════════════════
    REVEAL SYSTEM
 ══════════════════════════════════════════ */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .72s var(--ease),transform .72s var(--ease);}
+
 .rvl{opacity:0;transform:translateX(-28px);transition:opacity .72s var(--ease),transform .72s var(--ease);}
 .rvr{opacity:0;transform:translateX(28px);transition:opacity .72s var(--ease),transform .72s var(--ease);}
 .rvs{opacity:0;transform:scale(.96);transition:opacity .72s var(--ease),transform .72s var(--ease);}
@@ -488,7 +488,7 @@ flex-shrink:0;
 }
 @media(max-width:768px){.port-item{cursor:auto;}}
 .port-item.hidden{display:none!important;}
-.port-item:hover{transform:translateY(-5px);box-shadow:0 16px 44px rgba(0,0,0,.11);}
+.port-item:hover{transform:translateY(-5px);}
 .port-img-wrap{position:relative;aspect-ratio:16/10;overflow:hidden;}
 .port-img{width:100%;height:100%;object-fit:cover;transition:transform .55s var(--ease);}
 .port-item:hover .port-img{transform:scale(1.08);}
@@ -679,8 +679,7 @@ flex-shrink:0;
   color:var(--ink);
   color-scheme:dark;
 }
-[data-theme="dark"] .contact-form-wrap{background:var(--card);}
-/* ══════════════════════════════════════════
+[data-theme="dark"] /* ══════════════════════════════════════════
    BACK TO TOP
 ══════════════════════════════════════════ */
 #btt{
@@ -721,7 +720,7 @@ flex-shrink:0;
 }
 @media(max-width:768px){
   /* reduce animation intensity on mobile */
-  .rv,.rvl,.rvr{transform:translateY(14px);transition:opacity .5s var(--ease),transform .5s var(--ease);}
+  .rv,.rvl,.rvr,.rvs{opacity:0;transform:translateY(14px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
   .rvl{transform:translateX(-14px);}
   .rvr{transform:translateX(14px);}
 }
@@ -931,7 +930,7 @@ flex-shrink:0;
   opacity:0;transition:opacity .3s;
 }
 .ft-ch:hover::before{opacity:1;}
-.ft-ch:hover{border-color:var(--amber);box-shadow:0 4px 24px rgba(242,92,5,.12);transform:translateX(5px);}
+.ft-ch:hover{border-color:var(--amber);box-shadow:0 6px 28px rgba(242,92,5,.1);transform:translateX(6px);}
 .ft-ch svg:first-child{
   width:36px;height:36px;padding:10px;flex-shrink:0;
   background:var(--a10);border-radius:10px;color:var(--amber);
@@ -1214,7 +1213,7 @@ body::before{
 .sk-tier-1{background:var(--amber);color:#fff;font-weight:500;}
 .sk-tier-2{background:var(--a10);color:var(--amber);border:1px solid var(--a20);}
 .sk-tier-3{background:transparent;color:var(--ink50);border:1px solid var(--border);}
-.sk-item:hover{transform:translateY(-1px);}
+
 .sk-legend{display:flex;align-items:center;gap:1rem;margin-top:.9rem;font-family:var(--f-m);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink50);}
 .sk-dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:.3rem;}
 .sk-dot.sk-tier-1{background:var(--amber);}
@@ -1686,17 +1685,12 @@ body::after{
   -webkit-backdrop-filter:blur(10px);
   transition:all .28s var(--ease);
 }
-.ft-ch:hover{
-  transform:translateX(6px);
-  box-shadow:0 6px 28px rgba(242,92,5,.1);
-}
+
 
 /* ── Back-to-top enhanced ── */
 #btt{
-  background:var(--card);
-  border:1px solid var(--border);
-  box-shadow:0 4px 24px rgba(0,0,0,.1);
-  transition:background var(--t),box-shadow var(--t),border-color var(--t),transform .3s var(--spring);
+  box-shadow:0 4px 24px rgba(242,92,5,.3),0 0 0 0 rgba(242,92,5,.2);
+  transition:background var(--t),box-shadow var(--t),transform .3s var(--spring);
 }
 #btt.show:hover{
   background:var(--amber);border-color:var(--amber);
@@ -1838,7 +1832,7 @@ body::after{
   "sameAs": [
     "https://www.linkedin.com/in/cherifeddinehaddad/"
   ],
-  "knowsAbout": ["Performance Marketing","Paid Advertising","Growth Marketing","CAC Reduction","Marketing Analytics","Attribution Modeling","Meta Ads","Google Ads"]
+  "knowsAbout": ["Performance Marketing","Paid Advertising","Growth Marketing","CAC Reduction","Marketing Analytics","Attribution Modeling","Meta Ads","Google Ads","Programmatic Advertising","Server-Side Tracking","Google Ad Manager","SQL","BigQuery"]
 }
 </script>
 
@@ -1865,7 +1859,7 @@ body::after{
   <a href="#about" onclick="closeMob()">Approach</a>
   <a href="#portfolio" onclick="closeMob()">Portfolio</a>
   <a href="#expertise" onclick="closeMob()">Expertise</a>
-  <a href="/tool.html">Model</a>
+  <a href="/tool.html">Model <span style="font-size:.55rem;opacity:.65;vertical-align:middle;letter-spacing:.08em;">(Beta)</span></a>
   <a href="#contact" onclick="closeMob()">Contact</a>
   <div style="display:flex;flex-direction:column;align-items:center;gap:1rem;margin-top:.5rem;">
     <div class="avail-badge"><span class="avail-dot"></span>Available for projects</div>
@@ -1896,7 +1890,7 @@ body::after{
       <li><a href="#about" data-s="about">Approach</a></li>
       <li><a href="#portfolio" data-s="portfolio">Portfolio</a></li>
       <li><a href="#expertise" data-s="expertise">Expertise</a></li>
-      <li><a href="/tool.html">Model</a></li>
+      <li><a href="/tool.html">Model <span style="font-family:var(--f-m);font-size:.52rem;letter-spacing:.1em;opacity:.6;vertical-align:middle;text-transform:uppercase;">(Beta)</span></a></li>
       <li><a href="#contact" data-s="contact">Contact</a></li>
     </ul>
     <div class="nav-right">
@@ -2046,11 +2040,11 @@ body::after{
 
     <div style="margin-top:2.5rem;" class="rv">
       <div class="port-filters">
-        <button class="pf on" data-f="all" type="button">All Work</button>
-        <button class="pf" data-f="Paid Marketing" type="button">Paid Marketing</button>
+        <button class="pf on" data-f="all" type="button" aria-label="Afficher tous les projets">All Work</button>
+        <button class="pf" data-f="Paid Marketing" type="button" aria-label="Filtrer: Paid Marketing">Paid Marketing</button>
         <button class="pf" data-f="Strategy & Analytics" type="button">Strategy &amp; Analytics</button>
         <button class="pf" data-f="CRM & Automation" type="button">CRM &amp; Automation</button>
-        <button class="pf" data-f="Creative Strategy" type="button">Creative Strategy</button>
+        <button class="pf" data-f="Creative Strategy" type="button" aria-label="Filtrer: Creative Strategy">Creative Strategy</button>
       </div>
 
       <div id="portEmpty" style="display:none;text-align:center;padding:3rem 1rem;"><p style="font-family:var(--f-m);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink50);">No projects in this category yet</p></div>
@@ -2282,7 +2276,9 @@ body::after{
                 <span class="sk-item sk-tier-1">TikTok Ads</span>
                 <span class="sk-item sk-tier-2">LinkedIn Ads</span>
                 <span class="sk-item sk-tier-2">Snapchat Ads</span>
-                <span class="sk-item sk-tier-3">DV360</span>
+                <span class="sk-item sk-tier-2">Programmatic Ads</span>
+                <span class="sk-item sk-tier-2">DV360</span>
+                <span class="sk-item sk-tier-3">Ads Operations (GAM)</span>
               </div>
             </div>
           </div>
@@ -2294,7 +2290,7 @@ body::after{
                 <span class="sk-item sk-tier-1">GA4</span>
                 <span class="sk-item sk-tier-1">Google Tag Manager</span>
                 <span class="sk-item sk-tier-1">Meta CAPI</span>
-                <span class="sk-item sk-tier-2">Looker Studio</span>
+                <span class="sk-item sk-tier-2">Server-Side Tracking (Stape)</span>
                 <span class="sk-item sk-tier-2">Attribution Modeling</span>
               </div>
             </div>
@@ -2307,10 +2303,21 @@ body::after{
                 <span class="sk-item sk-tier-1">A/B Testing</span>
                 <span class="sk-item sk-tier-1">Funnel Optimisation</span>
                 <span class="sk-item sk-tier-2">HubSpot</span>
-                <span class="sk-item sk-tier-2">GoHighLevel</span>
+                <span class="sk-item sk-tier-1">GoHighLevel</span>
                 <span class="sk-item sk-tier-2">Brevo</span>
                 <span class="sk-item sk-tier-3">Zapier</span>
                 <span class="sk-item sk-tier-3">ClickUp</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="sk-row">
+            <div class="sk-cat">
+              <div class="sk-cat-hd"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>Data & Reporting</div>
+              <div class="sk-items">
+                <span class="sk-item sk-tier-1">Looker Studio</span>
+                <span class="sk-item sk-tier-3">SQL</span>
+                <span class="sk-item sk-tier-3">BigQuery</span>
               </div>
             </div>
           </div>
@@ -2525,6 +2532,12 @@ body::after{
   const bar=document.getElementById('lbar');
   const pct=document.getElementById('lpct');
   const loader=document.getElementById('loader');
+  if(!bar||!pct|
+/* ── PAGE LOADER ── */
+(function(){
+  const bar=document.getElementById('lbar');
+  const pct=document.getElementById('lpct');
+  const loader=document.getElementById('loader');
   if(!bar||!pct||!loader)return;
   let p=0;
   const iv=setInterval(()=>{
@@ -2641,7 +2654,14 @@ if(mqEl)mqEl.innerHTML=mqHtml+mqHtml;
 
 /* ── INTERSECTION OBSERVER ── */
 const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target);}});
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target;
+    const delay=parseFloat(el.dataset.d||0)*1000;
+    if(delay){setTimeout(()=>{el.classList.add('on');},delay);}
+    else{el.classList.add('on');}
+    io.unobserve(el);
+  });
 },{threshold:.1});
 document.querySelectorAll('.rv,.rvl,.rvr,.rvs').forEach(el=>io.observe(el));
 
@@ -3106,6 +3126,3 @@ document.querySelectorAll('.chip').forEach(c=>{
   document.querySelectorAll('.testi-grid').forEach(el=>io.observe(el));
 })();
 
-</script>
-</body>
-</html>
