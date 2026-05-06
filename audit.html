@@ -224,6 +224,11 @@ em{color:var(--amber);font-style:italic}
   .hero{padding-bottom:3.5rem}
   .process-step{padding:1.5rem 1rem 1rem}
 }
+
+/* ── Logo image ── */
+.nav-logo-img{height:28px;width:auto;display:block;transition:opacity .2s;}
+.nav-logo-img:hover{opacity:.75;}
+[data-theme="dark"] .nav-logo-img{filter:brightness(0) invert(1);}
 </style>
 </head>
 <body>
@@ -231,7 +236,7 @@ em{color:var(--amber);font-style:italic}
 <!-- NAV -->
 <nav class="nav" id="nav">
   <div class="nav-i">
-    <a href="/" class="logo">raq<span>metrics</span></a>
+    <a href="/"><img src="https://raw.githubusercontent.com/cherifeddwork/raqmetrics.xyz/main/logo.svg" alt="Raqmetrics" class="nav-logo-img"/></a>
     <div class="nav-right">
       <a href="/" class="back-link">← Portfolio</a>
       <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">

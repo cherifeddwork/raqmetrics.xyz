@@ -179,6 +179,11 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .pat-dots{background-image:radial-gradient(var(--border2) 1px,transparent 1px);background-size:18px 18px}
 .pat-lines{background-image:repeating-linear-gradient(45deg,var(--border) 0,var(--border) 1px,transparent 0,transparent 50%);background-size:14px 14px}
 .pat-grid{background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:24px 24px}
+
+/* ── Logo image ── */
+.nav-logo-img{height:28px;width:auto;display:block;transition:opacity .2s;}
+.nav-logo-img:hover{opacity:.75;}
+[data-theme="dark"] .nav-logo-img{filter:brightness(0) invert(1);}
 </style>
 </head>
 <body>
@@ -186,7 +191,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <!-- NAV -->
 <nav class="nav" id="nav">
   <div class="nav-i">
-    <a href="/" class="logo">raq<span>metrics</span></a>
+    <a href="/"><img src="https://raw.githubusercontent.com/cherifeddwork/raqmetrics.xyz/main/logo.svg" alt="Raqmetrics" class="nav-logo-img"/></a>
     <ul class="nav-links">
       <li><a href="/">Work</a></li>
       <li><a href="/#expertise">Expertise</a></li>
