@@ -294,12 +294,17 @@ hr.divider{border:none;border-top:1px solid var(--border);margin:1.25rem 0}
 /* AUTOSAVE INDICATOR */
 .autosave{display:flex;align-items:center;gap:.4rem;font-family:var(--f-m);font-size:.6rem;color:var(--ink30);padding:.25rem .7rem;border-radius:999px;border:1px solid var(--border);background:none}
 .autosave-dot{width:5px;height:5px;border-radius:50%;background:var(--green)}
+
+/* ── Logo image ── */
+.nav-logo-img{height:28px;width:auto;display:block;transition:opacity .2s;}
+.nav-logo-img:hover{opacity:.75;}
+[data-theme="dark"] .nav-logo-img{filter:brightness(0) invert(1);}
 </style>
 </head>
 <body>
 <nav class="nav">
   <div class="nav-i">
-    <a href="/" class="logo">raq<span>metrics</span></a>
+    <a href="/"><img src="https://raw.githubusercontent.com/cherifeddwork/raqmetrics.xyz/main/logo.svg" alt="Raqmetrics" class="nav-logo-img"/></a>
     <div class="nav-right">
       <div class="avail"><span class="avail-dot"></span>Launch OS</div>
       <span class="autosave" id="autosaveStatus"><span class="autosave-dot"></span>Auto-saved</span>
