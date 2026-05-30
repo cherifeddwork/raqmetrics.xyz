@@ -4,11 +4,59 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Raqmetrics — Launch Readiness System</title>
+<meta name="description" content="Interactive launch-readiness system for paid acquisition — assess budget, channels, tracking, and creative before you spend."/>
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme:light)"/>
+<meta name="theme-color" content="#0e0d0c" media="(prefers-color-scheme:dark)"/>
+<meta name="author" content="Cherif Eddine Haddad"/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<link rel="canonical" href="https://raqmetrics.com/tool.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Raqmetrics"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:title" content="Raqmetrics — Launch Readiness System"/>
+<meta property="og:description" content="Interactive launch-readiness system for paid acquisition — assess budget, channels, tracking, and creative before you spend."/>
+<meta property="og:url" content="https://raqmetrics.com/tool.html"/>
+<meta property="og:image" content="https://raqmetrics.com/og-image.png"/>
+<meta property="og:image:alt" content="Raqmetrics — Performance Marketing &amp; Growth Specialist"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Raqmetrics — Launch Readiness System"/>
+<meta name="twitter:description" content="Interactive launch-readiness system for paid acquisition — assess budget, channels, tracking, and creative before you spend."/>
+<meta name="twitter:image" content="https://raqmetrics.com/og-image.png"/>
+<meta name="twitter:image:alt" content="Raqmetrics — Performance Marketing &amp; Growth Specialist"/>
+<link rel="icon" type="image/png" href="favicon.png" sizes="32x32"/>
+<link rel="apple-touch-icon" href="favicon-180.png" sizes="180x180"/>
+<script>(function(){try{var t=localStorage.getItem('rqm-theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Launch Readiness System",
+      "url": "https://raqmetrics.com/tool.html",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "description": "Interactive launch-readiness system for paid acquisition: budget, channels, tracking, and creative.",
+      "offers": {"@type":"Offer","price":"0","priceCurrency":"USD"},
+      "author": {"@type":"Person","name":"Cherif Eddine Haddad","url":"https://raqmetrics.com"}
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":"https://raqmetrics.com/"},
+        {"@type":"ListItem","position":2,"name":"Model","item":"https://raqmetrics.com/tool.html"}
+      ]
+    }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Merriweather:wght@300;400;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Merriweather:wght@300;400;700&family=DM+Mono:wght@300;400;500&display=swap"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Merriweather:wght@300;400;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Merriweather:wght@300;400;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/></noscript>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
 <style>
 :root{
@@ -299,17 +347,22 @@ hr.divider{border:none;border-top:1px solid var(--border);margin:1.25rem 0}
 .nav-logo-img{height:28px;width:auto;display:block;transition:opacity .2s;}
 .nav-logo-img:hover{opacity:.75;}
 [data-theme="dark"] .nav-logo-img{filter:brightness(0) invert(1);}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}
+  html{scroll-behavior:auto;}
+}
 </style>
 </head>
 <body>
 <nav class="nav">
   <div class="nav-i">
-    <a href="/"><img src="https://raw.githubusercontent.com/cherifeddwork/raqmetrics.xyz/main/logo.svg" alt="Raqmetrics" class="nav-logo-img"/></a>
+    <a href="/"><img decoding="async" src="https://raw.githubusercontent.com/cherifeddwork/raqmetrics.xyz/main/logo.svg" alt="Raqmetrics" class="nav-logo-img"/></a>
     <div class="nav-right">
       <div class="avail"><span class="avail-dot"></span>Launch OS</div>
       <span class="autosave" id="autosaveStatus"><span class="autosave-dot"></span>Auto-saved</span>
       <a href="/" class="back-btn">← Back to Site</a>
-      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme" aria-pressed="false">
         <svg id="ico-s" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         <svg id="ico-m" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
       </button>
@@ -322,7 +375,7 @@ hr.divider{border:none;border-top:1px solid var(--border);margin:1.25rem 0}
 <script>
 const html=document.documentElement;
 const btn=document.getElementById('themeBtn');
-function applyTheme(t){html.setAttribute('data-theme',t);localStorage.setItem('rqm-theme',t);document.getElementById('ico-s').style.display=t==='dark'?'block':'none';document.getElementById('ico-m').style.display=t==='dark'?'none':'block';}
+function applyTheme(t){html.setAttribute('data-theme',t);localStorage.setItem('rqm-theme',t);document.getElementById('ico-s').style.display=t==='dark'?'block':'none';document.getElementById('ico-m').style.display=t==='dark'?'none':'block';if(btn){btn.setAttribute('aria-pressed',String(t==='dark'));btn.setAttribute('aria-label',t==='dark'?'Switch to light mode':'Switch to dark mode');}}
 btn.addEventListener('click',()=>applyTheme(html.getAttribute('data-theme')==='dark'?'light':'dark'));
 applyTheme(localStorage.getItem('rqm-theme')||(window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
 </script>
