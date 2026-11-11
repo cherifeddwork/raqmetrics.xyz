@@ -824,6 +824,44 @@ select.input{
 .lb-thumbs button[aria-current="true"]{opacity:1;border-color:var(--brand);}
 @media(max-width:600px){.lb-nav{top:auto;bottom:1rem;margin-top:0;}.lb-thumbs button{width:48px;height:32px;}}
 
+/* ── Enhancement layer: availability pill, legend focus, form progress, footer mark ── */
+::selection{background:var(--brand);color:#fff;}
+
+.float-cta{position:fixed;right:clamp(.9rem,2.5vw,1.75rem);bottom:clamp(.9rem,2.5vw,1.75rem);z-index:40;display:inline-flex;align-items:center;gap:.7rem;padding:.55rem .6rem .55rem 1rem;border-radius:999px;background:var(--surface);border:1px solid var(--rule);box-shadow:0 10px 30px -12px rgba(0,0,0,.35);font:500 .8125rem/1 var(--f-text);color:var(--ink-2);text-decoration:none;opacity:0;transform:translateY(14px);pointer-events:none;transition:opacity .35s var(--ease),transform .35s var(--ease),border-color .2s;}
+.float-cta.on{opacity:1;transform:none;pointer-events:auto;}
+.float-cta:hover{border-color:var(--brand);}
+.float-cta .fc-dot{width:8px;height:8px;border-radius:50%;background:#1f9d55;box-shadow:0 0 0 0 rgba(31,157,85,.5);animation:fcPulse 2.4s ease-out infinite;flex:none;}
+.float-cta .fc-go{display:inline-flex;align-items:center;gap:.35rem;padding:.5rem .8rem;border-radius:999px;background:var(--brand);color:#fff;font-weight:600;}
+.float-cta .fc-go .ico{width:14px;height:14px;transition:transform .25s var(--ease);}
+.float-cta:hover .fc-go .ico{transform:translateX(3px);}
+@keyframes fcPulse{0%{box-shadow:0 0 0 0 rgba(31,157,85,.5);}70%,100%{box-shadow:0 0 0 9px rgba(31,157,85,0);}}
+@media(max-width:560px){.float-cta .fc-label{display:none;}.float-cta{padding:.4rem .4rem .4rem .8rem;}}
+@media print{.float-cta{display:none;}}
+
+.legend-btn{all:unset;display:inline-flex;align-items:center;gap:.45rem;cursor:pointer;padding:.3rem .6rem .3rem .35rem;border-radius:999px;border:1px solid transparent;transition:border-color .2s,color .2s,background .2s;}
+.legend-btn:hover{border-color:var(--rule);color:var(--ink);}
+.legend-btn:focus-visible{outline:2px solid var(--brand);outline-offset:2px;}
+.legend-btn[aria-pressed="true"]{border-color:var(--brand);color:var(--ink);background:var(--brand-tint);}
+.legend-btn .n{font-variant-numeric:tabular-nums;color:var(--ink-3);font-size:.75rem;}
+.skill{transition:opacity .3s var(--ease),transform .3s var(--ease);}
+[data-tier-focus] .skill{opacity:.22;}
+[data-tier-focus="1"] .skill.tier-1,[data-tier-focus="2"] .skill.tier-2,[data-tier-focus="3"] .skill.tier-3{opacity:1;transform:translateY(-2px);}
+
+.form-progress{display:flex;align-items:center;gap:.75rem;margin:0 0 1.25rem;font-size:.75rem;color:var(--ink-3);font-variant-numeric:tabular-nums;}
+.form-progress .fp-track{flex:1;height:3px;border-radius:999px;background:var(--rule);overflow:hidden;}
+.form-progress .fp-bar{display:block;height:100%;width:100%;background:var(--brand);transform-origin:left;transform:scaleX(0);transition:transform .45s var(--ease);}
+.form-progress.is-done{color:var(--brand-text);}
+
+html.js .case-panel-anim .results li{animation:resIn .5s var(--ease) both;animation-delay:calc(var(--k,0) * 90ms + 80ms);}
+@keyframes resIn{from{opacity:0;transform:translateX(-10px);}to{opacity:1;transform:none;}}
+
+.ft-mark{display:block;margin-top:2.5rem;font:700 clamp(3.2rem,15.5vw,13.5rem)/1 var(--f-display);padding-bottom:.08em;letter-spacing:-.03em;color:transparent;-webkit-text-stroke:1px var(--rule);user-select:none;white-space:nowrap;overflow:hidden;background:linear-gradient(100deg,transparent 40%,var(--brand) 50%,transparent 60%) no-repeat;background-size:250% 100%;background-position:120% 0;-webkit-background-clip:text;background-clip:text;transition:background-position 1.6s var(--ease);}
+.ft-mark.in{background-position:-60% 0;}
+.to-top{all:unset;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--rule);color:var(--ink-2);transition:border-color .2s,color .2s,transform .25s var(--ease);}
+.to-top:hover{border-color:var(--brand);color:var(--brand-text);transform:translateY(-3px);}
+.to-top:focus-visible{outline:2px solid var(--brand);outline-offset:2px;}
+.to-top svg{width:16px;height:16px;}
+.ft-bottom{align-items:center;}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;}
 }
@@ -1491,9 +1529,9 @@ select.input{
         </div>
       </div>
       <ul class="legend" aria-label="Legend">
-        <li><span class="sw tier-1"></span>Daily use</li>
-        <li><span class="sw tier-2"></span>Regular use</li>
-        <li><span class="sw tier-3"></span>Occasional</li>
+        <li><button type="button" class="legend-btn" data-tier="1" aria-pressed="false"><span class="sw tier-1"></span>Daily use <span class="n" aria-hidden="true"></span></button></li>
+        <li><button type="button" class="legend-btn" data-tier="2" aria-pressed="false"><span class="sw tier-2"></span>Regular use <span class="n" aria-hidden="true"></span></button></li>
+        <li><button type="button" class="legend-btn" data-tier="3" aria-pressed="false"><span class="sw tier-3"></span>Occasional <span class="n" aria-hidden="true"></span></button></li>
       </ul>
     </div>
   </div>
@@ -1553,6 +1591,8 @@ select.input{
       <form id="auditForm" novalidate aria-labelledby="formTitle">
         <h3 class="form-title" id="formTitle">Growth Audit Intake</h3>
         <p class="form-sub">Takes 2 minutes. The more specific, the better the assessment.</p>
+
+        <div class="form-progress" id="formProgress" aria-hidden="true"><span class="fp-track"><span class="fp-bar"></span></span><span class="fp-txt">0 / 6</span></div>
 
         <div class="form-alert" id="formAlert" role="alert" hidden>
           <svg class="ico" aria-hidden="true" style="width:18px;height:18px;margin-top:.15rem"><use href="#i-alert"/></svg>
@@ -1642,6 +1682,8 @@ select.input{
 
 </main>
 
+<a class="float-cta" id="floatCta" href="#contact" tabindex="-1" aria-hidden="true"><span class="fc-dot"></span><span class="fc-label">Available for projects</span><span class="fc-go">Let's Connect <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+
 <!-- ══════════ FOOTER ══════════ -->
 <footer class="footer">
   <div class="wrap">
@@ -1681,7 +1723,9 @@ select.input{
       <p>© 2026 Cherif Eddine Haddad · Raqmetrics</p>
       <p>Performance Marketing · MENA · Europe · North America</p>
       <p>Designed &amp; built by Raqmetrics</p>
+      <button type="button" class="to-top" id="toTop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </div>
+    <div class="ft-mark" id="ftMark" aria-hidden="true">Raqmetrics</div>
   </div>
 </footer>
 
@@ -1830,6 +1874,11 @@ select.input{
       t.setAttribute('aria-selected', String(on)); t.tabIndex = on ? 0 : -1;
       document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
     });
+    var pn = document.getElementById(tabs[i].getAttribute('aria-controls'));
+    if(pn && motionOK){
+      $$('.results li', pn).forEach(function(li, k){ li.style.setProperty('--k', k); });
+      pn.classList.remove('case-panel-anim'); void pn.offsetWidth; pn.classList.add('case-panel-anim');
+    }
     if(focus) tabs[i].focus();
   }
   tabs.forEach(function(t, i){
@@ -2040,6 +2089,69 @@ select.input{
     if(img.complete && img.naturalWidth === 0 && img.getAttribute('src')) swapToCover(img);
     else img.addEventListener('error', function(){ swapToCover(img); });
   });
+
+  /* ── Enhancement layer ── */
+  (function(){
+    /* Floating availability pill: after hero, hidden near contact/footer or with drawer open */
+    var fc = $('#floatCta'), hero = $('.hero'), contact = $('#contact'), drawer = $('#drawer');
+    if(fc && hero && contact){
+      var ticking = false;
+      var upd = function(){
+        ticking = false;
+        var vh = window.innerHeight;
+        var past = hero.getBoundingClientRect().bottom < vh * .35;
+        var near = contact.getBoundingClientRect().top < vh * .85;
+        var open = drawer && (drawer.classList.contains('open') || drawer.classList.contains('is-open') || document.body.classList.contains('drawer-open'));
+        var on = past && !near && !open;
+        fc.classList.toggle('on', on);
+        if(on){ fc.removeAttribute('aria-hidden'); fc.tabIndex = 0; } else { fc.setAttribute('aria-hidden','true'); fc.tabIndex = -1; }
+      };
+      window.addEventListener('scroll', function(){ if(!ticking){ ticking = true; requestAnimationFrame(upd); } }, {passive:true});
+      window.addEventListener('resize', upd); upd();
+    }
+
+    /* Skills legend: hover previews a tier, click pins it */
+    var grid = $('.legend') && $('.legend').parentNode, pinned = null;
+    $$('.legend-btn').forEach(function(b){
+      var t = b.getAttribute('data-tier'), n = $('.n', b);
+      if(n) n.textContent = $$('.skill.tier-' + t).length;
+      var set = function(v){ if(v) grid.setAttribute('data-tier-focus', v); else grid.removeAttribute('data-tier-focus'); };
+      b.addEventListener('mouseenter', function(){ set(t); });
+      b.addEventListener('mouseleave', function(){ set(pinned); });
+      b.addEventListener('focus', function(){ set(t); });
+      b.addEventListener('blur', function(){ set(pinned); });
+      b.addEventListener('click', function(){
+        pinned = pinned === t ? null : t;
+        $$('.legend-btn').forEach(function(o){ o.setAttribute('aria-pressed', String(o.getAttribute('data-tier') === pinned)); });
+        set(pinned || t);
+      });
+    });
+
+    /* Form progress */
+    var fp = $('#formProgress');
+    if(fp){
+      var ids = ['cf-name','cf-email','cf-budget','cf-market','cf-objective','cf-challenge'];
+      var bar = $('.fp-bar', fp), txt = $('.fp-txt', fp);
+      var re = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+      var calc = function(){
+        var c = 0;
+        ids.forEach(function(id){ var el = document.getElementById(id); if(!el) return; var v = el.value.trim(); if(v && (el.type !== 'email' || re.test(v))) c++; });
+        bar.style.transform = 'scaleX(' + (c / ids.length) + ')';
+        txt.textContent = c + ' / ' + ids.length;
+        fp.classList.toggle('is-done', c === ids.length);
+      };
+      ids.forEach(function(id){ var el = document.getElementById(id); if(el){ el.addEventListener('input', calc); el.addEventListener('change', calc); } });
+      calc();
+    }
+
+    /* Footer: back to top + wordmark sweep */
+    var tt = $('#toTop');
+    if(tt) tt.addEventListener('click', function(){ window.scrollTo({top:0, behavior: motionOK ? 'smooth' : 'auto'}); });
+    var fm = $('#ftMark');
+    if(fm && 'IntersectionObserver' in window){
+      new IntersectionObserver(function(es, o){ es.forEach(function(e){ if(e.isIntersecting){ fm.classList.add('in'); o.disconnect(); } }); }, {threshold:.5}).observe(fm);
+    }
+  })();
 
   /* ── Audit form: inline validation + mailto + honest confirmation ── */
   var form = $('#auditForm'), done = $('#formDone'), alertBox = $('#formAlert'), alertText = $('#formAlertText');
